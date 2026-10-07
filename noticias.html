@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Notícias sobre descarte de eletrônicos no Brasil e artigos do EcoRota sobre dados pessoais, baterias e logística reversa.">
+    <title>Notícias | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html" aria-current="page">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Notícias e artigos</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">Notícias sobre descarte de eletrônicos no Brasil e dicas da equipe para descartar com segurança.</p>
+
+            <section aria-labelledby="titulo-imprensa">
+                <h2 id="titulo-imprensa">Notícias do Brasil</h2>
+                <p class="fonte">Clique no título para ler a matéria completa no site de origem. Abra "Resumo da equipe" para ver o nosso resumo.</p>
+                <ul class="lista-noticias">
+                    <li class="item-noticia">
+                        <article aria-labelledby="externa-1">
+                            <p class="fonte-noticia"><span class="icone-fonte" style="background:#0d47a1" aria-hidden="true">CB</span> Correio Braziliense</p>
+                            <h3 id="externa-1"><a href="https://www.correiobraziliense.com.br/cbradar/empresa-manda-equipamentos-eletronicos-para-reciclagem-certificada-e-descobre-meses-depois-que-alguns-aparelhos-ainda-aparecem-vinculados-as-contas-internas-e-podem-ter-sido-revendidos-sem-apagamento/" target="_blank" rel="noopener">Reciclagem certificada não garante que os dados foram apagados<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a></h3>
+                            <p class="resumo-curto">Caso hipotético mostra que descartar o aparelho e apagar os dados são etapas diferentes, e que a LGPD exige cuidado mesmo depois do descarte.</p>
+                            <p class="tempo"><time datetime="2026-09-22" data-relativo>22/09/2026</time> · por Patrick Silva</p>
+                            <details>
+                                <summary>Resumo da equipe</summary>
+                                <p>A matéria apresenta um caso hipotético: uma empresa contrata uma reciclagem certificada para computadores e tablets antigos e, meses depois, percebe que alguns aparelhos ainda aparecem ligados às suas contas internas. Surge a suspeita de que parte deles foi revendida sem que os dados fossem apagados.</p>
+                                <p>O texto lembra que a Lei Geral de Proteção de Dados (LGPD) exige cuidado com as informações mesmo depois do descarte.</p>
+                                <p><strong>Por que importa:</strong> antes de entregar qualquer aparelho, apague seus dados. Veja como no artigo <a href="#noticia-1">Antes de descartar o celular, apague seus dados</a>.</p>
+                            </details>
+                        </article>
+                        <svg class="miniatura" viewBox="0 0 104 104" aria-hidden="true" focusable="false"><rect width="104" height="104" rx="10" fill="#e3f2fd"/><rect x="18" y="30" width="68" height="42" rx="4" fill="#01579b"/><rect x="24" y="36" width="56" height="30" fill="#bbdefb"/><rect x="12" y="72" width="80" height="6" rx="3" fill="#01579b"/><rect x="42" y="48" width="20" height="16" rx="3" fill="#b71c1c"/><path d="M46 48v-5a6 6 0 0 1 12 0v5" stroke="#b71c1c" stroke-width="4" fill="none"/></svg>
+                    </li>
+                    <li class="item-noticia">
+                        <article aria-labelledby="externa-2">
+                            <p class="fonte-noticia"><span class="icone-fonte" style="background:#00695c" aria-hidden="true">PM</span> Prefeitura de Manaus</p>
+                            <h3 id="externa-2"><a href="https://www.manaus.am.gov.br/noticia/acao/rede-descarte-correto-eletronicos/" target="_blank" rel="noopener">Manaus vai ter 62 pontos de entrega de eletrônicos<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a></h3>
+                            <p class="resumo-curto">Parceria da Semulsp com a Circular Brain prevê 62 pontos de entrega voluntária em todas as zonas da cidade.</p>
+                            <p class="tempo"><time datetime="2026-08-28" data-relativo>28/08/2026</time></p>
+                            <details>
+                                <summary>Resumo da equipe</summary>
+                                <p>A Prefeitura de Manaus, pela Secretaria Municipal de Limpeza Urbana (Semulsp), fez uma parceria com a empresa Circular Brain para instalar, aos poucos, 62 Pontos de Entrega Voluntária (PEVs) de eletrônicos. Hoje, os ecopontos das zonas Norte e Sul e a sede da Semulsp já recebem esse tipo de material.</p>
+                                <p>Os aparelhos seguem pela logística reversa até recicladores autorizados, e uma cooperativa participa da triagem, o que gera renda para os trabalhadores da reciclagem.</p>
+                                <p><strong>Por que importa:</strong> mais pontos de entrega perto de casa facilitam o descarte correto, como mostramos em <a href="projetos.html#pontos">Pontos de descarte</a>.</p>
+                            </details>
+                        </article>
+                        <svg class="miniatura" viewBox="0 0 104 104" aria-hidden="true" focusable="false"><rect width="104" height="104" rx="10" fill="#e8f5e9"/><path d="M14 30h76M14 52h76M14 74h76M34 14v76M70 14v76" stroke="#a5d6a7" stroke-width="3"/><path d="M52 84s-20-22-20-38a20 20 0 0 1 40 0c0 16-20 38-20 38z" fill="#2e7d32"/><circle cx="52" cy="46" r="8" fill="#fff"/></svg>
+                    </li>
+                    <li class="item-noticia">
+                        <article aria-labelledby="externa-3">
+                            <p class="fonte-noticia"><span class="icone-fonte" style="background:#1565c0" aria-hidden="true">PJ</span> Prefeitura de Joinville</p>
+                            <h3 id="externa-3"><a href="https://www.joinville.sc.gov.br/noticias/prefeitura-de-joinville-promove-acao-para-descarte-correto-de-eletronicos-no-dia-mundial-da-reciclagem/" target="_blank" rel="noopener">Joinville recebe eletrônicos no Dia Mundial da Reciclagem<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a></h3>
+                            <p class="resumo-curto">Ação recebeu TVs, celulares, eletrodomésticos, pilhas e baterias; a cidade mantém pontos gratuitos o ano todo.</p>
+                            <p class="tempo"><time datetime="2026-05-12" data-relativo>12/05/2026</time></p>
+                            <details>
+                                <summary>Resumo da equipe</summary>
+                                <p>Para marcar o Dia Mundial da Reciclagem, a Secretaria de Meio Ambiente de Joinville (SC) recebeu eletrônicos no sábado, 16 de maio, das 8h às 13h, no pátio da Secretaria de Infraestrutura Urbana. A ação aceitou TVs, celulares, computadores, eletrodomésticos como batedeiras e micro-ondas, pilhas, baterias, lâmpadas de LED e pneus.</p>
+                                <p>Fora da ação, a cidade mantém pontos de entrega voluntária gratuitos, que funcionam de segunda a sexta, das 8h às 17h.</p>
+                                <p><strong>Por que importa:</strong> ações de coleta em datas especiais ajudam a lembrar que o descarte correto deve acontecer o ano todo.</p>
+                            </details>
+                        </article>
+                        <svg class="miniatura" viewBox="0 0 104 104" aria-hidden="true" focusable="false"><rect width="104" height="104" rx="10" fill="#fff3e0"/><g fill="none" stroke="#2e7d32" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M40 30l12-12 12 12"/><path d="M52 18v26"/><path d="M28 72l-12-4 4-14"/><path d="M16 68c4-14 12-22 22-26"/><path d="M76 72l12-4-4-14"/><path d="M88 68c-4 14-18 18-36 18"/></g></svg>
+                    </li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="titulo-artigos">
+                <h2 id="titulo-artigos">Artigos da equipe</h2>
+
+            <article class="noticia" aria-labelledby="noticia-1">
+                <h3 id="noticia-1">Antes de descartar o celular, apague seus dados</h3>
+                <p class="meta">Publicado em <time datetime="2026-09-22">22/09/2026</time> por Equipe EcoRota</p>
+                <p>Um celular descartado ainda guarda fotos, conversas e senhas. Antes de doar ou descartar, faça um backup do que quiser guardar e saia de todas as contas, como Google, Apple e aplicativos de banco.</p>
+                <p>Depois, restaure o aparelho para as configurações de fábrica e retire o chip e o cartão de memória. Assim, a próxima pessoa recebe um aparelho limpo e seus dados continuam protegidos.</p>
+            </article>
+
+            <article class="noticia" aria-labelledby="noticia-2">
+                <h3 id="noticia-2">Pilhas e baterias nunca vão no lixo comum</h3>
+                <p class="meta">Publicado em <time datetime="2026-09-22">22/09/2026</time> por Equipe EcoRota</p>
+                <p>Pilhas e baterias têm metais que contaminam o solo e a água. Baterias de lítio, comuns em celulares e notebooks, ainda podem pegar fogo se forem amassadas no caminhão de lixo.</p>
+                <p>Guarde as pilhas usadas em um pote, cubra os polos das baterias com fita adesiva e leve tudo a um ponto de coleta. Se uma bateria estiver estufada, não tente furar nem carregar: leve direto a um ponto de descarte.</p>
+            </article>
+
+            <article class="noticia" aria-labelledby="noticia-3">
+                <h3 id="noticia-3">A loja também precisa receber seu eletrônico</h3>
+                <p class="meta">Publicado em <time datetime="2026-09-22">22/09/2026</time> por Equipe EcoRota</p>
+                <p>A Política Nacional de Resíduos Sólidos criou a logística reversa: fabricantes, importadores e lojas são responsáveis por receber os produtos depois do uso. Para eletroeletrônicos de uso doméstico, essa regra foi detalhada em 2020.</p>
+                <p>Na prática, você pode procurar a loja ou o fabricante para devolver aparelhos que não usa mais.</p>
+                <p class="fonte">Fontes: <a href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12305.htm" target="_blank" rel="noopener">Lei nº 12.305/2010<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a> e <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/decreto/D10240.htm" target="_blank" rel="noopener">Decreto nº 10.240/2020<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>.</p>
+            </article>
+            </section>
+
+            <!-- Modelo para novas notícias: copie o bloco abaixo
+            <article class="noticia" aria-labelledby="noticia-4">
+                <h3 id="noticia-4">Título da notícia</h3>
+                <p class="meta">Publicado em <time datetime="AAAA-MM-DD">DD/MM/AAAA</time> por Nome</p>
+                <p>Texto da notícia.</p>
+                <p class="fonte">Fonte: <a href="https://..." target="_blank" rel="noopener">nome da fonte<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a></p>
+            </article>
+            -->
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

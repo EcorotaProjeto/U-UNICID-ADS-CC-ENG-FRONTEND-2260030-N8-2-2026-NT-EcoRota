@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Relatório comparativo de hospedagem e domínio para publicar o site EcoRota, feito para a realidade de uma equipe independente.">
+    <title>Orçamento de hospedagem | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html" aria-current="page">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Orçamento de hospedagem e domínio</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">Comparamos três hospedagens e três registradores de domínio para publicar o EcoRota, pensando na realidade de uma equipe independente: sem patrocínio, com orçamento baixo e sem precisar de servidor próprio.</p>
+            <p>Pesquisa feita em 23/09/2026. Os preços promocionais exigem pagamento antecipado e a renovação costuma ser mais cara; confira sempre o valor no carrinho antes de contratar.</p>
+
+            <section aria-labelledby="titulo-hospedagem">
+                <h2 id="titulo-hospedagem">Hospedagem</h2>
+                <p>O EcoRota é um site estático (só HTML, CSS e JavaScript), então não precisa de banco de dados nem de linguagem de servidor. Isso abre a opção de hospedagem gratuita.</p>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Comparativo de hospedagens">
+                    <table>
+                        <caption>Comparativo de hospedagens</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Critério</th>
+                                <th scope="col">GitHub Pages</th>
+                                <th scope="col">Hostinger</th>
+                                <th scope="col">Locaweb</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Plano pesquisado</th><td>GitHub Pages (gratuito)</td><td>Premium (hospedagem compartilhada)</td><td>Hospedagem Go (entrada)</td></tr>
+                            <tr><th scope="row">Preço mensal</th><td>R$ 0,00</td><td>R$ 9,99 (promocional, no contrato de 48 meses)</td><td>R$ 9,90 (promocional)</td></tr>
+                            <tr><th scope="row">Custo no 1º ano</th><td>R$ 0,00</td><td>R$ 479,52 pagos à vista pelos 48 meses (equivale a R$ 119,88 por ano)</td><td>cerca de R$ 118,80</td></tr>
+                            <tr><th scope="row">Armazenamento</th><td>1 GB por site</td><td>20 GB SSD, até 3 sites</td><td>15 GB SSD, 1 site</td></tr>
+                            <tr><th scope="row">Certificado SSL grátis (https)</th><td>Sim</td><td>Sim</td><td>Sim</td></tr>
+                            <tr><th scope="row">Domínio incluso</th><td>Não (usa um domínio registrado à parte)</td><td>Sim, grátis no 1º ano</td><td>Sim, grátis no 1º ano</td></tr>
+                            <tr><th scope="row">Suporte em português</th><td>Não: documentação e fórum da comunidade, em inglês</td><td>Sim, chat 24 horas</td><td>Sim, 24 horas</td></tr>
+                            <tr><th scope="row">Energia renovável</th><td>A Microsoft, dona do GitHub, tem a meta de ser carbono negativa até 2030</td><td>Sim: compensa 100% da energia dos data centers com eletricidade renovável</td><td>Não encontramos informação pública</td></tr>
+                            <tr><th scope="row">Ideal para</th><td>Sites estáticos (HTML, CSS e JS), como o EcoRota</td><td>Sites que precisam de e-mail próprio, banco de dados ou PHP</td><td>Quem quer data center no Brasil (São Paulo)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="fonte">Fontes: <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>; Hostinger: <a href="https://www.hostinger.com/web-hosting" target="_blank" rel="noopener">recursos do plano<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>, <a href="https://kildaryoliver.com.br/plano-hostinger-premium-vale-a-pena/" target="_blank" rel="noopener">preço no Brasil<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a> e <a href="https://www.hostinger.com/sustainability" target="_blank" rel="noopener">relatório de sustentabilidade<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>; Locaweb: <a href="https://www.locaweb.com.br/hospedagem-de-sites-com-dominio-gratis/" target="_blank" rel="noopener">página do plano<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>.</p>
+            </section>
+
+            <section aria-labelledby="titulo-dominio">
+                <h2 id="titulo-dominio">Domínio</h2>
+                <p>Nome de domínio desejado: <strong>ecorota.com.br</strong> (a disponibilidade deve ser confirmada no Registro.br antes do registro).</p>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Comparativo de domínios">
+                    <table>
+                        <caption>Comparativo de domínios</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Registrador</th>
+                                <th scope="col">Extensão</th>
+                                <th scope="col">Preço no 1º ano</th>
+                                <th scope="col">Renovação anual</th>
+                                <th scope="col">Proteção de privacidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Registro.br</th><td>.com.br</td><td>R$ 40,00</td><td>R$ 40,00</td><td>Não (os dados do titular ficam públicos na consulta WHOIS)</td></tr>
+                            <tr><th scope="row">Locaweb</th><td>.com.br ou .com</td><td>R$ 53,90</td><td>R$ 108,90</td><td>Não</td></tr>
+                            <tr><th scope="row">Superdomínios</th><td>.com</td><td>R$ 61,99</td><td>R$ 79,99</td><td>Sim, grátis</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="fonte">Fontes: <a href="https://registro.br/dominio/" target="_blank" rel="noopener">Registro.br<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>, <a href="https://www.homehost.com.br/blog/dominio/registro-de-dominio-br/" target="_blank" rel="noopener">Homehost (privacidade no Registro.br)<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a> e <a href="https://tudosobrehospedagemdesites.com.br/melhor-site-para-registrar-dominio/" target="_blank" rel="noopener">Tudo Sobre Hospedagem de Sites (Locaweb e Superdomínios)<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>.</p>
+            </section>
+
+            <section aria-labelledby="titulo-total">
+                <h2 id="titulo-total">Custo total estimado</h2>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Custo da opção escolhida (GitHub Pages + Registro.br)">
+                    <table>
+                        <caption>Custo da opção escolhida (GitHub Pages + Registro.br)</caption>
+                        <thead>
+                            <tr><th scope="col">Item</th><th scope="col">1º ano</th><th scope="col">Anos seguintes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Hospedagem (GitHub Pages)</th><td>R$ 0,00</td><td>R$ 0,00</td></tr>
+                            <tr><th scope="row">Domínio ecorota.com.br (Registro.br)</th><td>R$ 40,00</td><td>R$ 40,00</td></tr>
+                            <tr><th scope="row">Total</th><td><strong>R$ 40,00</strong></td><td><strong>R$ 40,00 por ano</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section aria-labelledby="titulo-justificativa">
+                <h2 id="titulo-justificativa">Justificativa da escolha</h2>
+                <p><strong>Hospedagem: GitHub Pages.</strong> Como equipe independente, sem patrocínio, o mais importante é manter o custo fixo perto de zero. O EcoRota é um site estático, e o GitHub Pages hospeda esse tipo de site de graça, com https incluso. Ele ainda se integra ao Git, o controle de versão usado para trabalhar em equipe, e cada atualização no repositório publica o site automaticamente.</p>
+                <p><strong>Domínio: ecorota.com.br no Registro.br.</strong> O .com.br passa mais confiança para o público brasileiro, e o Registro.br é o registrador oficial, com o mesmo preço de R$ 40,00 no registro e na renovação. Nos outros registradores, o primeiro ano pode até parecer vantajoso, mas a renovação sai mais cara: na Locaweb, chega a R$ 108,90.</p>
+                <p><strong>Plano de crescimento:</strong> se o projeto passar a precisar de e-mail com o próprio domínio ou de um servidor para guardar os pedidos de coleta, a melhor opção é a Hostinger. Ela tem suporte em português e compensa 100% da energia dos seus data centers com eletricidade renovável, o que combina com a proposta sustentável do EcoRota.</p>
+                <p>Custo total: <strong>R$ 40,00 por ano</strong>, que cabe no orçamento de uma equipe independente.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

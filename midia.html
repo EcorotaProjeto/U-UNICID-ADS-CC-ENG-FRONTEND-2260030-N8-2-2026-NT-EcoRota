@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vídeo, áudio e mapa do EcoRota sobre descarte correto de eletrônicos, com legendas e transcrições.">
+    <title>Mídia | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html" aria-current="page">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Mídia</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">Vídeo, áudio e mapa sobre descarte correto de eletrônicos. Todos os conteúdos têm legenda ou transcrição.</p>
+
+            <section class="midia-bloco" aria-labelledby="titulo-video">
+                <h2 id="titulo-video">Vídeo: <span class="preencher">[PREENCHER: título do vídeo]</span></h2>
+                <!-- Troque assets/video-exemplo.mp4 pelo vídeo da equipe e atualize assets/legendas.vtt -->
+                <video controls preload="metadata" poster="img/poster-video.png" width="1280" height="720">
+                    <source src="assets/video-exemplo.mp4" type="video/mp4">
+                    <track kind="captions" src="assets/legendas.vtt" srclang="pt-BR" label="Português" default>
+                    Seu navegador não reproduz vídeos. <a href="assets/video-exemplo.mp4">Baixe o vídeo</a>.
+                </video>
+                <details>
+                    <summary>Transcrição do vídeo</summary>
+                    <p><span class="preencher">[PREENCHER: escreva aqui tudo o que é falado e mostrado no vídeo]</span></p>
+                </details>
+            </section>
+
+            <section class="midia-bloco" aria-labelledby="titulo-audio">
+                <h2 id="titulo-audio">Áudio: <span class="preencher">[PREENCHER: título do áudio ou podcast]</span></h2>
+                <!-- Troque assets/audio-exemplo.mp3 pelo áudio da equipe -->
+                <audio controls preload="metadata">
+                    <source src="assets/audio-exemplo.mp3" type="audio/mpeg">
+                    Seu navegador não reproduz áudios. <a href="assets/audio-exemplo.mp3">Baixe o áudio</a>.
+                </audio>
+                <details>
+                    <summary>Transcrição do áudio</summary>
+                    <p><span class="preencher">[PREENCHER: escreva aqui tudo o que é falado no áudio]</span></p>
+                </details>
+            </section>
+
+            <section class="midia-bloco" aria-labelledby="titulo-mapa">
+                <h2 id="titulo-mapa">Mapa: pontos de descarte em São Paulo</h2>
+                <iframe title="Mapa do Google com pontos de descarte de lixo eletrônico em São Paulo"
+                        src="https://maps.google.com/maps?q=descarte+de+lixo+eletr%C3%B4nico+S%C3%A3o+Paulo&amp;output=embed"
+                        loading="lazy"></iframe>
+                <p class="fonte">Mapa: Google Maps. Veja a lista completa com endereços na página <a href="projetos.html#pontos">Projetos</a>.</p>
+                <!-- Para incorporar um vídeo do YouTube, use:
+                <iframe title="Descreva o vídeo" src="https://www.youtube.com/embed/ID_DO_VIDEO" loading="lazy" allowfullscreen></iframe>
+                -->
+            </section>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

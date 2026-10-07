@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="História, missão, visão e valores do EcoRota, projeto de descarte correto de eletrônicos com inclusão.">
+    <title>Sobre | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque" aria-current="page">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Sobre o EcoRota</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">O EcoRota une sustentabilidade e inclusão: queremos que qualquer pessoa, com ou sem deficiência, consiga dar o destino certo para o lixo eletrônico.</p>
+
+            <section aria-labelledby="titulo-historia">
+                <h2 id="titulo-historia">Nossa história</h2>
+                <p>O EcoRota nasceu em 2026, na disciplina de Front-End da UNICID, no Tatuapé. Ao arrumar a casa, percebemos quantos HDs, cabos, computadores e eletrodomésticos velhos ficavam esquecidos em gavetas e armários, sem ninguém saber onde descartar.</p>
+                <p>A primeira versão era uma página simples com leitura em voz. Com os testes, entendemos que a acessibilidade precisava estar disponível para todas as pessoas, sem pedir que ninguém se identificasse. O projeto cresceu e ganhou coleta em casa, busca de pontos de descarte por CEP, doação de aparelhos e uma comunidade para troca de peças.</p>
+            </section>
+
+            <section aria-labelledby="titulo-missao">
+                <h2 id="titulo-missao">Missão</h2>
+                <p>Facilitar o descarte correto e o reaproveitamento de eletrônicos, com informação clara e serviços acessíveis a todas as pessoas.</p>
+                <!-- Sugestão de texto: ajuste com as palavras da equipe -->
+            </section>
+
+            <section aria-labelledby="titulo-visao">
+                <h2 id="titulo-visao">Visão</h2>
+                <p>Ser uma referência em São Paulo para quem quer descartar ou doar eletrônicos, sem que nenhuma barreira de acesso impeça alguém de participar.</p>
+            </section>
+
+            <section aria-labelledby="titulo-valores">
+                <h2 id="titulo-valores">Valores</h2>
+                <ul>
+                    <li><strong>Sustentabilidade:</strong> cada aparelho reaproveitado é menos resíduo e menos extração de recursos.</li>
+                    <li><strong>Inclusão:</strong> acessibilidade para todas as pessoas, sem exigir que ninguém se identifique.</li>
+                    <li><strong>Transparência:</strong> informações com fonte e dados abertos sobre nossos resultados.</li>
+                    <li><strong>Colaboração:</strong> cooperativas, escolas e comunidade trabalhando juntas.</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="titulo-projeto">
+                <h2 id="titulo-projeto">Projeto Integrador</h2>
+                <p>O EcoRota é um projeto acadêmico da disciplina de Front-End do Curso Superior de Informática da UNICID.</p>
+                <p>Professor: Prof. Paulo Fratta. Turma: ADS/Noite.</p>
+                <p>O site foi criado pela equipe EcoLogic. Conheça os integrantes na página <a href="contato.html#equipe">Contato</a>.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

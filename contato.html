@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fale com a equipe do EcoRota: dados de contato, formulário e membros da equipe.">
+    <title>Contato | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html" aria-current="page">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Contato</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">Tire dúvidas, sugira pontos de coleta ou conte para a gente se encontrou alguma barreira de acessibilidade.</p>
+
+            <section aria-labelledby="titulo-dados">
+                <h2 id="titulo-dados">Dados de contato</h2>
+                <p>O endereço é o da UNICID, onde o projeto foi desenvolvido. E-mail e telefone são fictícios, para fins acadêmicos.</p>
+                <address>
+                    <p>E-mail: <a href="mailto:ecorota.contato@gmail.com">ecorota.contato@gmail.com</a></p>
+                    <p>Telefone: <a href="tel:+551134567890">(11) 3456-7890</a></p>
+                    <p>WhatsApp: <a href="tel:+5511912345678">(11) 91234-5678</a></p>
+                    <p>Endereço: R. Cesário Galero, 448/475 - Tatuapé, São Paulo - SP, CEP 03071-000
+                        (<a href="https://www.google.com/maps/search/?api=1&amp;query=R.+Ces%C3%A1rio+Galero%2C+448+-+Tatuap%C3%A9%2C+S%C3%A3o+Paulo+-+SP%2C+03071-000" target="_blank" rel="noopener">ver no mapa<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>)</p>
+                    <p>Atendimento: segunda a sexta, das 9h às 18h</p>
+                </address>
+            </section>
+
+            <section aria-labelledby="titulo-form-contato">
+                <h2 id="titulo-form-contato">Envie uma mensagem</h2>
+                <p>Os campos marcados com (obrigatório) precisam ser preenchidos.</p>
+
+                <form data-formulario action="#" method="post" data-sucesso="Mensagem enviada. Vamos responder em até 2 dias úteis.">
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="contato-nome">Nome completo (obrigatório)</label>
+                            <input type="text" id="contato-nome" name="nome" autocomplete="name" required minlength="3">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="contato-email">E-mail (obrigatório)</label>
+                            <span id="contato-email-dica" class="dica">Exemplo: nome@email.com</span>
+                            <input type="email" id="contato-email" name="email" autocomplete="email" required aria-describedby="contato-email-dica">
+                        </div>
+                    </div>
+
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="contato-telefone">Telefone com DDD (opcional)</label>
+                            <span id="contato-telefone-dica" class="dica">Exemplo: (11) 91234-5678</span>
+                            <input type="tel" id="contato-telefone" name="telefone" autocomplete="tel"
+                                   pattern="\(?[0-9]{2}\)? ?[0-9]{4,5}-?[0-9]{4}" title="Telefone com DDD, por exemplo (11) 91234-5678"
+                                   aria-describedby="contato-telefone-dica">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="contato-assunto">Assunto (obrigatório)</label>
+                            <select id="contato-assunto" name="assunto" required>
+                                <option value="">Escolha um assunto</option>
+                                <option value="duvida">Dúvida</option>
+                                <option value="coleta">Coleta em casa</option>
+                                <option value="doacao">Doação</option>
+                                <option value="parceria">Parceria com cooperativa ou escola</option>
+                                <option value="acessibilidade">Acessibilidade</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="contato-data">Melhor data para retornarmos (opcional)</label>
+                            <input type="date" id="contato-data" name="data" data-a-partir-de-hoje>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="contato-aparelhos">Quantos aparelhos você quer descartar? (opcional)</label>
+                            <input type="number" id="contato-aparelhos" name="aparelhos" min="0" max="100" step="1">
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="contato-mensagem">Mensagem (obrigatório)</label>
+                        <span id="contato-mensagem-dica" class="dica">Escreva pelo menos 10 caracteres.</span>
+                        <textarea id="contato-mensagem" name="mensagem" required minlength="10" aria-describedby="contato-mensagem-dica"></textarea>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="opcao" for="contato-consentimento">
+                            <input type="checkbox" id="contato-consentimento" name="consentimento" required>
+                            Autorizo o uso dos meus dados apenas para responder esta mensagem. (obrigatório)
+                        </label>
+                    </div>
+
+                    <button type="submit" class="botao-gigante">Enviar mensagem</button>
+                    <p class="status-form" role="status" aria-live="polite"></p>
+                </form>
+            </section>
+
+            <section id="equipe" aria-labelledby="titulo-equipe">
+                <h2 id="titulo-equipe">Membros da equipe</h2>
+                <ul class="equipe">
+                    <li class="cartao">
+                        <h3>Caio Nabuosuke</h3>
+                        <p>RGM: 047646675</p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Eduarda Amorim</h3>
+                        <p>RGM: 47575689</p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Guilherme Couto</h3>
+                        <p>RGM: 47827149</p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Henrique de Medeiros</h3>
+                        <p>RGM: 47636718</p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Jenifer Rufino</h3>
+                        <p>RGM: 47556986</p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Julia Dantas</h3>
+                        <p>RGM: 47495111</p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Pedro Pinheiro</h3>
+                        <p>RGM: 47617110</p>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

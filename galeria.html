@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galeria de imagens do EcoRota: coleta, triagem, reuso e doação de eletrônicos.">
+    <title>Galeria | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html" aria-current="page">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Galeria</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">Imagens das ações de coleta, reaproveitamento e doação de eletrônicos.</p>
+            <p>Fotos de aparelhos e peças recolhidos pela equipe. Todas as imagens têm descrição para leitores de tela e indicação de fonte.</p>
+
+            <section aria-labelledby="titulo-fotos">
+                <h2 id="titulo-fotos">Nossas ações</h2>
+                <div class="galeria">
+                <figure>
+                    <img src="img/galeria-1.jpg" alt="Mini computador aberto mostrando a placa-mãe e os cabos, ao lado de três HDs desmontados. Uma mão segura um pente de memória RAM e um pote amarelo de pasta térmica." width="751" height="1000" loading="lazy">
+                    <figcaption>
+                        <strong>Desmontagem de um mini PC.</strong> HDs, memória RAM e placa-mãe separados para reaproveitamento das peças.
+                        <span class="fonte">Foto: acervo da equipe EcoRota, 2026.</span>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="img/galeria-2.jpg" alt="Sacola branca cheia de HDs antigos de várias marcas, com um cabo branco, uma espátula e uma moldura plástica azul-turquesa." width="751" height="1000" loading="lazy">
+                    <figcaption>
+                        <strong>HDs para descarte.</strong> HDs antigos recolhidos para o descarte correto. Antes, os dados precisam ser apagados.
+                        <span class="fonte">Foto: acervo da equipe EcoRota, 2026.</span>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="img/galeria-3.jpg" alt="Mão segurando uma frigideira de alumínio vista por baixo, com o fundo queimado e manchado." width="752" height="1000" loading="lazy">
+                    <figcaption>
+                        <strong>Reciclagem de metais.</strong> Nem tudo é lixo eletrônico: panelas de alumínio vão para a reciclagem de metais, em cooperativas ou ferros-velhos.
+                        <span class="fonte">Foto: acervo da equipe EcoRota, 2026.</span>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="img/galeria-4.jpg" alt="Mini computador preto da marca OKI, com portas USB e de áudio na frente, apoiado no colo de uma pessoa. Ao fundo, dois gabinetes de computador em um quarto." width="1000" height="751" loading="lazy">
+                    <figcaption>
+                        <strong>Mini PC recolhido.</strong> Computadores compactos como este podem ser reaproveitados em escolas e projetos sociais.
+                        <span class="fonte">Foto: acervo da equipe EcoRota, 2026.</span>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="img/galeria-5.jpg" alt="Mão segurando uma batedeira elétrica branca da marca Black+Decker, com o fio enrolado." width="752" height="1000" loading="lazy">
+                    <figcaption>
+                        <strong>Pequenos eletrodomésticos.</strong> Batedeiras e outros pequenos eletrodomésticos também são lixo eletrônico e devem ir a um ponto de coleta.
+                        <span class="fonte">Foto: acervo da equipe EcoRota, 2026.</span>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="img/galeria-6.jpg" alt="Monitor HP mostrando, em letras verdes sobre fundo preto, o registro de erro do instalador do Ubuntu Linux." width="751" height="1000" loading="lazy">
+                    <figcaption>
+                        <strong>Reuso com Linux.</strong> Teste de reaproveitamento: tentativa de instalar o Linux (Ubuntu) em um computador antigo.
+                        <span class="fonte">Foto: acervo da equipe EcoRota, 2026.</span>
+                    </figcaption>
+                </figure>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

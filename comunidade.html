@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comunidade EcoRecicla: troque, doe e procure peças de eletrônicos, tire dúvidas e conheça cooperativas.">
+    <title>Comunidade | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+    <!-- Comunidade: fonte, Tailwind e ícones (precisam de internet) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        // O Tailwind só age dentro de #ecorecicla, sem o reset global,
+        // para não mudar o visual do resto do site.
+        if (window.tailwind) {
+            tailwind.config = {
+                important: '#ecorecicla',
+                corePlugins: { preflight: false },
+                theme: {
+                    extend: {
+                        colors: { primary: '#004958', secondary: '#1a636e', accent: '#27B1A1', bglight: '#dae0e6' },
+                        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+                    }
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html" aria-current="page">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina pagina-larga pagina-comunidade">
+            <h1>Comunidade EcoRecicla</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <noscript><p style="padding: 0 20px;">A comunidade precisa de JavaScript para funcionar.</p></noscript>
+        <div id="ecorecicla" class="nao-ler">
+            <div class="text-gray-900 flex flex-col">
+
+                <!-- CABEÇALHO DA COMUNIDADE -->
+                <div class="bg-white border-b border-gray-300 h-16 shadow-sm" style="border-radius: 9px 9px 0 0;">
+                    <div class="px-4 h-full flex items-center justify-between gap-4">
+
+                        <!-- Logo -->
+                        <button type="button" id="com-logo" class="flex items-center gap-2 text-primary font-bold text-xl md:text-2xl flex-shrink-0" aria-label="EcoRecicla: voltar ao feed geral">
+                            <i class="ph ph-circuit-board text-3xl text-accent" aria-hidden="true"></i>
+                            <span class="hidden sm:inline">EcoRecicla</span>
+                        </button>
+
+                        <!-- Busca -->
+                        <div class="flex-1 max-w-2xl hidden md:flex items-center bg-gray-100 rounded-full border border-gray-200 hover:border-accent hover:bg-white transition-colors focus-within:bg-white focus-within:border-accent px-4 py-2">
+                            <i class="ph ph-magnifying-glass text-gray-500 text-lg mr-2" aria-hidden="true"></i>
+                            <input type="search" id="com-busca" placeholder="Buscar por placas, memórias, cooperativas..." class="bg-transparent border-none outline-none w-full text-sm text-gray-800" aria-label="Buscar na comunidade">
+                        </div>
+
+                        <!-- Login -->
+                        <div class="flex items-center gap-2">
+                            <form id="com-login" class="flex items-center gap-2">
+                                <input type="email" id="com-email" placeholder="E-mail" required autocomplete="email" class="border border-gray-300 rounded px-2 py-1 text-sm w-32 md:w-48 focus:border-accent outline-none hidden sm:block" aria-label="E-mail">
+                                <input type="password" placeholder="Senha" required autocomplete="current-password" class="border border-gray-300 rounded px-2 py-1 text-sm w-24 md:w-32 focus:border-accent outline-none hidden sm:block" aria-label="Senha">
+                                <button type="submit" class="bg-primary text-white font-bold text-sm px-4 py-1.5 rounded hover:bg-secondary transition-colors whitespace-nowrap">Entrar</button>
+                            </form>
+
+                            <div id="com-perfil" class="hidden items-center gap-3">
+                                <div class="hidden sm:flex flex-col text-right">
+                                    <span class="text-sm font-bold text-primary">Estudante_ADS</span>
+                                    <span class="text-xs text-gray-500 font-bold flex items-center justify-end gap-1"><i class="ph-fill ph-leaf text-accent" aria-hidden="true"></i> 120 EcoPoints</span>
+                                </div>
+                                <div class="h-10 w-10 bg-accent text-primary rounded-full flex items-center justify-center font-bold text-lg border-2 border-primary" aria-hidden="true">EA</div>
+                                <button type="button" id="com-sair" class="text-gray-500 hover:text-red-500 p-2" aria-label="Sair" title="Sair">
+                                    <i class="ph ph-sign-out text-xl" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CORPO (3 colunas em telas grandes) -->
+                <div class="w-full flex gap-6 p-4 pt-6">
+
+                    <!-- SIDEBAR ESQUERDA -->
+                    <aside class="w-64 hidden lg:block flex-shrink-0">
+                        <nav class="bg-white rounded-lg border border-gray-300 overflow-hidden shadow-sm" aria-label="Fóruns da comunidade">
+                            <div class="p-3 bg-gray-50 border-b border-gray-200 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                Fóruns / Módulos
+                            </div>
+                            <ul class="flex flex-col text-sm font-medium text-gray-700" id="com-menu"></ul>
+                        </nav>
+
+                        <!-- Card que acompanha a rolagem da página -->
+                        <div class="sticky top-4 mt-4 bg-primary text-white p-4 rounded-lg shadow-sm text-sm">
+                            <h2 class="font-bold flex items-center gap-2 mb-2"><i class="ph ph-info" aria-hidden="true"></i> Projeto Integrador</h2>
+                            <p class="text-gray-300 text-xs mb-2">Comunidade acadêmica focada no reaproveitamento e destino correto de lixo eletrônico.</p>
+                            <div class="flex items-center gap-1 text-emerald-300 text-xs font-bold uppercase"><i class="ph ph-check-circle" aria-hidden="true"></i> Acessibilidade Nível AA</div>
+                        </div>
+                    </aside>
+
+                    <!-- FEED -->
+                    <div class="flex-1 w-full max-w-3xl min-w-0">
+
+                        <div class="flex items-center gap-2 mb-4">
+                            <h2 id="com-titulo-feed" tabindex="-1" class="text-2xl font-bold text-gray-900">Início / Geral</h2>
+                            <span class="bg-gray-200 text-gray-600 px-2 py-0.5 rounded text-xs font-bold">14 Online</span>
+                        </div>
+
+                        <!-- Seletor de fórum para telas menores (a barra lateral some) -->
+                        <div class="lg:hidden mb-4">
+                            <label for="com-forum-select" class="block text-sm font-bold text-gray-700 mb-1">Fórum</label>
+                            <select id="com-forum-select" class="w-full border border-gray-300 rounded-md p-2 text-sm bg-white"></select>
+                        </div>
+
+                        <!-- NOVA POSTAGEM -->
+                        <section class="bg-white rounded-lg border border-gray-300 p-4 mb-6 shadow-sm" aria-labelledby="com-titulo-postar">
+                            <div class="flex gap-3 items-start">
+                                <div class="h-10 w-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 flex-shrink-0" aria-hidden="true">
+                                    <i class="ph ph-user text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 id="com-titulo-postar" class="text-sm font-bold text-primary mb-2 flex items-center gap-2">
+                                        <i class="ph-fill ph-magic-wand text-accent" aria-hidden="true"></i> Anunciar / Procurar Peça
+                                    </h3>
+                                    <label for="com-post-input" class="sr-only">O que você tem ou precisa?</label>
+                                    <textarea id="com-post-input" class="w-full bg-gray-50 border border-gray-300 rounded-md p-3 text-sm focus:border-accent outline-none resize-none" rows="3" placeholder="O que você tem ou precisa? Ex: 'Tenho uma placa de vídeo GTX 970 quebrada pra vender ou doar' (o site organiza o resto)"></textarea>
+
+                                    <div class="mt-3 flex justify-between items-center">
+                                        <div class="flex gap-2">
+                                            <button type="button" class="text-gray-500 hover:bg-gray-100 p-2 rounded transition-colors" aria-label="Adicionar imagem" title="Adicionar Imagem"><i class="ph ph-image text-xl" aria-hidden="true"></i></button>
+                                            <button type="button" class="text-gray-500 hover:bg-gray-100 p-2 rounded transition-colors" aria-label="Adicionar link" title="Adicionar Link"><i class="ph ph-link text-xl" aria-hidden="true"></i></button>
+                                        </div>
+                                        <button type="button" id="com-btn-postar" class="bg-primary text-white font-bold py-1.5 px-4 rounded-full hover:bg-secondary transition-colors flex items-center gap-2">
+                                            Postar <i class="ph-bold ph-paper-plane-right" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <p id="com-aviso" class="mt-3 text-xs font-bold text-primary" role="status" aria-live="polite"></p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <p id="com-contagem" class="sr-only" role="status" aria-live="polite"></p>
+                        <div id="com-feed" class="flex flex-col gap-4"></div>
+                    </div>
+
+                    <!-- SIDEBAR DIREITA -->
+                    <aside class="w-80 hidden xl:block flex-shrink-0 space-y-4">
+                        <div class="bg-white rounded-lg border border-gray-300 p-4 shadow-sm">
+                            <h2 class="font-bold text-gray-900 mb-1 flex items-center gap-2">
+                                <i class="ph-fill ph-plugs-connected text-accent" aria-hidden="true"></i> Match Inteligente
+                            </h2>
+                            <p class="text-xs text-gray-500 mb-4">A IA encontra quem tem o que você precisa.</p>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 border border-gray-200 p-3 rounded text-sm hover:border-accent transition-colors">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <span class="text-xs font-bold text-green-700 bg-green-100 px-1.5 py-0.5 rounded">COMBINAÇÃO ALTA</span>
+                                    </div>
+                                    <p class="text-gray-800">Sua busca por <strong>Memória DDR3</strong> combina com o post de <strong>@MariaSilva</strong>.</p>
+                                    <button type="button" id="com-ver-oferta" class="mt-2 text-primary font-bold text-xs hover:underline">Ver Oferta</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-300 p-4 shadow-sm text-sm">
+                            <h2 class="font-bold text-gray-900 mb-3 border-b pb-2">Regras da Comunidade</h2>
+                            <ol class="list-decimal pl-4 space-y-2 text-gray-700">
+                                <li>Respeite todes os membros.</li>
+                                <li>Sempre indique se o item funciona ou é sucata.</li>
+                                <li>Vendas são permitidas, mas priorize a economia solidária.</li>
+                                <li>Lixo tóxico (ex: baterias vazando) exige coleta especial.</li>
+                            </ol>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/comunidade.js"></script>
+</body>
+</html>

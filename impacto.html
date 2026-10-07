@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dados sobre lixo eletrônico e reciclagem de metais no mundo, e os resultados do EcoRota em tabelas.">
+    <title>Impacto | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html" aria-current="page">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Impacto: dados e resultados</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">Números que mostram o tamanho do problema e o que o EcoRota já conseguiu fazer.</p>
+
+            <section aria-labelledby="titulo-mundo">
+                <h2 id="titulo-mundo">O lixo eletrônico no mundo</h2>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Lixo eletrônico gerado e reciclado no mundo">
+                    <table>
+                        <caption>Lixo eletrônico gerado e reciclado no mundo</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Indicador</th>
+                                <th scope="col">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Lixo eletrônico gerado em 2010</th><td>34 milhões de toneladas</td></tr>
+                            <tr><th scope="row">Lixo eletrônico gerado em 2022</th><td>62 milhões de toneladas</td></tr>
+                            <tr><th scope="row">Média por pessoa em 2022</th><td>7,8 kg por ano</td></tr>
+                            <tr><th scope="row">Coletado e reciclado corretamente em 2022</th><td>22,3% (13,8 milhões de toneladas)</td></tr>
+                            <tr><th scope="row">Previsão para 2030</th><td>82 milhões de toneladas</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="fonte">Fonte: <a href="https://ewastemonitor.info/the-global-e-waste-monitor-2024/" target="_blank" rel="noopener">Global E-waste Monitor 2024<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>, da ONU (ITU e UNITAR).</p>
+                <p>A geração de lixo eletrônico está crescendo quase cinco vezes mais rápido do que a reciclagem documentada.</p>
+            </section>
+
+            <section aria-labelledby="titulo-metais">
+                <h2 id="titulo-metais">Reciclagem de metais</h2>
+                <p>Reciclar metais gasta muito menos energia do que extrair e processar minério. E os eletrônicos estão cheios deles.</p>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Energia economizada ao reciclar, em comparação com a produção a partir do minério">
+                    <table>
+                        <caption>Energia economizada ao reciclar, em comparação com a produção a partir do minério</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Metal</th>
+                                <th scope="col">Energia economizada</th>
+                                <th scope="col">Onde aparece nos eletrônicos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Alumínio</th><td>95%</td><td>Carcaças de computadores e dissipadores de calor. É o metal que mais economiza energia ao ser reciclado.</td></tr>
+                            <tr><th scope="row">Cobre</th><td>85%</td><td>Cabos e placas-mãe. Conduz eletricidade e é um dos materiais mais valiosos recuperados.</td></tr>
+                            <tr><th scope="row">Aço e ferro</th><td>74%</td><td>Estrutura de eletrodomésticos e equipamentos grandes, onde está a maior parte do peso.</td></tr>
+                            <tr><th scope="row">Chumbo</th><td>65%</td><td>Baterias e soldas antigas. É um metal pesado tóxico: reciclar evita a contaminação do solo e da água subterrânea.</td></tr>
+                            <tr><th scope="row">Zinco</th><td>60%</td><td>Pilhas e revestimentos de peças metálicas.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="fonte">Fonte: <a href="https://www.bir.org/the-industry" target="_blank" rel="noopener">BIR (Bureau of International Recycling)<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>, estudo sobre os benefícios ambientais da reciclagem.</p>
+
+                <h3>O tesouro escondido no lixo eletrônico</h3>
+                <div class="destaque-numero">
+                    <p>Uma tonelada de placas de circuito pode ter de 40 a 800 vezes mais ouro e de 30 a 40 vezes mais cobre do que uma tonelada de minério extraído nos Estados Unidos.</p>
+                </div>
+                <p class="fonte">Fonte: <a href="https://pubs.usgs.gov/fs/fs060-01/fs060-01.pdf" target="_blank" rel="noopener">Serviço Geológico dos Estados Unidos (USGS)<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>.</p>
+                <p>Por isso, recuperar metais dos eletrônicos descartados nas cidades é chamado de <strong>mineração urbana</strong>.</p>
+                <p>Além disso, diferente do papel e do plástico, que perdem qualidade a cada reciclagem, metais como alumínio, aço e cobre podem ser derretidos e reaproveitados muitas vezes sem perder resistência nem condutividade.</p>
+
+                <h3>Menos poluição, menos água, menos mineração</h3>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Benefícios de usar sucata de aço no lugar do minério">
+                    <table>
+                        <caption>Benefícios de usar sucata de aço no lugar do minério</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Benefício</th>
+                                <th scope="col">Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Emissões de gás carbônico (CO<sub>2</sub>)</th><td>58% a menos</td></tr>
+                            <tr><th scope="row">Poluição do ar</th><td>86% a menos</td></tr>
+                            <tr><th scope="row">Consumo de água</th><td>40% a menos</td></tr>
+                            <tr><th scope="row">Poluição da água</th><td>76% a menos</td></tr>
+                            <tr><th scope="row">Cada tonelada de sucata usada evita</th><td>1,4 t de minério de ferro, 740 kg de carvão e 1,5 t de CO<sub>2</sub></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="fonte">Fontes: <a href="https://circulareconomy.europa.eu/platform/sites/default/files/euric_metal_recycling_factsheet.pdf" target="_blank" rel="noopener">EuRIC, Confederação Europeia das Indústrias de Reciclagem<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a> e <a href="https://worldsteel.org/other-topics/raw-materials/" target="_blank" rel="noopener">World Steel Association<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>.</p>
+                <p>Quando os metais vão para a reciclagem, também deixam de ir para aterros, onde metais pesados como o chumbo das baterias podem vazar e contaminar o solo e a água.</p>
+            </section>
+
+            <section aria-labelledby="titulo-resultados">
+                <h2 id="titulo-resultados">Resultados do EcoRota</h2>
+                <p>Dados fictícios do projeto, para fins acadêmicos, referentes a janeiro a setembro de 2026.</p>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Metas e resultados do EcoRota em 2026 (dados fictícios)">
+                    <table>
+                        <caption>Metas e resultados do EcoRota em 2026 (dados fictícios)</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Indicador</th>
+                                <th scope="col">Meta</th>
+                                <th scope="col">Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Coletas em casa realizadas</th><td>150</td><td>132</td></tr>
+                            <tr><th scope="row">Quilos de eletrônicos recolhidos</th><td>2.000 kg</td><td>2.340 kg</td></tr>
+                            <tr><th scope="row">Aparelhos doados a escolas e projetos</th><td>80</td><td>67</td></tr>
+                            <tr><th scope="row">Instituições atendidas</th><td>10</td><td>12</td></tr>
+                            <tr><th scope="row">Pessoas com deficiência atendidas na coleta em casa</th><td>60</td><td>71</td></tr>
+                            <tr><th scope="row">Membros da comunidade EcoRecicla</th><td>500</td><td>438</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section aria-labelledby="titulo-destino">
+                <h2 id="titulo-destino">Para onde vão os aparelhos</h2>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Destino dos 2.340 kg de aparelhos recebidos (dados fictícios)">
+                    <table>
+                        <caption>Destino dos 2.340 kg de aparelhos recebidos (dados fictícios)</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Destino</th>
+                                <th scope="col">Porcentagem</th>
+                                <th scope="col">Exemplo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Reuso (doação)</th><td>18%</td><td>Computadores enviados a escolas</td></tr>
+                            <tr><th scope="row">Recuperação de peças</th><td>27%</td><td>Memórias, fontes e placas reaproveitadas</td></tr>
+                            <tr><th scope="row">Reciclagem de materiais</th><td>49%</td><td>Metais e plásticos enviados a cooperativas</td></tr>
+                            <tr><th scope="row">Descarte especial</th><td>6%</td><td>Baterias danificadas e resíduos perigosos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

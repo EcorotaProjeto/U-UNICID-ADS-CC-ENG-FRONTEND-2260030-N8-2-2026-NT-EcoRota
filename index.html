@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoRota: descarte correto de lixo eletrônico, coleta em casa, doação de aparelhos e comunidade, com acessibilidade para todos.">
+    <title>Início | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html" aria-current="page">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Descarte consciente de eletrônicos, para todo mundo</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">O EcoRota ajuda você a dar o destino certo para celulares, computadores, pilhas e outros eletrônicos: descobrir onde descartar, pedir a coleta em casa, doar o que ainda funciona e trocar peças com outras pessoas.</p>
+            <p>O site foi pensado desde o início para ser acessível: você pode aumentar o texto, usar alto contraste, ouvir o conteúdo e navegar só pelo teclado.</p>
+
+            <section aria-labelledby="titulo-servicos">
+                <h2 id="titulo-servicos">O que você pode fazer aqui</h2>
+                <ul class="cartoes">
+                    <li class="cartao">
+                        <h3>Pedir coleta em casa</h3>
+                        <p>Para quem tem dificuldade de locomoção ou aparelhos grandes. <a href="projetos.html#coleta">Pedir coleta</a></p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Achar um ponto de descarte</h3>
+                        <p>Pesquise por CEP, bairro ou cidade e veja no mapa. <a href="projetos.html#pontos">Ver pontos</a></p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Doar um aparelho</h3>
+                        <p>Computadores e celulares que funcionam podem ajudar escolas e projetos sociais. <a href="projetos.html#doacao">Doar</a></p>
+                    </li>
+                    <li class="cartao">
+                        <h3>Participar da comunidade</h3>
+                        <p>Troque, doe e procure peças com outras pessoas. <a href="comunidade.html">Entrar na comunidade</a></p>
+                    </li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="titulo-numeros">
+                <h2 id="titulo-numeros">Por que isso importa</h2>
+                <div class="destaque-numero">
+                    <p>Em 2022, o mundo gerou 62 milhões de toneladas de lixo eletrônico, e só 22,3% disso foi coletado e reciclado da forma correta.</p>
+                </div>
+                <p class="fonte">Fonte: Global E-waste Monitor 2024 (ONU: ITU e UNITAR). Veja mais dados na página <a href="impacto.html">Impacto</a>.</p>
+            </section>
+
+            <a class="botao-gigante" href="projetos.html">Conhecer nossos projetos</a>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

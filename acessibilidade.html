@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Medidas de acessibilidade e inclusão do EcoRota para pessoas com deficiência.">
+    <title>Acessibilidade | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html" aria-current="page">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Acessibilidade</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">O EcoRota foi feito para ser usado por qualquer pessoa, com ou sem deficiência, sem precisar se identificar nem pedir recursos especiais.</p>
+
+            <section aria-labelledby="titulo-compromisso">
+                <h2 id="titulo-compromisso">Nosso compromisso</h2>
+                <p>Seguimos as diretrizes internacionais de acessibilidade para a web (WCAG 2.1, nível AA) e a Lei Brasileira de Inclusão (Lei nº 13.146/2015), que garante o acesso de pessoas com deficiência aos sites.</p>
+            </section>
+
+            <section aria-labelledby="titulo-recursos">
+                <h2 id="titulo-recursos">Recursos do site</h2>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Recursos de acessibilidade e como usar">
+                    <table>
+                        <caption>Recursos de acessibilidade e como usar</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Recurso</th>
+                                <th scope="col">Para quem ajuda</th>
+                                <th scope="col">Como usar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Tamanho do texto</th><td>Baixa visão, pessoas idosas</td><td>Botões A+ e A− no topo da página</td></tr>
+                            <tr><th scope="row">Alto contraste</th><td>Baixa visão, daltonismo</td><td>Botão "Alto contraste" no topo da página</td></tr>
+                            <tr><th scope="row">Leitura em voz</th><td>Baixa visão, dislexia, pouca familiaridade com leitura</td><td>Botão "Ouvir esta página", com pausar, continuar e parar</td></tr>
+                            <tr><th scope="row">Navegação pelo teclado</th><td>Deficiência motora, pessoas cegas</td><td>Tecla Tab e Shift+Tab (veja a tabela abaixo)</td></tr>
+                            <tr><th scope="row">Compatível com leitores de tela</th><td>Pessoas cegas</td><td>Títulos, rótulos e descrições em todas as imagens e campos</td></tr>
+                            <tr><th scope="row">Legendas e transcrições</th><td>Pessoas surdas ou com deficiência auditiva</td><td>Vídeos com legenda e áudios com transcrição na página <a href="midia.html">Mídia</a></td></tr>
+                            <tr><th scope="row">Coleta em casa</th><td>Pessoas com dificuldade de locomoção</td><td>Formulário na página <a href="projetos.html#coleta">Projetos</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section aria-labelledby="titulo-teclado">
+                <h2 id="titulo-teclado">Como navegar pelo teclado</h2>
+                <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Teclas de navegação">
+                    <table>
+                        <caption>Teclas de navegação</caption>
+                        <thead>
+                            <tr><th scope="col">Tecla</th><th scope="col">O que faz</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Tab</th><td>Vai para o próximo link, botão ou campo</td></tr>
+                            <tr><th scope="row">Shift + Tab</th><td>Volta para o item anterior</td></tr>
+                            <tr><th scope="row">Enter</th><td>Abre um link ou aciona um botão</td></tr>
+                            <tr><th scope="row">Espaço</th><td>Aciona botões e marca caixas de seleção</td></tr>
+                            <tr><th scope="row">Setas</th><td>Escolhem opções em listas de seleção</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>A primeira tecla Tab em qualquer página mostra o link "Pular para o conteúdo", que leva direto ao texto principal.</p>
+            </section>
+
+            <section aria-labelledby="titulo-testes">
+                <h2 id="titulo-testes">Como testamos</h2>
+                <ul>
+                    <li><strong>Validação do código:</strong> as 11 páginas passaram no validador de HTML do W3C (Nu HTML Checker) e o CSS no validador de CSS do W3C, sem nenhum erro.</li>
+                    <li><strong>Testes automáticos de acessibilidade:</strong> usamos o axe-core com as regras da WCAG 2.1, níveis A e AA, em todas as páginas, em tela de computador (1366 pixels) e de celular (375 pixels). O teste encontrou três problemas, que corrigimos: pouco contraste em dois textos da Comunidade e tabelas que não rolavam pelo teclado no celular. Depois das correções, nenhuma falha.</li>
+                    <li><strong>Navegação só pelo teclado:</strong> conferimos que o link "Pular para o conteúdo" aparece na primeira tecla Tab, que todos os links, botões e campos mostram o foco, e que dá para enviar formulários e abrir os resumos das notícias sem mouse.</li>
+                    <li><strong>Contraste e tamanho do texto:</strong> testamos o modo de alto contraste e o aumento do texto até 180% em todas as páginas.</li>
+                    <li><strong>Navegadores:</strong> Google Chrome e Opera GX.</li>
+                    <li><strong>Próximo passo:</strong> testar o site com o leitor de tela NVDA, no Windows.</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="titulo-futuro">
+                <h2 id="titulo-futuro">Próximas melhorias</h2>
+                <ul>
+                    <li>Tradução para Libras com o VLibras.</li>
+                    <li>Versão em linguagem simples, com frases curtas e ícones, para pessoas com deficiência intelectual.</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="titulo-barreira">
+                <h2 id="titulo-barreira">Encontrou uma barreira?</h2>
+                <p>Se alguma parte do site for difícil de usar, conte para a gente pela página <a href="contato.html">Contato</a>. Escolha o assunto "Acessibilidade".</p>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

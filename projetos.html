@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projetos do EcoRota: coleta de eletrônicos em casa, pontos de descarte em São Paulo, doação de aparelhos e comunidade.">
+    <title>Projetos | EcoRota</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icone-180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
+
+    <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+        <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
+            <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
+            <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
+            <span id="indicadorFonte" class="indicador-fonte">100%</span>
+            <button type="button" id="btnFonteMais" aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <div class="grupo-controles">
+            <button type="button" id="btnContraste" aria-pressed="false">Alto contraste</button>
+        </div>
+        <div class="grupo-controles controle-voz" role="group" aria-labelledby="rotulo-voz">
+            <span id="rotulo-voz" class="rotulo-grupo">Voz:</span>
+            <button type="button" id="btnPausar">Pausar</button>
+            <button type="button" id="btnContinuar">Continuar</button>
+            <button type="button" id="btnParar">Parar</button>
+        </div>
+    </div>
+
+    <header class="cabecalho">
+        <p class="logo">
+            <a href="index.html">
+                <img class="logo-imagem" src="img/logo.png" alt="" width="148" height="240">
+                <span>EcoRota <span class="logo-complemento">Acessível</span></span>
+            </a>
+        </p>
+        <p>Descarte de eletrônicos e apoio à inclusão.</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu principal">
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
+                <li><a href="projetos.html" aria-current="page">Projetos</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="midia.html">Mídia</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="comunidade.html">Comunidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo" tabindex="-1">
+        <div class="pagina">
+            <h1>Nossos projetos</h1>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+
+            <p class="introducao">Conheça as frentes do EcoRota. Todas são gratuitas e pensadas para serem fáceis de usar.</p>
+
+            <nav class="nesta-pagina" aria-label="Nesta página">
+                <ul>
+                    <li><a href="#coleta">Coleta em casa</a></li>
+                    <li><a href="projetos.html#pontos">Pontos de descarte</a></li>
+                    <li><a href="#doacao">Doação de aparelhos</a></li>
+                    <li><a href="#comunidade">Comunidade EcoRecicla</a></li>
+                </ul>
+            </nav>
+
+            <!-- ========== COLETA EM CASA ========== -->
+            <section id="coleta" aria-labelledby="titulo-coleta">
+                <h2 id="titulo-coleta">Coleta em casa</h2>
+                <p>Se você tem dificuldade para se locomover ou não consegue levar o aparelho até um ponto de coleta, nossa equipe busca o lixo eletrônico <strong>na sua casa, de graça</strong>.</p>
+                <p>Os campos marcados com (obrigatório) precisam ser preenchidos.</p>
+
+                <form data-formulario action="#" method="post" data-sucesso="Pedido de coleta enviado. Vamos entrar em contato pelo telefone informado para confirmar o dia.">
+                    <div class="form-grupo">
+                        <label for="coleta-nome">Nome completo (obrigatório)</label>
+                        <input type="text" id="coleta-nome" name="nome" autocomplete="name" required minlength="3">
+                    </div>
+
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="coleta-telefone">Telefone com DDD (obrigatório)</label>
+                            <span id="coleta-telefone-dica" class="dica">Exemplo: (11) 91234-5678</span>
+                            <input type="tel" id="coleta-telefone" name="telefone" autocomplete="tel" required
+                                   pattern="\(?[0-9]{2}\)? ?[0-9]{4,5}-?[0-9]{4}" title="Telefone com DDD, por exemplo (11) 91234-5678"
+                                   aria-describedby="coleta-telefone-dica">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="coleta-email">E-mail (opcional)</label>
+                            <input type="email" id="coleta-email" name="email" autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="coleta-cep">CEP (obrigatório)</label>
+                            <span id="coleta-cep-status" class="dica status-cep" role="status" aria-live="polite">Exemplo: 03121-010. O endereço é preenchido sozinho.</span>
+                            <input type="text" id="coleta-cep" name="cep" inputmode="numeric" autocomplete="postal-code" required
+                                   pattern="[0-9]{5}-?[0-9]{3}" title="CEP com 8 números, por exemplo 03121-010" maxlength="9"
+                                   data-cep data-rua="coleta-rua" data-bairro="coleta-bairro" data-cidade="coleta-cidade" data-uf="coleta-uf"
+                                   aria-describedby="coleta-cep-status">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="coleta-numero">Número (obrigatório)</label>
+                            <input type="text" id="coleta-numero" name="numero" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="coleta-rua">Rua ou avenida (obrigatório)</label>
+                        <input type="text" id="coleta-rua" name="rua" autocomplete="address-line1" required>
+                    </div>
+
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="coleta-bairro">Bairro (obrigatório)</label>
+                            <input type="text" id="coleta-bairro" name="bairro" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="coleta-cidade">Cidade (obrigatório)</label>
+                            <input type="text" id="coleta-cidade" name="cidade" autocomplete="address-level2" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="coleta-uf">Estado (obrigatório)</label>
+                            <input type="text" id="coleta-uf" name="uf" autocomplete="address-level1" required
+                                   pattern="[A-Za-z]{2}" maxlength="2" title="Sigla do estado com 2 letras, por exemplo SP">
+                        </div>
+                    </div>
+
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="coleta-data">Data preferida para a coleta (obrigatório)</label>
+                            <input type="date" id="coleta-data" name="data" required data-a-partir-de-hoje>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="coleta-periodo">Período (obrigatório)</label>
+                            <select id="coleta-periodo" name="periodo" required>
+                                <option value="">Escolha um período</option>
+                                <option value="manha">Manhã (8h às 12h)</option>
+                                <option value="tarde">Tarde (13h às 18h)</option>
+                            </select>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="coleta-quantidade">Quantidade de aparelhos (obrigatório)</label>
+                            <input type="number" id="coleta-quantidade" name="quantidade" required min="1" max="50" step="1" value="1">
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="coleta-aparelho">O que vamos buscar? (obrigatório)</label>
+                        <span id="coleta-aparelho-dica" class="dica">Exemplo: computador antigo, micro-ondas, celulares</span>
+                        <input type="text" id="coleta-aparelho" name="aparelho" required aria-describedby="coleta-aparelho-dica">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="coleta-ajuda">Precisa de alguma ajuda no dia da coleta? (opcional)</label>
+                        <span id="coleta-ajuda-dica" class="dica">Exemplo: moro no 3º andar sem elevador, prefiro contato por mensagem</span>
+                        <textarea id="coleta-ajuda" name="ajuda" aria-describedby="coleta-ajuda-dica"></textarea>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label class="opcao" for="coleta-consentimento">
+                            <input type="checkbox" id="coleta-consentimento" name="consentimento" required>
+                            Autorizo o uso dos meus dados apenas para agendar a coleta. (obrigatório)
+                        </label>
+                    </div>
+
+                    <button type="submit" class="botao-gigante azul">Pedir coleta em casa</button>
+                    <p class="status-form" role="status" aria-live="polite"></p>
+                </form>
+            </section>
+
+            <!-- ========== PONTOS DE DESCARTE ========== -->
+            <section id="pontos" aria-labelledby="titulo-pontos">
+                <h2 id="titulo-pontos">Pontos de descarte</h2>
+                <p>Lixo eletrônico nunca deve ir para o lixo comum: ele tem metais e substâncias que contaminam o solo e a água.</p>
+
+                <h3>O que pode ser descartado</h3>
+                <ul>
+                    <li>Celulares, tablets e carregadores</li>
+                    <li>Pilhas e baterias</li>
+                    <li>Computadores, notebooks, teclados e mouses</li>
+                    <li>Televisões e monitores</li>
+                    <li>Eletrodomésticos pequenos e grandes</li>
+                </ul>
+
+                <h3>Antes de descartar</h3>
+                <ul>
+                    <li>Apague seus dados pessoais de celulares e computadores.</li>
+                    <li>Retire as pilhas dos aparelhos e descarte-as separadamente.</li>
+                    <li>Cubra os polos das baterias com fita adesiva.</li>
+                </ul>
+
+                <iframe id="mapaPontos" class="mapa-pontos"
+                        title="Mapa de pontos de descarte de lixo eletrônico em São Paulo"
+                        src="https://maps.google.com/maps?q=descarte+de+lixo+eletr%C3%B4nico+S%C3%A3o+Paulo&amp;output=embed"
+                        loading="lazy"></iframe>
+                <p id="mapaLegenda" class="fonte">O mapa mostra pontos de descarte em São Paulo.</p>
+
+                <a class="botao-gigante" target="_blank" rel="noopener"
+                   href="https://www.google.com/maps/search/?api=1&amp;query=descarte+de+lixo+eletr%C3%B4nico+perto+de+mim">
+                    Procurar pontos perto da minha localização no Google Maps
+                    <span class="sr-only">(abre em nova aba)</span>
+                <span class="icone-externo" aria-hidden="true">↗</span></a>
+
+                <noscript>
+                    <p>A lista de pontos com pesquisa precisa de JavaScript. Use o botão do Google Maps acima para encontrar pontos perto de você.</p>
+                </noscript>
+
+                <form id="formBusca" class="caixa-busca requer-js" role="search" aria-labelledby="titulo-busca">
+                    <h3 id="titulo-busca">Pesquisar pontos</h3>
+                    <p>Preencha só o que quiser. Se você digitar o CEP, os outros campos são preenchidos sozinhos.</p>
+
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="busca-cep">CEP</label>
+                            <span id="busca-cep-status" class="dica status-cep" role="status" aria-live="polite">Exemplo: 03121-010</span>
+                            <input type="text" id="busca-cep" inputmode="numeric" autocomplete="postal-code" maxlength="9"
+                                   pattern="[0-9]{5}-?[0-9]{3}" title="CEP com 8 números"
+                                   data-cep data-rua="busca-endereco" data-bairro="busca-bairro" data-cidade="busca-cidade" data-uf="busca-estado"
+                                   aria-describedby="busca-cep-status">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="busca-estado">Estado</label>
+                            <select id="busca-estado" autocomplete="address-level1">
+                                <option value="">Qualquer estado</option>
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                            </select>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="busca-cidade">Cidade</label>
+                            <input type="text" id="busca-cidade" autocomplete="address-level2">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="busca-bairro">Bairro</label>
+                            <input type="text" id="busca-bairro">
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="busca-endereco">Endereço (rua ou avenida)</label>
+                        <input type="text" id="busca-endereco" autocomplete="address-line1">
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="filtroRegiao">Região da cidade de São Paulo</label>
+                        <select id="filtroRegiao">
+                            <option value="todas">Todas as regiões</option>
+                            <option value="Centro">Centro</option>
+                            <option value="Zona Leste">Zona Leste</option>
+                            <option value="Zona Oeste">Zona Oeste</option>
+                            <option value="Zona Norte">Zona Norte</option>
+                            <option value="Zona Sul">Zona Sul</option>
+                        </select>
+                    </div>
+
+                    <div class="botoes-busca">
+                        <button type="submit" class="botao-gigante">Pesquisar</button>
+                        <button type="reset" class="botao-secundario">Limpar pesquisa</button>
+                    </div>
+                </form>
+
+                <p><a id="linkBuscaMapa" class="botao-secundario" target="_blank" rel="noopener" hidden href="#pontos">Abrir esta pesquisa no Google Maps <span class="sr-only">(abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a></p>
+                <p id="contagemPontos" class="contagem-pontos requer-js" role="status" aria-live="polite"></p>
+                <div class="nao-ler">
+                    <ul id="listaPontos" class="lista-pontos"></ul>
+                </div>
+                <p class="fonte">Endereços e horários podem mudar: ligue antes de ir. Lista baseada nos pontos divulgados pela Sucata Digital, cooperativas e universidades de São Paulo.</p>
+            </section>
+
+            <!-- ========== DOAÇÃO ========== -->
+            <section id="doacao" aria-labelledby="titulo-doacao">
+                <h2 id="titulo-doacao">Doação de aparelhos</h2>
+                <p>Seu computador ou celular ainda funciona? Cadastre aqui para doar a escolas e projetos sociais da sua região.</p>
+
+                <form data-formulario action="#" method="post" data-sucesso="Doação cadastrada. Vamos entrar em contato para combinar a entrega.">
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="doacao-nome">Nome completo (obrigatório)</label>
+                            <input type="text" id="doacao-nome" name="nome" autocomplete="name" required minlength="3">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="doacao-telefone">Telefone com DDD (obrigatório)</label>
+                            <input type="tel" id="doacao-telefone" name="telefone" autocomplete="tel" required
+                                   pattern="\(?[0-9]{2}\)? ?[0-9]{4,5}-?[0-9]{4}" title="Telefone com DDD, por exemplo (11) 91234-5678">
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="doacao-aparelho">Qual aparelho você quer doar? (obrigatório)</label>
+                        <input type="text" id="doacao-aparelho" name="aparelho" required>
+                    </div>
+
+                    <div class="grade-form">
+                        <div class="form-grupo">
+                            <label for="doacao-estado">Como o aparelho está funcionando? (obrigatório)</label>
+                            <select id="doacao-estado" name="estado" required>
+                                <option value="">Escolha uma opção</option>
+                                <option value="perfeito">Funciona perfeitamente</option>
+                                <option value="pequenos-defeitos">Funciona, mas tem pequenos defeitos</option>
+                            </select>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="doacao-quantidade">Quantidade (obrigatório)</label>
+                            <input type="number" id="doacao-quantidade" name="quantidade" required min="1" max="20" step="1" value="1">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="botao-gigante">Cadastrar doação</button>
+                    <p class="status-form" role="status" aria-live="polite"></p>
+                </form>
+            </section>
+
+            <!-- ========== COMUNIDADE ========== -->
+            <section id="comunidade" aria-labelledby="titulo-com">
+                <h2 id="titulo-com">Comunidade EcoRecicla</h2>
+                <p>Um espaço para trocar, doar e procurar peças, tirar dúvidas e conhecer cooperativas.</p>
+                <a class="botao-gigante" href="comunidade.html">Entrar na comunidade</a>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="avisos" class="sr-only" role="status" aria-live="polite"></div>
+
+    <footer>
+        <img class="logo-rodape" src="img/logo.png" alt="" width="148" height="240">
+        <nav aria-label="Links do rodapé">
+            <ul>
+                <li><a href="acessibilidade.html">Acessibilidade</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento de hospedagem</a></li>
+            </ul>
+        </nav>
+        <p>EcoRota &copy; 2026. Projeto Integrador da equipe EcoLogic - UNICID.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
