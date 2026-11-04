@@ -2,7 +2,7 @@ Documento de Escopo - Projeto EcoRota
 1. Identificação
 ●	Nome da equipe: Ecologic.
 ●	Nome do projeto/site: EcoRota.
-●	Integrantes: Caio Nabosuke, Eduarda Amorim, Guilherme Couto, Henrique de Medeiros, Jenifer Freire Rufino, Julia Moreira, Pedro Pinheiro. 
+●	Integrantes: Caio Nabosuke, Eduarda Amorim, Guilherme Couto, Henrique de Medeiros, Jenifer Freire Rufino,Pedro Pinheiro. 
 ●	Data: 23 de setembro de 2026.
 ●	Professor/disciplina: Prof. Paulo Fratta/ Desenvolvimento Front-End para Web.
 2. Contexto e Justificativa
@@ -72,7 +72,7 @@ o	Destaque (Accent): #27B1A1 (Verde água para botões e links).
 ●	Novembro: Implementação de JavaScript básico, testes rigorosos de acessibilidade e responsividade e ajustes finais e apresentação do site finalizado para a classe.
 ●	Funções:
 
-o	Documentação: Eduarda Amorim, Jennifer Rufino e Julia Moreira;
+o	Documentação: Eduarda Amorim e Jennifer Rufino;
 o	Criação do Site: Caio Kenji;
 o	Auxiliar: Henrique de Medeiros e Guilherme Couto;
 o	Apresentação: Pedro Pinheiro.
