@@ -18,7 +18,7 @@
 
 - **Geral:** facilitar o descarte correto e o reaproveitamento de eletrônicos, de forma acessível a todas as pessoas.
 - **Específicos (mensuráveis):**
-  1. Publicar um site com 10 páginas navegáveis e sem erros no W3C Validator.
+  1. Publicar um site com 11 páginas navegáveis e sem erros no W3C Validator.
   2. Listar pelo menos 14 pontos de descarte em São Paulo, com busca por CEP, bairro e cidade.
   3. Oferecer 3 formulários validados: coleta em casa, doação e contato.
   4. Atender aos critérios da WCAG 2.1 nível AA verificados na página de evidências de testes.
@@ -112,7 +112,7 @@ Ferramenta de gestão: [PREENCHER: ex.: Trello, Notion].
 
 ## 12. Critérios de aceitação
 
-- 10 páginas navegáveis e interligadas.
+- 11 páginas navegáveis e interligadas.
 - Formulários com validação HTML5 (required, email, tel, date, number, pattern, label for).
 - Vídeo, áudio e iframe funcionando.
 - Acessibilidade aplicada e testada.

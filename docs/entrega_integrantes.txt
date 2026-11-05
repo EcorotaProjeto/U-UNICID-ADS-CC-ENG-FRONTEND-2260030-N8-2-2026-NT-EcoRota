@@ -14,7 +14,7 @@ INTEGRANTES (nome completo e RGM):
 6. Pedro Pinheiro - RGM 47617110
 
 DESCRIÇÃO DA ATIVIDADE:
-Site "EcoRota Acessível", com 10 páginas HTML5 interligadas sobre descarte
+Site "EcoRota Acessível", com 11 páginas HTML5 interligadas sobre descarte
 correto e reaproveitamento de lixo eletrônico, com acessibilidade para pessoas
 com deficiência. Inclui coleta em casa, pontos de descarte com busca por CEP,
 doação de aparelhos, dados de impacto, galeria, mídia (vídeo, áudio e iframe),
