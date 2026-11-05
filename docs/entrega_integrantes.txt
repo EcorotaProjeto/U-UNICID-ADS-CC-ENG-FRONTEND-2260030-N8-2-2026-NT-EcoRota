@@ -1,0 +1,28 @@
+ATIVIDADE A2 - PROJETO DE SITE
+Disciplina: Front-End para Web - UNICID
+Professor(a): Prof. Paulo Fratta
+Turma: ADS/Noite
+
+EQUIPE: EcoLogic
+
+INTEGRANTES (nome completo e RGM):
+1. Caio Nabuosuke - RGM 047646675
+2. Eduarda Amorim - RGM 47575689
+3. Guilherme Couto - RGM 47827149
+4. Henrique de Medeiros - RGM 47636718
+5. Jenifer Rufino - RGM 47556986
+6. Pedro Pinheiro - RGM 47617110
+
+DESCRIÇÃO DA ATIVIDADE:
+Site "EcoRota Acessível", com 10 páginas HTML5 interligadas sobre descarte
+correto e reaproveitamento de lixo eletrônico, com acessibilidade para pessoas
+com deficiência. Inclui coleta em casa, pontos de descarte com busca por CEP,
+doação de aparelhos, dados de impacto, galeria, mídia (vídeo, áudio e iframe),
+notícias, contato com formulário validado, orçamento de hospedagem e uma
+comunidade para troca de peças.
+
+ARQUIVOS ENTREGUES:
+- EcoRota.zip (pasta completa do site)
+- entrega_integrantes.txt (este arquivo)
+- print da interface (.png)
+- escopo do projeto (.doc ou .pdf)

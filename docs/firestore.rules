@@ -1,0 +1,64 @@
+rules_version = '2';
+
+// Regras de segurança do Firestore da comunidade EcoRecicla (EcoRota).
+// Cole este conteúdo em: Console do Firebase > Firestore Database > Regras > Publicar.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function logado() {
+      return request.auth != null;
+    }
+
+    // Perfil de cada conta: só o dono lê e escreve
+    match /usuarios/{uid} {
+      allow read: if logado() && request.auth.uid == uid;
+      allow create, update: if logado() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['nome', 'criadoEm'])
+        && request.resource.data.nome is string
+        && request.resource.data.nome.size() >= 3
+        && request.resource.data.nome.size() <= 30;
+      allow delete: if false;
+
+      // Votos da pessoa (1 = a favor, -1 = contra): só o dono mexe
+      match /votos/{postId} {
+        allow read, delete: if logado() && request.auth.uid == uid;
+        allow create, update: if logado() && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['valor'])
+          && request.resource.data.valor in [1, -1];
+      }
+    }
+
+    // Publicações: todo mundo lê; só quem está logado publica
+    match /posts/{postId} {
+      allow read: if true;
+
+      allow create: if logado()
+        && request.resource.data.keys().hasOnly(['author', 'autorUid', 'type', 'categoria', 'title', 'description', 'tags', 'votes', 'criadoEm'])
+        && request.resource.data.autorUid == request.auth.uid
+        && request.resource.data.author is string
+        && request.resource.data.author.size() <= 30
+        && request.resource.data.type in ['VENDA', 'DOAÇÃO', 'BUSCA', 'INFORMATIVO']
+        && request.resource.data.categoria is string
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 120
+        && request.resource.data.description is string
+        && request.resource.data.description.size() > 0
+        && request.resource.data.description.size() <= 1000
+        && request.resource.data.tags is list
+        && request.resource.data.tags.size() <= 5
+        && request.resource.data.votes == 0
+        && request.resource.data.criadoEm == request.time;
+
+      // Quem está logado só pode mudar o contador de votos, e no máximo 2 por vez
+      allow update: if logado()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['votes'])
+        && request.resource.data.votes - resource.data.votes >= -2
+        && request.resource.data.votes - resource.data.votes <= 2;
+
+      // Só o autor exclui a própria publicação
+      allow delete: if logado() && resource.data.autorUid == request.auth.uid;
+    }
+  }
+}
