@@ -1,0 +1,3 @@
+Salve aqui os prints das evidências de testes (validação W3C, navegação,
+acessibilidade e responsividade) e o print da interface para a entrega (.png).
+Use os nomes indicados em docs/evidencias_testes.md.
