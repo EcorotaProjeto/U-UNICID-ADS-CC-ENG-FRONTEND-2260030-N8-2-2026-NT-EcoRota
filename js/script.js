@@ -117,12 +117,33 @@
        mostramos a mensagem de sucesso, porque o site ainda não tem servidor. */
     document.querySelectorAll('form[data-formulario]').forEach(function (form) {
         const status = form.querySelector('.status-form');
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
-            // TODO: enviar os dados para um servidor, por exemplo:
-            // fetch('https://seu-servidor/api', { method: 'POST', body: new FormData(form) })
-            if (status) status.textContent = form.dataset.sucesso || 'Enviado com sucesso.';
-            form.reset();
+            const sucesso = form.dataset.sucesso || 'Enviado com sucesso.';
+            // Envio pelo Formspree quando o action do formulário aponta para ele.
+            // Enquanto o código ainda for SEU_ID_AQUI, o formulário só mostra a mensagem.
+            const destino = form.getAttribute('action') || '';
+            if (!destino.startsWith('https://formspree.io/') || destino.indexOf('SEU_ID_AQUI') !== -1) {
+                if (status) status.textContent = sucesso;
+                form.reset();
+                return;
+            }
+            if (status) status.textContent = 'Enviando...';
+            try {
+                const resposta = await fetch(destino, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (resposta.ok) {
+                    if (status) status.textContent = sucesso;
+                    form.reset();
+                } else {
+                    if (status) status.textContent = 'Não foi possível enviar agora. Tente de novo em instantes.';
+                }
+            } catch (erro) {
+                if (status) status.textContent = 'Sem conexão com a internet. Tente de novo quando ela voltar.';
+            }
         });
     });
 
