@@ -12,7 +12,7 @@ Atividade AV A1 (Projeto de Site, 2ª entrega) da disciplina de Front-End do Cur
 ## Equipe EcoLogic
 
 | Nome | RGM |
-|---|---|---|
+|---|---|
 | Caio Nabuosuke | 047646675 |
 | Eduarda Amorim | 47575689 |
 | Guilherme Couto | 47827149 |
