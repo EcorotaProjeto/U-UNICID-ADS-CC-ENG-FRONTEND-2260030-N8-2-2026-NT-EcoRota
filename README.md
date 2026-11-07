@@ -59,7 +59,7 @@ EcoRota/
 ├── js/firebase-config.js  configuração do Firebase (sem segredos: a proteção é feita pelas regras)
 ├── img/                   imagens da galeria e capa do vídeo
 ├── assets/                vídeo e áudio da página Mídia
-└── docs/                  documentação
+└── docs/                  documentação.
 ```
 
 No repositório do GitHub, o site está em um único arquivo, `index.html`, que reúne todas as páginas (o menu leva a cada seção pelo endereço com `#`). Esse é o arquivo publicado no Vercel.
