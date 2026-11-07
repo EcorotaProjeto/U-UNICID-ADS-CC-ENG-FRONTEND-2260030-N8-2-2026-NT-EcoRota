@@ -1,4 +1,4 @@
-# EcoRota Acessível
+# EcoRota Acessível.
 
 Site sobre descarte correto de lixo eletrônico, com acessibilidade para pessoas com deficiência.
 Atividade AV A1 (Projeto de Site, 2ª entrega) da disciplina de Front-End do Curso Superior de Informática da UNICID.
