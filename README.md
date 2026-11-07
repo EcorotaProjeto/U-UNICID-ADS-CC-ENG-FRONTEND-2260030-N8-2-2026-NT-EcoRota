@@ -81,7 +81,7 @@ Abra o arquivo `index.html` no navegador, ou acesse o site publicado. Mapa, pree
 - Reciclagem de metais: BIR (Bureau of International Recycling), USGS, EuRIC e World Steel Association.
 - Lista de pontos de descarte: Sucata Digital, cooperativas e universidades de São Paulo.
 
-## Escolpo
+## Escopo
 
 _Documento de Escopo - Projeto EcoRota_
 
