@@ -119,7 +119,7 @@ _Documento de Escopo - Projeto EcoRota_
   O site atenderá usuários que dependem de leitores de tela (deficiência visual), navegação via teclado (deficiência motora) e exigem alto contraste (baixa visão ou daltonismo).
 
 ### 5. Escopo Funcional
-  Lista das 10 páginas e suas funções:
+  Lista das 11 páginas e suas funções:
   - Início: Visão geral do projeto, destaques de conteúdo e chamadas para ação.
   - Sobre: Página que apresentará o projeto EcoRota, seus objetivos, o motivo da criação do site e os integrantes da equipe.
   - Projetos: Página destinada a apresentar projetos e ações relacionados ao descarte, reciclagem e reaproveitamento de eletrônicos.
