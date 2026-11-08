@@ -73,7 +73,7 @@ Abra o arquivo `index.html` no navegador, ou acesse o site publicado. Mapa, pree
 - HTML5, CSS3 e JavaScript: validação do formulário com mensagens de erro, rascunho salvo no localStorage, filtro de notícias e alto contraste.
 - Tailwind CSS (só na página da comunidade), Phosphor Icons, Google Maps e ViaCEP.
 - Firebase (Authentication e Cloud Firestore) para contas e publicações da comunidade. Veja `docs/firebase_configuracao.md`.
-- Ferramentas: [PREENCHER: ex.: VS Code, Git e GitHub, W3C Validator, WAVE].
+- Ferramentas: VS Code, Git e GitHub, Claude (IA), W3C Validator, Lighthouse, Chrome DevTools, Vercel, Firebase e Formspree.
 
 ## Créditos
 
@@ -86,9 +86,9 @@ Abra o arquivo `index.html` no navegador, ou acesse o site publicado. Mapa, pree
 _Documento de Escopo - Projeto EcoRota_
 
 ### 1. Identificação
-  Nome da equipe: Ecologic.
+  Nome da equipe: EcoLogic.
   Nome do projeto/site: EcoRota.
-  Integrantes: Caio Nabosuke, Eduarda Amorim, Guilherme Couto, Henrique de Medeiros, Jenifer Freire Rufino, Pedro Pinheiro. 
+  Integrantes: Caio Nabuosuke, Eduarda Amorim, Guilherme Couto, Henrique de Medeiros, Jenifer Freire Rufino, Pedro Pinheiro. 
   Data: 23 de setembro de 2026.
   Professor/disciplina: Prof. Paulo Fratta/ Desenvolvimento Front-End para Web.
   
@@ -136,11 +136,11 @@ _Documento de Escopo - Projeto EcoRota_
 ### 6. Escopo Não Funcional
   _Acessibilidade:_ Uso rigoroso de atributos alt em imagens, validação de contraste de cores, suporte completo à navegação por teclado e marcações ARIA para leitores de tela.
   
-  _Sustentabilidade:_ Design minimalista para economizar processamento e energia, escolha de provedor de hospedagem verde (se aplicável), e forte otimização de imagens (uso de SVG e WebP).
+  _Sustentabilidade:_ Design simples, com poucas dependências, e imagens com tamanho reduzido para carregar menos dados.
   
   _Responsividade:_ Abordagem Mobile First, garantindo fluidez e adaptação perfeita entre telas de celular, tablet e desktop via media queries.
   
-  _Desempenho:_ Estrutura de HTML limpa e semântica, arquivos CSS e JS minificados para carregamento rápido.
+  _Desempenho:_ HTML semântico e CSS e JS organizados em arquivos separados, com nota 100 de acessibilidade no Lighthouse.
   SEO básico: Implementação de tags `<title>`, `<meta name="description">` exclusivas por página e uso hierárquico correto das tags de título (`<h1>` a `<h6>`).
 
 ### 7. Mapa do Site
@@ -198,9 +198,9 @@ _Documento de Escopo - Projeto EcoRota_
   _Novembro:_ Implementação de JavaScript básico, testes rigorosos de acessibilidade e responsividade e ajustes finais e apresentação do site finalizado para a classe.
   Funções:
   
-  • _Documentação:_ Eduarda Amorim e Jennifer Rufino;
+  • _Documentação:_ Eduarda Amorim e Jenifer Rufino;
   
-  • _Criação do Site:_ Caio Kenji;
+  • _Criação do Site:_ Caio Nabuosuke;
   
   • _Auxiliar:_ Henrique de Medeiros e Guilherme Couto;
   
@@ -214,7 +214,7 @@ _Documento de Escopo - Projeto EcoRota_
   _Restrições:_ O projeto é limitado aos conhecimentos práticos e teóricos exigidos até o 2º semestre do curso. O foco rigoroso deve se manter na entrega da interface front-end funcional, sem a exigência de um banco de dados real no back-end no momento.
 
 ### 12. Critérios de Aceitação
-  - O site possuir exatamente 10 páginas navegáveis interligadas;
+  - O site possuir exatamente 11 páginas navegáveis interligadas;
   
   - O código HTML e CSS deve passar sem erros críticos no validador W3C;
   
