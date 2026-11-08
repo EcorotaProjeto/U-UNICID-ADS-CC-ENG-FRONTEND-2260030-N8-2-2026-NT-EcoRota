@@ -62,7 +62,7 @@ EcoRota/
 └── docs/                  documentação.
 ```
 
-No repositório do GitHub, o site está em um único arquivo, `index.html`, que reúne todas as páginas (o menu leva a cada seção pelo endereço com `#`). Esse é o arquivo publicado no Vercel.
+O repositório contém as 11 páginas HTML, publicadas no Vercel.
 
 ## Como abrir
 
@@ -88,11 +88,11 @@ _Documento de Escopo - Projeto EcoRota_
 ### 1. Identificação
   Nome da equipe: EcoLogic.
   Nome do projeto/site: EcoRota.
-  Integrantes: Caio Nabuosuke, Eduarda Amorim, Guilherme Couto, Henrique de Medeiros, Jenifer Freire Rufino, Pedro Pinheiro. 
+  Integrantes: Caio Nabuosuke, Eduarda Amorim, Guilherme Couto, Henrique de Medeiros, Jenifer Rufino, Pedro Pinheiro. 
   Data: 23 de setembro de 2026.
   Professor/disciplina: Prof. Paulo Fratta/ Desenvolvimento Front-End para Web.
   
-### 2. Contexto e Justificativa </h3>
+### 2. Contexto e Justificativa
   *Qual problema social ou ambiental o site aborda?* O site aborda o descarte inadequado de lixo eletrônico e a falta de informação sobre a reciclagem de componentes metálicos.
   
   *Por que esse tema é relevante?* O descarte incorreto de eletrônicos libera substâncias tóxicas na natureza. A reciclagem de metais (como alumínio e cobre) evita a mineração predatória e gera uma economia massiva de energia (chegando a 95% no caso do alumínio), minimizando a pegada de carbono.
@@ -193,7 +193,7 @@ _Documento de Escopo - Projeto EcoRota_
 ### 10. Cronograma e Divisão de Tarefas
   _Setembro:_ Definição e entrega do Escopo; Criação dos Wireframes/Interface.
   
-  _Outubro:_ Desenvolvimento do código Front-end (Estruturação HTML e Estilização CSS das 10 páginas).
+  _Outubro:_ Desenvolvimento do código Front-end (Estruturação HTML e Estilização CSS das 11 páginas).
   
   _Novembro:_ Implementação de JavaScript básico, testes rigorosos de acessibilidade e responsividade e ajustes finais e apresentação do site finalizado para a classe.
   Funções:
