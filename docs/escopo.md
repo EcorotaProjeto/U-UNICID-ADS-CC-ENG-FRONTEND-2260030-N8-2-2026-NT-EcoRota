@@ -5,7 +5,7 @@
 - **Nome da equipe:** EcoLogic
 - **Nome do projeto/site:** EcoRota Acessível
 - **Integrantes:** Caio Nabuosuke (RGM 047646675); Eduarda Amorim (RGM 47575689); Guilherme Couto (RGM 47827149); Henrique de Medeiros (RGM 47636718); Jenifer Rufino (RGM 47556986); Pedro Pinheiro (RGM 47617110)
-- **Data:** [PREENCHER]
+- **Data:** 09/11/2026
 - **Professor(a)/disciplina:** Prof. Paulo Fratta / Front-End (turma ADS/Noite)
 
 ## 2. Contexto e justificativa
@@ -22,12 +22,12 @@
   2. Listar pelo menos 14 pontos de descarte em São Paulo, com busca por CEP, bairro e cidade.
   3. Oferecer 3 formulários validados: coleta em casa, doação e contato.
   4. Atender aos critérios da WCAG 2.1 nível AA verificados na página de evidências de testes.
-  5. [PREENCHER: outro objetivo da equipe]
+  5. Levar o projeto para lugares rurais com pouco acesso a internet e para fora do país
 
 ## 4. Público-alvo
 
 - Moradores de São Paulo que querem descartar ou doar eletrônicos.
-- Faixa etária: [PREENCHER: ex.: a partir de 16 anos, incluindo pessoas idosas].
+- Faixa etária: A partir de 16 anos
 - **Público prioritário:** pessoas com deficiência (visual, auditiva, motora e intelectual) e pessoas com dificuldade de locomoção.
 - Escolas, ONGs e cooperativas que recebem aparelhos.
 
@@ -88,27 +88,26 @@ Todas as páginas se ligam pelo menu principal; o rodapé leva a Acessibilidade,
 
 ## 9. Tecnologias e ferramentas
 
-HTML5, CSS3, JavaScript, [PREENCHER: editor, controle de versão, validadores].
+HTML5, CSS3, JavaScript, VS code, Claude IA, Github, W3C Markup Validator e W3C CSS Validator, com Lighthouse para acessibilidade..
 
 ## 10. Cronograma e divisão de tarefas
 
 | Etapa | Data | Responsável |
 |---|---|---|
-| Escopo | [PREENCHER] | [PREENCHER] |
-| Estrutura HTML das páginas | [PREENCHER] | [PREENCHER] |
-| CSS e identidade visual | [PREENCHER] | [PREENCHER] |
-| Conteúdo e imagens | [PREENCHER] | [PREENCHER] |
-| Testes de acessibilidade e validação | [PREENCHER] | [PREENCHER] |
-| Documentação e entrega | [PREENCHER] | [PREENCHER] |
+| Escopo | 06/11/2026 | Eduarda Amorim|
+| Estrutura HTML das páginas | 15/09/2026 | Caio Nabuosuke |
+| CSS e identidade visual | 15/09/2026 | Caio Nabuosuke |
+| Conteúdo e imagens | 22/09/2026 | Henrique de Medeiros|
+| Testes de acessibilidade e validação |  07/11/2026| Henrique de Medeiros, Guilherme Couto, Pedro Pinheiro |
+| Documentação e entrega | 09/11/2026| Eduarda Amorim, Jenifer Rufino, Caio Nabuosuke |
 
-Ferramenta de gestão: [PREENCHER: ex.: Trello, Notion].
+Ferramenta de gestão: GitHub, com commits e pull requests para acompanhar as alterações do projeto.
 
 ## 11. Riscos e restrições
 
 - Prazo curto e conciliação com outras disciplinas.
 - Pouca experiência da equipe com acessibilidade e validação W3C.
 - Mapa, CEP e comunidade dependem de serviços externos e de internet.
-- [PREENCHER: outros riscos]
 
 ## 12. Critérios de aceitação
 
@@ -121,6 +120,6 @@ Ferramenta de gestão: [PREENCHER: ex.: Trello, Notion].
 
 ## 13. Aprovação
 
-- **Responsável pela validação:** [PREENCHER]
-- **Data:** [PREENCHER]
-- **Assinatura:** [PREENCHER]
+- **Responsável pela validação:** Eduarda Amorim
+- **Data:** 09/11/2026
+- **Assinatura:** Eduarda Amorim
