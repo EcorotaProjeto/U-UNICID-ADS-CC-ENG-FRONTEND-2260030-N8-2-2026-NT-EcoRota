@@ -22,12 +22,12 @@
   2. Listar pelo menos 14 pontos de descarte em São Paulo, com busca por CEP, bairro e cidade.
   3. Oferecer 3 formulários validados: coleta em casa, doação e contato.
   4. Atender aos critérios da WCAG 2.1 nível AA verificados na página de evidências de testes.
-  5. Levar o projeto para lugares rurais com pouco acesso a internet e para fora do país
+
 
 ## 4. Público-alvo
 
 - Moradores de São Paulo que querem descartar ou doar eletrônicos.
-- Faixa etária: A partir de 16 anos
+- Faixa etária: Sem Faixa Etaria
 - **Público prioritário:** pessoas com deficiência (visual, auditiva, motora e intelectual) e pessoas com dificuldade de locomoção.
 - Escolas, ONGs e cooperativas que recebem aparelhos.
 
@@ -88,7 +88,7 @@ Todas as páginas se ligam pelo menu principal; o rodapé leva a Acessibilidade,
 
 ## 9. Tecnologias e ferramentas
 
-HTML5, CSS3, JavaScript, VS code, Claude IA, Github, W3C Markup Validator e W3C CSS Validator, com Lighthouse para acessibilidade..
+HTML5, CSS3, JavaScript, VS Code, Claude IA, Github, W3C Markup Validator e W3C CSS Validator, com Lighthouse para acessibilidade.
 
 ## 10. Cronograma e divisão de tarefas
 
