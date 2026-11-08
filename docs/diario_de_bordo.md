@@ -1,6 +1,6 @@
 # Diário de bordo: EcoRota Acessível
 
-> Registro das decisões, aprendizados e dificuldades da equipe. As entradas foram redigidas a partir do que o projeto passou; a equipe deve revisar o texto, completar as datas (marcadas com `[PREENCHER: data]`) e ajustar com as próprias palavras.
+> Registro das decisões, aprendizados e dificuldades da equipe. As entradas foram redigidas a partir do que o projeto passou; a equipe deve revisar o texto, completar as datas e ajustar com as próprias palavras.
 
 ## [15/09/2026] Primeira versão
 
@@ -60,7 +60,7 @@
 ## Uso de IA
 
 - **Ferramenta:** Claude (assistente de IA), usado para escrever e revisar o código, depurar erros, montar a configuração do Firebase e revisar a documentação.
-- **Prompts usados:** [PREENCHER: copiar os principais prompts da equipe]
-- **Aceito:** a estrutura das regras do Firestore, revisada depois pela equipe. [PREENCHER: outras sugestões aceitas]
+- **Prompts usados:** ["Com base a atividade, qual tema deveríamos seguir?", "Faça o site responsivo para todos os aparelhos", "Deixe o site mais acessivel com base as exigencias da w3c accessibility"]
+- **Aceito:** a estrutura das regras do Firestore, revisada depois pela equipe.
 - **Corrigido:** o diálogo de conta ficou centralizado de forma errada por causa do reset de margens; o atributo `hidden` foi sobrescrito por classes de layout e foi corrigido com uma regra específica.
 - **Recusado:** a sugestão de classificar os pontos de descarte por IA, porque dependia de uma chave de API. Trocamos por palavras-chave.
