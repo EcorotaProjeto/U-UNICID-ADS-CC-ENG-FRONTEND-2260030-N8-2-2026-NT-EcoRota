@@ -59,7 +59,7 @@
 
 ## Uso de IA
 
-- **Ferramenta:** Claude (assistente de IA), usado para escrever e revisar o código, depurar erros, montar a configuração do Firebase e revisar a documentação.
+- **Ferramentas:** Claude Pro (assistente de IA), usado para escrever e revisar o código, depurar erros, montar a configuração do Firebase e revisar a documentação.  Gemini (assistente de IA) criação da aba "Comunidades". Claude Free (assistente de IA) Criar códigos testes 
 - **Prompts usados:** ["Com base a atividade, qual tema deveríamos seguir?", "Faça o site responsivo para todos os aparelhos", "Deixe o site mais acessivel com base as exigencias da w3c accessibility"]
 - **Aceito:** a estrutura das regras do Firestore, revisada depois pela equipe.
 - **Corrigido:** o diálogo de conta ficou centralizado de forma errada por causa do reset de margens; o atributo `hidden` foi sobrescrito por classes de layout e foi corrigido com uma regra específica.
