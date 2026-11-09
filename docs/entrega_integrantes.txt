@@ -1,5 +1,4 @@
-ATIVIDADE A2 - PROJETO DE SITE
-Disciplina: Front-End para Web - UNICID
+AV A1 - PROJETO DE SITE (2ª entrega)
 Professor(a): Prof. Paulo Fratta
 Turma: ADS/Noite
 
