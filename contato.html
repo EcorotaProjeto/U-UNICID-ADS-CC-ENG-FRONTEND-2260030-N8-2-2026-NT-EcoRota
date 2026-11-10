@@ -82,12 +82,14 @@
                 <h2 id="titulo-form-contato">Envie uma mensagem</h2>
                 <p>Os campos marcados com (obrigatório) precisam ser preenchidos.</p>
 
+                <!-- Para enviar os dados preenchidos para o Formspree para ele encaminhar o fomulário para o email do ecorota-->
                 <form data-formulario action="https://formspree.io/f/xrppvqaj" method="post" data-sucesso="Mensagem enviada. Vamos responder em até 2 dias úteis.">
                     <div class="grade-form">
                         <div class="form-grupo">
                             <label for="contato-nome">Nome completo (obrigatório)</label>
                             <input type="text" id="contato-nome" name="nome" autocomplete="name" required minlength="3">
                         </div>
+                        <!-- email com validação automáticam se o texto digitado tem formato de e-mail válido -->
                         <div class="form-grupo">
                             <label for="contato-email">E-mail (obrigatório)</label>
                             <span id="contato-email-dica" class="dica">Exemplo: nome@email.com</span>
@@ -95,6 +97,7 @@
                         </div>
                     </div>
 
+                    <!-- telefone com pattern para exigir o formato de telefone brasileiro -->
                     <div class="grade-form">
                         <div class="form-grupo">
                             <label for="contato-telefone">Telefone com DDD (opcional)</label>
@@ -133,6 +136,7 @@
                         <textarea id="contato-mensagem" name="mensagem" required minlength="10" aria-describedby="contato-mensagem-dica"></textarea>
                     </div>
 
+                    <!-- Checkbox de consentimento para garantir LGPD -->
                     <div class="form-grupo">
                         <label class="opcao" for="contato-consentimento">
                             <input type="checkbox" id="contato-consentimento" name="consentimento" required>
@@ -140,6 +144,7 @@
                         </label>
                     </div>
 
+                    <!-- Envio do formulário e status de envio -->
                     <button type="submit" class="botao-gigante">Enviar mensagem</button>
                     <p class="status-form" role="status" aria-live="polite"></p>
                 </form>
