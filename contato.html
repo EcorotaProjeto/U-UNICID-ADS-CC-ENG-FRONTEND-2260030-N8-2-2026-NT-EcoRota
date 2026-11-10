@@ -93,7 +93,7 @@
                         <div class="form-grupo">
                             <label for="contato-email">E-mail (obrigatório)</label>
                             <span id="contato-email-dica" class="dica">Exemplo: nome@email.com</span>
-                            <input type="email" id="contato-email" name="email" autocomplete="email" required aria-describedby="contato-email-dica">
+                            <input type="email" id="contato-email" name="email" autocomplete="email" required aria-describedby="contato-email-dica" pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}" title="Digite um e-mail completo, como nome@dominio.com">
                         </div>
                     </div>
 
