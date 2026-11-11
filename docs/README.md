@@ -15,12 +15,12 @@ Atividade AV A1 (Projeto de Site, 2ª entrega) da disciplina de Front-End do Cur
 
 | Nome | RGM | Função |
 |---|---|---|
-| Caio Nabuosuke | 047646675 | [PREENCHER] |
-| Eduarda Amorim | 47575689 | [PREENCHER] |
-| Guilherme Couto | 47827149 | [PREENCHER] |
-| Henrique de Medeiros | 47636718 | [PREENCHER] |
-| Jenifer Rufino | 47556986 | [PREENCHER] |
-| Pedro Pinheiro | 47617110 | [PREENCHER] |
+| Caio Nabuosuke | 047646675 | Lider e desenvolvedor Principal |
+| Eduarda Amorim | 47575689 | Criação dos Slides e Validação do Escopo|
+| Guilherme Couto | 47827149 | Criação do Esqueleto do Site |
+| Henrique de Medeiros | 47636718 | Tester do site e Funcionalidades |
+| Jenifer Rufino | 47556986 | Criação do Escopo |
+| Pedro Pinheiro | 47617110 | Auxiliar de Desenvolvimento |
 
 ## Tema
 
