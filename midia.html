@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -61,11 +61,11 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Mídia</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">Vídeo, áudio e mapa sobre descarte correto de eletrônicos. Todos os conteúdos têm legenda ou transcrição.</p>
 
-            <section class="midia-bloco" aria-labelledby="titulo-video">
+            <section class="midia-bloco" aria-labelledby="titulo-video" id="video-ecorota" data-mascote="Vídeo do EcoRota sobre descarte correto de eletrônicos, com legendas e transcrição (botão Transcrição do vídeo)">
                 <h2 id="titulo-video">Vídeo EcoRota</h2>
                 <!-- Vídeo da equipe (com legendas gravadas no próprio vídeo). Para adicionar um arquivo de legendas, use <track> apontando para um .vtt. -->
                 <video controls preload="metadata" poster="img/poster-video.png" width="1280" height="720">
@@ -96,7 +96,7 @@
                 </details>
             </section>
 
-            <section class="midia-bloco" aria-labelledby="titulo-audio">
+            <section class="midia-bloco" aria-labelledby="titulo-audio" id="podcast-ecorota" data-mascote="Podcast EcoRota em que a equipe explica o projeto, com transcrição completa (botão Transcrição do áudio)">
                 <h2 id="titulo-audio">Podcast EcoRota</h2>
                 <!-- Áudio da equipe -->
                 <audio controls preload="metadata">
@@ -143,7 +143,7 @@
                 </details>
             </section>
 
-            <section class="midia-bloco" aria-labelledby="titulo-mapa">
+            <section class="midia-bloco" aria-labelledby="titulo-mapa" id="mapa-descarte" data-mascote="Mapa do Google com pontos de descarte de lixo eletrônico em São Paulo; a lista com endereços fica na página Projetos">
                 <h2 id="titulo-mapa">Mapa: pontos de descarte em São Paulo</h2>
                 <iframe title="Mapa do Google com pontos de descarte de lixo eletrônico em São Paulo"
                         src="https://maps.google.com/maps?q=descarte+de+lixo+eletr%C3%B4nico+S%C3%A3o+Paulo&amp;output=embed"
@@ -172,5 +172,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

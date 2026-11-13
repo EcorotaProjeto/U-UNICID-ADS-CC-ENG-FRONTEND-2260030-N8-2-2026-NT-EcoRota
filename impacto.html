@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -61,11 +61,11 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Impacto: dados e resultados</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">Números que mostram o tamanho do problema e o que o EcoRota já conseguiu fazer.</p>
 
-            <section aria-labelledby="titulo-mundo">
+            <section aria-labelledby="titulo-mundo" id="dados-mundo" data-mascote="Tabela do lixo eletrônico no mundo: 34 milhões de toneladas em 2010, 62 milhões em 2022, média de 7,8 kg por pessoa, só 22,3% coletado e reciclado corretamente em 2022, previsão de 82 milhões de toneladas em 2030 (Global E-waste Monitor 2024, ONU)">
                 <h2 id="titulo-mundo">O lixo eletrônico no mundo</h2>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Lixo eletrônico gerado e reciclado no mundo">
                     <table>
@@ -89,7 +89,7 @@
                 <p>A geração de lixo eletrônico está crescendo quase cinco vezes mais rápido do que a reciclagem documentada.</p>
             </section>
 
-            <section aria-labelledby="titulo-metais">
+            <section aria-labelledby="titulo-metais" id="reciclagem-metais" data-mascote="Reciclagem de metais: reciclar economiza 95% da energia no alumínio, 85% no cobre, 74% no aço e ferro, 65% no chumbo e 60% no zinco; placas de circuito têm de 40 a 800 vezes mais ouro que o minério (mineração urbana); usar sucata de aço reduz 58% do CO2 e 40% da água">
                 <h2 id="titulo-metais">Reciclagem de metais</h2>
                 <p>Reciclar metais gasta muito menos energia do que extrair e processar minério. E os eletrônicos estão cheios deles.</p>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Energia economizada ao reciclar, em comparação com a produção a partir do minério">
@@ -144,7 +144,7 @@
                 <p>Quando os metais vão para a reciclagem, também deixam de ir para aterros, onde metais pesados como o chumbo das baterias podem vazar e contaminar o solo e a água.</p>
             </section>
 
-            <section aria-labelledby="titulo-resultados">
+            <section aria-labelledby="titulo-resultados" id="resultados-ecorota" data-mascote="Resultados do EcoRota de janeiro a setembro de 2026 (dados fictícios, para fins acadêmicos): 132 coletas em casa, 2.340 kg de eletrônicos recolhidos, 67 aparelhos doados, 12 instituições atendidas, 71 pessoas com deficiência atendidas na coleta em casa, 438 membros na comunidade EcoRecicla">
                 <h2 id="titulo-resultados">Resultados do EcoRota</h2>
                 <p>Dados fictícios do projeto, para fins acadêmicos, referentes a janeiro a setembro de 2026.</p>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Metas e resultados do EcoRota em 2026 (dados fictícios)">
@@ -169,7 +169,7 @@
                 </div>
             </section>
 
-            <section aria-labelledby="titulo-destino">
+            <section aria-labelledby="titulo-destino" id="destino-aparelhos" data-mascote="Para onde vão os aparelhos recebidos (dados fictícios): 18% reuso e doação, 27% recuperação de peças, 49% reciclagem de materiais, 6% descarte especial">
                 <h2 id="titulo-destino">Para onde vão os aparelhos</h2>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Destino dos 2.340 kg de aparelhos recebidos (dados fictícios)">
                     <table>
@@ -209,5 +209,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

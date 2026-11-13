@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -61,12 +61,12 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Galeria</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">Imagens das ações de coleta, reaproveitamento e doação de eletrônicos.</p>
             <p>Fotos de aparelhos e peças recolhidos pela equipe. Todas as imagens têm descrição para leitores de tela e indicação de fonte.</p>
 
-            <section aria-labelledby="titulo-fotos">
+            <section aria-labelledby="titulo-fotos" id="galeria-fotos" data-mascote="Galeria de fotos das ações da equipe: desmontagem de um mini PC, HDs para descarte, reciclagem de panelas de alumínio, mini PC recolhido para reuso, pequenos eletrodomésticos como batedeira, e reuso de computador antigo com Linux">
                 <h2 id="titulo-fotos">Nossas ações</h2>
                 <div class="galeria">
                 <figure>
@@ -132,5 +132,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

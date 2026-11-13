@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -61,12 +61,12 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Orçamento de hospedagem e domínio</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">Comparamos três hospedagens e três registradores de domínio para publicar o EcoRota, pensando na realidade de uma equipe independente: sem patrocínio, com orçamento baixo e sem precisar de servidor próprio.</p>
             <p>Pesquisa feita em 23/09/2026. Os preços promocionais exigem pagamento antecipado e a renovação costuma ser mais cara; confira sempre o valor no carrinho antes de contratar.</p>
 
-            <section aria-labelledby="titulo-hospedagem">
+            <section aria-labelledby="titulo-hospedagem" id="orcamento-hospedagens" data-mascote="Comparativo de hospedagens (pesquisa de 23/09/2026): GitHub Pages grátis, Vercel plano Hobby grátis, Hostinger Premium R$ 9,99 por mês promocional no contrato de 48 meses, Locaweb Hospedagem Go R$ 9,90 por mês promocional">
                 <h2 id="titulo-hospedagem">Hospedagem</h2>
                 <p>O EcoRota é um site estático (só HTML, CSS e JavaScript), então não precisa de banco de dados nem de linguagem de servidor. Isso abre a opção de hospedagem gratuita.</p>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Comparativo de hospedagens">
@@ -97,7 +97,7 @@
                 <p class="fonte">Fontes: <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>; Hostinger: <a href="https://www.hostinger.com/web-hosting" target="_blank" rel="noopener">recursos do plano<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>, <a href="https://kildaryoliver.com.br/plano-hostinger-premium-vale-a-pena/" target="_blank" rel="noopener">preço no Brasil<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a> e <a href="https://www.hostinger.com/sustainability" target="_blank" rel="noopener">relatório de sustentabilidade<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>; Locaweb: <a href="https://www.locaweb.com.br/hospedagem-de-sites-com-dominio-gratis/" target="_blank" rel="noopener">página do plano<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>; Vercel (preços e limites, consultados em terceiros, pois a página oficial não estava acessível nesta pesquisa): <a href="https://www.stork.ai/blog/vercel-pricing-2026" target="_blank" rel="noopener">Vercel Pricing 2026<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a> e <a href="https://justinmckelvey.com/blog/is-vercel-free" target="_blank" rel="noopener">Is Vercel Free?<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>.</p>
             </section>
 
-            <section aria-labelledby="titulo-dominio">
+            <section aria-labelledby="titulo-dominio" id="orcamento-dominios" data-mascote="Comparativo de domínios para ecorota.com.br: Registro.br R$ 40,00 no registro e na renovação; Locaweb R$ 53,90 no 1º ano e R$ 108,90 na renovação; Superdomínios R$ 61,99 e R$ 79,99, com privacidade grátis">
                 <h2 id="titulo-dominio">Domínio</h2>
                 <p>Nome de domínio desejado: <strong>ecorota.com.br</strong> (a disponibilidade deve ser confirmada no Registro.br antes do registro).</p>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Comparativo de domínios">
@@ -122,7 +122,7 @@
                 <p class="fonte">Fontes: <a href="https://registro.br/dominio/" target="_blank" rel="noopener">Registro.br<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>, <a href="https://www.homehost.com.br/blog/dominio/registro-de-dominio-br/" target="_blank" rel="noopener">Homehost (privacidade no Registro.br)<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a> e <a href="https://tudosobrehospedagemdesites.com.br/melhor-site-para-registrar-dominio/" target="_blank" rel="noopener">Tudo Sobre Hospedagem de Sites (Locaweb e Superdomínios)<span class="sr-only"> (abre em nova aba)</span><span class="icone-externo" aria-hidden="true">↗</span></a>.</p>
             </section>
 
-            <section aria-labelledby="titulo-total">
+            <section aria-labelledby="titulo-total" id="orcamento-total" data-mascote="Custo total da opção escolhida (Vercel plano Hobby + domínio no Registro.br): R$ 40,00 por ano">
                 <h2 id="titulo-total">Custo total estimado</h2>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Custo da opção escolhida (Vercel + Registro.br)">
                     <table>
@@ -139,7 +139,7 @@
                 </div>
             </section>
 
-            <section aria-labelledby="titulo-justificativa">
+            <section aria-labelledby="titulo-justificativa" id="orcamento-justificativa" data-mascote="Justificativa da escolha: Vercel Hobby por ser gratuito, ter https e publicar automaticamente pelo GitHub; domínio .com.br no Registro.br pelo preço fixo de R$ 40,00; Hostinger como plano de crescimento, com suporte em português e energia renovável">
                 <h2 id="titulo-justificativa">Justificativa da escolha</h2>
                 <p><strong>Hospedagem: Vercel, no plano Hobby.</strong> Como equipe independente, sem patrocínio, o mais importante é manter o custo fixo perto de zero. O plano Hobby é gratuito, tem https incluso e publica o site automaticamente a cada atualização no GitHub, que é o controle de versão usado pela equipe. Ele cabe no EcoRota porque o site é estático e o uso é educacional, sem fins comerciais, que é a condição do plano. O GitHub Pages também seria uma opção gratuita, mas o Vercel já está configurado para o projeto. Limites a observar: o plano Hobby tem 1 assento de deploy e não pode ser usado para fins comerciais.</p>
                 <p><strong>Domínio: ecorota.com.br no Registro.br.</strong> O .com.br passa mais confiança para o público brasileiro, e o Registro.br é o registrador oficial, com o mesmo preço de R$ 40,00 no registro e na renovação. Nos outros registradores, o primeiro ano pode até parecer vantajoso, mas a renovação sai mais cara: na Locaweb, chega a R$ 108,90.</p>
@@ -165,5 +165,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

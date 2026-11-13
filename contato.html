@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -61,11 +61,11 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Contato</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">Tire dúvidas, sugira pontos de coleta ou conte para a gente se encontrou alguma barreira de acessibilidade.</p>
 
-            <section aria-labelledby="titulo-dados">
+            <section aria-labelledby="titulo-dados" id="dados-contato" data-mascote="Dados de contato (e-mail e telefones fictícios, para fins acadêmicos): e-mail ecorota.contato@gmail.com, telefone (11) 3456-7890, WhatsApp (11) 91234-5678, endereço R. Cesário Galero, 448 - Tatuapé, São Paulo (UNICID), atendimento de segunda a sexta, das 9h às 18h">
                 <h2 id="titulo-dados">Dados de contato</h2>
                 <p>O endereço é o da UNICID, onde o projeto foi desenvolvido. E-mail e telefone são fictícios, para fins acadêmicos.</p>
                 <address>
@@ -78,7 +78,7 @@
                 </address>
             </section>
 
-            <section aria-labelledby="titulo-form-contato">
+            <section aria-labelledby="titulo-form-contato" id="formulario-contato" data-mascote="Formulário Envie uma mensagem: nome, e-mail, telefone opcional, assunto (dúvida, coleta em casa, doação, parceria com cooperativa ou escola, acessibilidade), data de retorno, quantidade de aparelhos e mensagem, com autorização de uso dos dados (LGPD); a resposta vem em até 2 dias úteis">
                 <h2 id="titulo-form-contato">Envie uma mensagem</h2>
                 <p>Os campos marcados com (obrigatório) precisam ser preenchidos.</p>
 
@@ -150,7 +150,7 @@
                 </form>
             </section>
 
-            <section id="equipe" aria-labelledby="titulo-equipe">
+            <section id="equipe" aria-labelledby="titulo-equipe" data-mascote="Membros da equipe EcoLogic: Caio Nabuosuke, Eduarda Amorim, Guilherme Couto, Henrique de Medeiros, Jenifer Rufino e Pedro Pinheiro">
                 <h2 id="titulo-equipe">Membros da equipe</h2>
                 <ul class="equipe">
                     <li class="cartao">
@@ -199,5 +199,8 @@
 
     <script src="js/telefone.js"></script>
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

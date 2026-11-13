@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -61,11 +61,11 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Notícias e artigos</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">Notícias sobre descarte de eletrônicos no Brasil e dicas da equipe para descartar com segurança.</p>
 
-            <section aria-labelledby="titulo-imprensa">
+            <section aria-labelledby="titulo-imprensa" id="noticias-brasil" data-mascote="Notícias do Brasil sobre descarte de eletrônicos: Reciclagem certificada não garante que os dados foram apagados (Correio Braziliense); Manaus vai ter 62 pontos de entrega de eletrônicos; Joinville recebe eletrônicos no Dia Mundial da Reciclagem. Cada notícia tem um Resumo da equipe que pode ser aberto">
                 <h2 id="titulo-imprensa">Notícias do Brasil</h2>
                 <p class="fonte">Clique no título para ler a matéria completa no site de origem. Abra "Resumo da equipe" para ver o nosso resumo.</p>
                 <ul class="lista-noticias">
@@ -120,21 +120,21 @@
             <section aria-labelledby="titulo-artigos">
                 <h2 id="titulo-artigos">Artigos da equipe</h2>
 
-            <article class="noticia" aria-labelledby="noticia-1">
+            <article class="noticia" aria-labelledby="noticia-1" id="artigo-apagar-dados" data-mascote="Artigo Antes de descartar o celular, apague seus dados: faça backup, saia de todas as contas (Google, Apple, bancos), restaure para as configurações de fábrica e retire o chip e o cartão de memória">
                 <h3 id="noticia-1">Antes de descartar o celular, apague seus dados</h3>
                 <p class="meta">Publicado em <time datetime="2026-09-22">22/09/2026</time> por Equipe EcoRota</p>
                 <p>Um celular descartado ainda guarda fotos, conversas e senhas. Antes de doar ou descartar, faça um backup do que quiser guardar e saia de todas as contas, como Google, Apple e aplicativos de banco.</p>
                 <p>Depois, restaure o aparelho para as configurações de fábrica e retire o chip e o cartão de memória. Assim, a próxima pessoa recebe um aparelho limpo e seus dados continuam protegidos.</p>
             </article>
 
-            <article class="noticia" aria-labelledby="noticia-2">
+            <article class="noticia" aria-labelledby="noticia-2" id="artigo-pilhas" data-mascote="Artigo Pilhas e baterias nunca vão no lixo comum: têm metais que contaminam solo e água e baterias de lítio podem pegar fogo; guarde num pote, cubra os polos com fita e leve a um ponto de coleta; bateria estufada não deve ser furada nem carregada">
                 <h3 id="noticia-2">Pilhas e baterias nunca vão no lixo comum</h3>
                 <p class="meta">Publicado em <time datetime="2026-09-22">22/09/2026</time> por Equipe EcoRota</p>
                 <p>Pilhas e baterias têm metais que contaminam o solo e a água. Baterias de lítio, comuns em celulares e notebooks, ainda podem pegar fogo se forem amassadas no caminhão de lixo.</p>
                 <p>Guarde as pilhas usadas em um pote, cubra os polos das baterias com fita adesiva e leve tudo a um ponto de coleta. Se uma bateria estiver estufada, não tente furar nem carregar: leve direto a um ponto de descarte.</p>
             </article>
 
-            <article class="noticia" aria-labelledby="noticia-3">
+            <article class="noticia" aria-labelledby="noticia-3" id="artigo-logistica-reversa" data-mascote="Artigo A loja também precisa receber seu eletrônico: pela logística reversa (Lei 12.305/2010 e Decreto 10.240/2020), fabricantes, importadores e lojas devem receber aparelhos usados; dá para devolver na loja ou ao fabricante">
                 <h3 id="noticia-3">A loja também precisa receber seu eletrônico</h3>
                 <p class="meta">Publicado em <time datetime="2026-09-22">22/09/2026</time> por Equipe EcoRota</p>
                 <p>A Política Nacional de Resíduos Sólidos criou a logística reversa: fabricantes, importadores e lojas são responsáveis por receber os produtos depois do uso. Para eletroeletrônicos de uso doméstico, essa regra foi detalhada em 2020.</p>
@@ -170,5 +170,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

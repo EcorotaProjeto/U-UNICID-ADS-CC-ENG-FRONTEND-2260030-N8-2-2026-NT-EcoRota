@@ -39,7 +39,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -67,7 +67,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -86,10 +86,10 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina pagina-larga pagina-comunidade">
             <h1>Comunidade EcoRecicla</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <noscript><p style="padding: 0 20px;">A comunidade precisa de JavaScript para funcionar.</p></noscript>
-        <div id="ecorecicla" class="nao-ler">
+        <div id="ecorecicla" class="nao-ler" data-mascote="Comunidade EcoRecicla: fórum para trocar, doar, vender e procurar peças de eletrônicos, tirar dúvidas e conhecer cooperativas">
             <div class="text-gray-900 flex flex-col">
 
                 <!-- CABEÇALHO DA COMUNIDADE -->
@@ -110,7 +110,7 @@
 
                         <!-- Conta -->
                         <div class="flex items-center gap-2">
-                            <div id="com-entrar-botoes" class="flex items-center gap-2">
+                            <div id="com-entrar-botoes" class="flex items-center gap-2" data-mascote="Botões Entrar e Criar conta da comunidade EcoRecicla">
                                 <button type="button" id="com-abrir-entrar" class="bg-primary text-white font-bold text-sm px-4 py-1.5 rounded hover:bg-secondary transition-colors whitespace-nowrap">Entrar</button>
                                 <button type="button" id="com-abrir-criar" class="border-2 border-primary text-primary font-bold text-sm px-3 py-1 rounded hover:bg-gray-100 transition-colors whitespace-nowrap">Criar conta</button>
                             </div>
@@ -210,7 +210,7 @@
                         </div>
 
                         <!-- NOVA POSTAGEM -->
-                        <section class="bg-white rounded-lg border border-gray-300 p-4 mb-6 shadow-sm" aria-labelledby="com-titulo-postar">
+                        <section class="bg-white rounded-lg border border-gray-300 p-4 mb-6 shadow-sm" aria-labelledby="com-titulo-postar" id="com-nova-postagem" data-mascote="Caixa Anunciar ou Procurar Peça: escreva o que você tem ou precisa (por exemplo uma peça para doar ou vender) e clique em Postar">
                             <div class="flex gap-3 items-start">
                                 <div class="h-10 w-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 flex-shrink-0" aria-hidden="true">
                                     <i class="ph ph-user text-xl"></i>
@@ -291,5 +291,8 @@
 
     <script src="js/script.js"></script>
     <script src="js/comunidade.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

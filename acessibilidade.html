@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -61,16 +61,16 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Acessibilidade</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">O EcoRota foi feito para ser usado por qualquer pessoa, com ou sem deficiência, sem precisar se identificar nem pedir recursos especiais.</p>
 
-            <section aria-labelledby="titulo-compromisso">
+            <section aria-labelledby="titulo-compromisso" id="compromisso-acessibilidade" data-mascote="Nosso compromisso: o site segue a WCAG 2.1 nível AA e a Lei Brasileira de Inclusão (Lei 13.146/2015)">
                 <h2 id="titulo-compromisso">Nosso compromisso</h2>
                 <p>Seguimos as diretrizes internacionais de acessibilidade para a web (WCAG 2.1, nível AA) e a Lei Brasileira de Inclusão (Lei nº 13.146/2015), que garante o acesso de pessoas com deficiência aos sites.</p>
             </section>
 
-            <section aria-labelledby="titulo-recursos">
+            <section aria-labelledby="titulo-recursos" id="recursos-acessibilidade" data-mascote="Tabela de recursos de acessibilidade: tamanho do texto (A+ e A−), alto contraste, leitura em voz (Ouvir esta página), navegação pelo teclado, leitores de tela, legendas e transcrições (página Mídia), coleta em casa (página Projetos) e o assistente Equinho com modo mãos livres">
                 <h2 id="titulo-recursos">Recursos do site</h2>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Recursos de acessibilidade e como usar">
                     <table>
@@ -90,12 +90,13 @@
                             <tr><th scope="row">Compatível com leitores de tela</th><td>Pessoas cegas</td><td>Títulos, rótulos e descrições em todas as imagens e campos</td></tr>
                             <tr><th scope="row">Legendas e transcrições</th><td>Pessoas surdas ou com deficiência auditiva</td><td>Vídeos com legenda e áudios com transcrição na página <a href="midia.html">Mídia</a></td></tr>
                             <tr><th scope="row">Coleta em casa</th><td>Pessoas com dificuldade de locomoção</td><td>Formulário na página <a href="projetos.html#coleta">Projetos</a></td></tr>
+                            <tr><th scope="row">Assistente Equinho</th><td>Deficiência motora ou visual, pouca familiaridade com tecnologia</td><td>Clique no Equinho ou aperte Alt + M para perguntar falando. No modo mãos livres (botão da orelha), é só dizer "Equinho" e a pergunta, sem usar as mãos</td></tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <section aria-labelledby="titulo-teclado">
+            <section aria-labelledby="titulo-teclado" id="navegacao-teclado" data-mascote="Como navegar pelo teclado: Tab vai para o próximo item, Shift+Tab volta, Enter abre links, Espaço aciona botões, Setas escolhem opções, Alt+M fala com o Equinho; o primeiro Tab mostra o link Pular para o conteúdo">
                 <h2 id="titulo-teclado">Como navegar pelo teclado</h2>
                 <div class="tabela-rolagem" tabindex="0" role="region" aria-label="Tabela: Teclas de navegação">
                     <table>
@@ -109,6 +110,7 @@
                             <tr><th scope="row">Enter</th><td>Abre um link ou aciona um botão</td></tr>
                             <tr><th scope="row">Espaço</th><td>Aciona botões e marca caixas de seleção</td></tr>
                             <tr><th scope="row">Setas</th><td>Escolhem opções em listas de seleção</td></tr>
+                            <tr><th scope="row">Alt + M</th><td>Fala com o assistente Equinho pelo microfone</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -135,7 +137,7 @@
                 </ul>
             </section>
 
-            <section aria-labelledby="titulo-barreira">
+            <section aria-labelledby="titulo-barreira" id="relatar-barreira" data-mascote="Encontrou uma barreira de acessibilidade? Conte pela página Contato, escolhendo o assunto Acessibilidade">
                 <h2 id="titulo-barreira">Encontrou uma barreira?</h2>
                 <p>Se alguma parte do site for difícil de usar, conte para a gente pela página <a href="contato.html">Contato</a>. Escolha o assunto "Acessibilidade".</p>
             </section>
@@ -158,5 +160,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

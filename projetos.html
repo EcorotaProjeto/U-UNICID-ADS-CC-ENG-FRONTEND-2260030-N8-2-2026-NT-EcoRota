@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque">Sobre</a></li>
@@ -61,11 +61,11 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Nossos projetos</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">Conheça as frentes do EcoRota. Todas são gratuitas e pensadas para serem fáceis de usar.</p>
 
-            <nav class="nesta-pagina" aria-label="Nesta página">
+            <nav class="nesta-pagina" aria-label="Nesta página" id="nesta-pagina" data-mascote="Atalhos desta página: Coleta em casa, Pontos de descarte, Doação de aparelhos e Comunidade EcoRecicla">
                 <ul>
                     <li><a href="#coleta">Coleta em casa</a></li>
                     <li><a href="projetos.html#pontos">Pontos de descarte</a></li>
@@ -75,7 +75,7 @@
             </nav>
 
             <!-- ========== COLETA EM CASA ========== -->
-            <section id="coleta" aria-labelledby="titulo-coleta">
+            <section id="coleta" aria-labelledby="titulo-coleta" data-mascote="Formulário de Coleta em casa, de graça, para quem tem dificuldade de locomoção ou não consegue levar o aparelho: nome, telefone, e-mail opcional, CEP (o endereço é preenchido sozinho), número, data preferida, período (manhã das 8h às 12h ou tarde das 13h às 18h), quantidade e quais aparelhos, ajuda necessária no dia e autorização de uso dos dados">
                 <h2 id="titulo-coleta">Coleta em casa</h2>
                 <p>Se você tem dificuldade para se locomover ou não consegue levar o aparelho até um ponto de coleta, nossa equipe busca o lixo eletrônico <strong>na sua casa, de graça</strong>.</p>
                 <p>Os campos marcados com (obrigatório) precisam ser preenchidos.</p>
@@ -174,13 +174,13 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="botao-gigante azul">Pedir coleta em casa</button>
+                    <button type="submit" class="botao-gigante azul" id="btn-pedir-coleta" data-mascote="Botão Pedir coleta em casa, que envia o formulário de coleta; depois a equipe liga para confirmar o dia">Pedir coleta em casa</button>
                     <p class="status-form" role="status" aria-live="polite"></p>
                 </form>
             </section>
 
             <!-- ========== PONTOS DE DESCARTE ========== -->
-            <section id="pontos" aria-labelledby="titulo-pontos">
+            <section id="pontos" aria-labelledby="titulo-pontos" data-mascote="Pontos de descarte: o que pode ser descartado (celulares, tablets, carregadores, pilhas e baterias, computadores, notebooks, teclados, mouses, TVs, monitores e eletrodomésticos), o que fazer antes (apagar os dados, retirar as pilhas, cobrir os polos das baterias com fita), mapa de São Paulo e botão para procurar pontos perto da sua localização no Google Maps">
                 <h2 id="titulo-pontos">Pontos de descarte</h2>
                 <p>Lixo eletrônico nunca deve ir para o lixo comum: ele tem metais e substâncias que contaminam o solo e a água.</p>
 
@@ -216,7 +216,7 @@
                     <p>A lista de pontos com pesquisa precisa de JavaScript. Use o botão do Google Maps acima para encontrar pontos perto de você.</p>
                 </noscript>
 
-                <form id="formBusca" class="caixa-busca requer-js" role="search" aria-labelledby="titulo-busca">
+                <form id="formBusca" class="caixa-busca requer-js" role="search" aria-labelledby="titulo-busca" data-mascote="Pesquisar pontos de descarte por CEP, estado, cidade, bairro, endereço ou região da cidade de São Paulo (Centro, Zona Leste, Oeste, Norte e Sul); os pontos aparecem numa lista logo abaixo">
                     <h3 id="titulo-busca">Pesquisar pontos</h3>
                     <p>Preencha só o que quiser. Se você digitar o CEP, os outros campos são preenchidos sozinhos.</p>
 
@@ -304,7 +304,7 @@
             </section>
 
             <!-- ========== DOAÇÃO ========== -->
-            <section id="doacao" aria-labelledby="titulo-doacao">
+            <section id="doacao" aria-labelledby="titulo-doacao" data-mascote="Formulário de Doação de aparelhos que ainda funcionam, para escolas e projetos sociais: nome, telefone, qual aparelho, como está funcionando e quantidade; botão Cadastrar doação">
                 <h2 id="titulo-doacao">Doação de aparelhos</h2>
                 <p>Seu computador ou celular ainda funciona? Cadastre aqui para doar a escolas e projetos sociais da sua região.</p>
 
@@ -347,7 +347,7 @@
             </section>
 
             <!-- ========== COMUNIDADE ========== -->
-            <section id="comunidade" aria-labelledby="titulo-com">
+            <section id="comunidade" aria-labelledby="titulo-com" data-mascote="Comunidade EcoRecicla: espaço para trocar, doar e procurar peças, tirar dúvidas e conhecer cooperativas; botão Entrar na comunidade">
                 <h2 id="titulo-com">Comunidade EcoRecicla</h2>
                 <p>Um espaço para trocar, doar e procurar peças, tirar dúvidas e conhecer cooperativas.</p>
                 <a class="botao-gigante" href="comunidade.html">Entrar na comunidade</a>
@@ -372,5 +372,8 @@
 
     <script src="js/telefone.js"></script>
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>

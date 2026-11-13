@@ -14,7 +14,7 @@
     <a href="#conteudo" class="pular-conteudo">Pular para o conteúdo</a>
 
     <!-- PAINEL DE ACESSIBILIDADE (precisa de JavaScript) -->
-    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade">
+    <div class="painel-acessibilidade requer-js" role="region" aria-label="Opções de acessibilidade" id="painel-acessibilidade" data-mascote="Painel de acessibilidade no topo da página: botões A− e A+ para diminuir ou aumentar o texto, botão Alto contraste, e controles de voz (Pausar, Continuar, Parar) para a leitura em voz alta">
         <div class="grupo-controles" role="group" aria-labelledby="rotulo-texto">
             <span id="rotulo-texto" class="rotulo-grupo">Tamanho do texto:</span>
             <button type="button" id="btnFonteMenos" aria-label="Diminuir tamanho do texto">A−</button>
@@ -42,7 +42,7 @@
         <p>Descarte de eletrônicos e apoio à inclusão.</p>
     </header>
 
-    <nav class="menu-principal" aria-label="Menu principal">
+    <nav class="menu-principal" aria-label="Menu principal" id="menu-principal" data-mascote="Menu principal com as páginas do site: Início, Sobre, Projetos, Impacto, Acessibilidade, Galeria, Mídia, Notícias, Comunidade, Contato e Orçamento">
         <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html" class="link-destaque" aria-current="page">Sobre</a></li>
@@ -61,28 +61,28 @@
     <main id="conteudo" tabindex="-1">
         <div class="pagina">
             <h1>Sobre o EcoRota</h1>
-            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir>🔊 Ouvir esta página</button>
+            <button type="button" class="botao-ouvir controle-voz requer-js" data-ouvir id="btn-ouvir-pagina" data-mascote="Botão Ouvir esta página: lê todo o conteúdo da página em voz alta">🔊 Ouvir esta página</button>
 
             <p class="introducao">O EcoRota une sustentabilidade e inclusão: queremos que qualquer pessoa, com ou sem deficiência, consiga dar o destino certo para o lixo eletrônico.</p>
 
-            <section aria-labelledby="titulo-historia">
+            <section aria-labelledby="titulo-historia" id="sobre-historia" data-mascote="Nossa história: o EcoRota nasceu em 2026 na disciplina de Front-End da UNICID, no Tatuapé, ao perceber quantos eletrônicos velhos ficam esquecidos em casa; começou como uma página com leitura em voz e cresceu com coleta em casa, busca de pontos por CEP, doação e comunidade">
                 <h2 id="titulo-historia">Nossa história</h2>
                 <p>O EcoRota nasceu em 2026, na disciplina de Front-End da UNICID, no Tatuapé. Ao arrumar a casa, percebemos quantos HDs, cabos, computadores e eletrodomésticos velhos ficavam esquecidos em gavetas e armários, sem ninguém saber onde descartar.</p>
                 <p>A primeira versão era uma página simples com leitura em voz. Com os testes, entendemos que a acessibilidade precisava estar disponível para todas as pessoas, sem pedir que ninguém se identificasse. O projeto cresceu e ganhou coleta em casa, busca de pontos de descarte por CEP, doação de aparelhos e uma comunidade para troca de peças.</p>
             </section>
 
-            <section aria-labelledby="titulo-missao">
+            <section aria-labelledby="titulo-missao" id="sobre-missao" data-mascote="Missão: facilitar o descarte correto e o reaproveitamento de eletrônicos, com informação clara e serviços acessíveis a todas as pessoas">
                 <h2 id="titulo-missao">Missão</h2>
                 <p>Facilitar o descarte correto e o reaproveitamento de eletrônicos, com informação clara e serviços acessíveis a todas as pessoas.</p>
                 <!-- Sugestão de texto: ajuste com as palavras da equipe -->
             </section>
 
-            <section aria-labelledby="titulo-visao">
+            <section aria-labelledby="titulo-visao" id="sobre-visao" data-mascote="Visão: ser referência em São Paulo para quem quer descartar ou doar eletrônicos, sem nenhuma barreira de acesso">
                 <h2 id="titulo-visao">Visão</h2>
                 <p>Ser uma referência em São Paulo para quem quer descartar ou doar eletrônicos, sem que nenhuma barreira de acesso impeça alguém de participar.</p>
             </section>
 
-            <section aria-labelledby="titulo-valores">
+            <section aria-labelledby="titulo-valores" id="sobre-valores" data-mascote="Valores: sustentabilidade, inclusão (acessibilidade sem exigir que ninguém se identifique), transparência (informações com fonte e dados abertos) e colaboração (cooperativas, escolas e comunidade)">
                 <h2 id="titulo-valores">Valores</h2>
                 <ul>
                     <li><strong>Sustentabilidade:</strong> cada aparelho reaproveitado é menos resíduo e menos extração de recursos.</li>
@@ -92,7 +92,7 @@
                 </ul>
             </section>
 
-            <section aria-labelledby="titulo-projeto">
+            <section aria-labelledby="titulo-projeto" id="sobre-projeto" data-mascote="Projeto Integrador: projeto acadêmico da disciplina de Front-End do Curso Superior de Informática da UNICID, com o Prof. Paulo Fratta, turma ADS/Noite, criado pela equipe EcoLogic; os integrantes estão na página Contato">
                 <h2 id="titulo-projeto">Projeto Integrador</h2>
                 <p>O EcoRota é um projeto acadêmico da disciplina de Front-End do Curso Superior de Informática da UNICID.</p>
                 <p>Professor: Prof. Paulo Fratta. Turma: ADS/Noite.</p>
@@ -117,5 +117,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- Equinho, o assistente do site (código em js/mascote.js, desenhos em sprites/) -->
+    <script src="js/mascote.js" data-sprite="sprites/mascote.json" defer></script>
 </body>
 </html>
