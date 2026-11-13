@@ -57,6 +57,10 @@
     input { flex: 1; min-width: 0; border: 2px solid #1d1d1d; border-radius: 8px; padding: 6px 8px; font: inherit; }
     button { font: inherit; cursor: pointer; border: 2px solid #1d1d1d; border-radius: 8px; background: #9be550; padding: 4px 10px; }
     button:disabled { opacity: .5; cursor: default; }
+    .btn-mic { background: #fff; padding: 4px 8px; }
+    .btn-mic.ouvindo { background: #e53935; color: #fff; animation: pulsar 1s infinite; }
+    @keyframes pulsar { 0%,100% { box-shadow: 0 0 0 0 rgba(229,57,53,.6); } 50% { box-shadow: 0 0 0 6px rgba(229,57,53,0); } }
+    @media (prefers-reduced-motion: reduce) { .btn-mic.ouvindo { animation: none; } }
     .controles { position: absolute; top: -6px; right: -6px; display: flex; gap: 4px; opacity: 0; transition: opacity .2s; }
     :host(:hover) .controles, .controles:focus-within { opacity: 1; }
     .controles button { width: 26px; height: 26px; padding: 0; border-radius: 50%; background: #fff; font-size: 12px; line-height: 1; }
@@ -96,6 +100,7 @@
             <p class="texto"></p>
             <form>
               <input type="text" placeholder="Pergunte algo…" maxlength="500" aria-label="Pergunta para o assistente">
+              <button type="button" class="btn-mic" title="Falar a pergunta" aria-label="Falar a pergunta" aria-pressed="false" hidden>🎤</button>
               <button type="submit">Enviar</button>
             </form>
           </div>
@@ -110,7 +115,7 @@
       const $ = (s) => this.shadowRoot.querySelector(s);
       this.el = {
         bolha: $('.bolha'), texto: $('.texto'), form: $('form'), input: $('input'),
-        enviar: $('form button'), canvas: $('canvas'), voz: $('.btn-voz'),
+        enviar: $('form button[type="submit"]'), mic: $('.btn-mic'), canvas: $('canvas'), voz: $('.btn-voz'),
       };
       this.ctx = this.el.canvas.getContext('2d');
       this.atualizarBotaoVoz();
@@ -123,6 +128,7 @@
       }
 
       this.ligarEventos();
+      this.configurarMicrofone();
       this.irParaCanto(false);
       if (guardar.ler('minimizado') === '1') this.classList.add('minimizado');
 
@@ -313,7 +319,7 @@
     }
 
     async perguntar(pergunta) {
-      this.el.input.disabled = this.el.enviar.disabled = true;
+      this.el.input.disabled = this.el.enviar.disabled = this.el.mic.disabled = true;
       this.pensar();
       this.historico.push({ role: 'user', content: pergunta });
       this.historico = this.historico.slice(-10);
@@ -338,9 +344,103 @@
       const pose = resposta.alvo ? await this.apontarPara(resposta.alvo) : null;
       await this.falar(fala, { pose });
 
-      this.el.input.disabled = this.el.enviar.disabled = false;
+      this.el.input.disabled = this.el.enviar.disabled = this.el.mic.disabled = false;
       this.el.form.classList.add('visivel');
       this.el.input.focus();
+    }
+
+    /* ---------- Microfone: perguntar falando (Web Speech API) ---------- */
+    configurarMicrofone() {
+      const Reconhecimento = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!Reconhecimento) return; // navegador sem suporte (ex.: Firefox): o botão fica escondido
+      this.Reconhecimento = Reconhecimento;
+      this.el.mic.hidden = false;
+      this.el.mic.addEventListener('click', () => (this.ouvindo ? this.pararDeOuvir() : this.ouvir()));
+      // Esc cancela sem enviar
+      this.shadowRoot.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.ouvindo) { this.cancelado = true; this.rec?.abort(); }
+      });
+    }
+
+    ouvir() {
+      if (this.ouvindo || this.el.input.disabled) return;
+      this.calarVoz();      // para o Equinho não ouvir a própria voz
+      this.falaId++;
+      this.tocar('idle');
+
+      const rec = new this.Reconhecimento();
+      rec.lang = 'pt-BR';
+      rec.interimResults = true;   // mostra o texto enquanto a pessoa fala
+      rec.continuous = false;      // para sozinho quando a pessoa fica em silêncio
+      rec.maxAlternatives = 1;
+
+      let final = '';
+      let erro = null;
+      this.rec = rec;
+      this.ouvindo = true;
+      this.cancelado = false;
+      this.marcarMic(true);
+      this.el.texto.textContent = 'Estou ouvindo… pode falar! (clique no 🎤 de novo quando terminar)';
+      this.el.input.value = '';
+      this.el.input.placeholder = 'Ouvindo…';
+
+      rec.onresult = (e) => {
+        let parcial = '';
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          const trecho = e.results[i][0].transcript;
+          if (e.results[i].isFinal) final += trecho; else parcial += trecho;
+        }
+        this.el.input.value = (final + parcial).trim();
+      };
+      rec.onerror = (e) => { erro = e.error; };
+      rec.onend = () => {
+        this.ouvindo = false;
+        this.rec = null;
+        this.marcarMic(false);
+        this.el.input.placeholder = 'Pergunte algo…';
+        const texto = (final || this.el.input.value).trim();
+
+        if (this.cancelado || erro === 'aborted') {
+          this.el.input.value = '';
+          this.el.texto.textContent = 'Tudo bem, cancelei. Em que posso ajudar?';
+          return;
+        }
+        if (texto) { this.el.input.value = ''; this.perguntar(texto); return; }
+        this.falar(this.mensagemErroMicrofone(erro || 'no-speech'), { semVoz: true });
+        this.el.form.classList.add('visivel');
+      };
+
+      try { rec.start(); }
+      catch (e) { erro = 'start'; rec.onend(); }
+    }
+
+    pararDeOuvir() {
+      this.rec?.stop(); // stop() termina e envia o que já foi ouvido
+    }
+
+    marcarMic(ligado) {
+      const m = this.el.mic;
+      m.classList.toggle('ouvindo', ligado);
+      m.setAttribute('aria-pressed', String(ligado));
+      const rotulo = ligado ? 'Parar de ouvir e enviar' : 'Falar a pergunta';
+      m.title = rotulo;
+      m.setAttribute('aria-label', rotulo);
+    }
+
+    mensagemErroMicrofone(erro) {
+      switch (erro) {
+        case 'not-allowed':
+          return 'Preciso de permissão pra usar o microfone. Clique no cadeado ao lado do endereço do site e libere o microfone.';
+        case 'service-not-allowed':
+        case 'network':
+          return 'O reconhecimento de voz não funciona neste navegador. Tente no Chrome, Edge ou Safari, ou digite sua pergunta.';
+        case 'audio-capture':
+          return 'Não encontrei nenhum microfone ligado. Confere se ele está conectado?';
+        case 'no-speech':
+          return 'Não ouvi nada… tenta de novo, falando pertinho do microfone?';
+        default:
+          return 'Algo deu errado com o microfone. Pode digitar a pergunta?';
+      }
     }
 
     /* ---------- Interação ---------- */
@@ -401,6 +501,7 @@
         this.el.form.classList.remove('visivel');
         this.el.bolha.classList.remove('visivel');
         this.calarVoz();
+        if (this.ouvindo) { this.cancelado = true; this.rec?.abort(); }
         this.falaId++;
         this.tocar('idle');
         return;
