@@ -1,19 +1,24 @@
 /*
- * api/chat.js — função da Vercel que conecta o mascote à API do Claude.
+ * api/chat.js — função da Vercel que conecta o mascote à API do Gemini (Google).
  * A Vercel transforma este arquivo no endereço /api/chat automaticamente.
  *
- * A chave da API NÃO fica aqui: ela é configurada no painel da Vercel
- * (Settings → Environment Variables → ANTHROPIC_API_KEY).
+ * A chave NÃO fica aqui: ela é configurada no painel da Vercel
+ * (Settings → Environment Variables → GEMINI_API_KEY).
+ *
+ * Se o Gemini falhar ou o limite gratuito acabar, o mascote usa uma
+ * "resposta reserva" baseada nas descrições (data-mascote) da própria página.
  */
-const MODELO = process.env.MODELO || 'claude-haiku-5-5'; // rápido e barato, ótimo pra mascote
+
+// Modelos do plano gratuito, em ordem de preferência. Se um falhar, tenta o próximo.
+// Dá pra trocar pela variável GEMINI_MODELO na Vercel.
+const MODELOS = (process.env.GEMINI_MODELO || 'gemini-3.5-flash-lite,gemini-3.6-flash')
+  .split(',').map((m) => m.trim()).filter(Boolean);
 
 /* ---------- Personalidade do mascote: edite à vontade ---------- */
 function promptDoSistema(pagina) {
-  const alvos = (pagina.alvos || [])
-    .map((a) => `- id "${a.id}": ${a.descricao}`)
-    .join('\n') || '(nenhum)';
+  const alvos = pagina.alvos.map((a) => `- id "${a.id}": ${a.descricao}`).join('\n') || '(nenhum)';
   return `Você é o mascote assistente do EcoRota, um site acessível sobre descarte correto de lixo eletrônico,
-coleta em casa, doação de aparelhos e comunidade. Página atual: "${pagina.titulo || ''}" (${pagina.caminho || '/'}).
+coleta em casa, doação de aparelhos e comunidade. Página atual: "${pagina.titulo}" (${pagina.caminho}).
 Você é uma folhinha simpática, animada e paciente. Fale em português do Brasil, de forma simples e curta:
 no máximo 2 ou 3 frases (até umas 40 palavras), porque sua fala aparece num balãozinho.
 Lembre que muitos visitantes podem ter deficiência visual, motora ou pouca familiaridade com tecnologia.
@@ -27,12 +32,33 @@ Regras:
   Nunca invente endereços, horários, telefones ou números.
 - Pode dar dicas gerais e seguras sobre descarte de eletrônicos (ex.: não jogar pilhas no lixo comum, apagar os dados antes de doar).
 - Quando for útil mostrar onde algo está, coloque o id do elemento em "alvo" (você vai até ele e aponta).
-- Responda SOMENTE com um JSON válido, sem texto antes ou depois, neste formato:
+- Responda SOMENTE com um JSON neste formato:
 {"fala": "o que você diz", "alvo": "id-do-elemento ou null"}`;
 }
 
-/* Limite simples por IP (best effort: cada instância da Vercel tem sua memória) */
-const usos = new Map();
+/* ---------- Resposta reserva (sem IA): procura a descrição mais parecida com a pergunta ---------- */
+const PALAVRAS_VAZIAS = new Set('a o as os de da do das dos e é em um uma para pra por com como que se no na nos nas eu meu minha onde qual quais posso faço fazer quero tem ter isso esse essa aqui'.split(' '));
+function palavras(texto) {
+  return String(texto).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .split(/[^a-z0-9]+/).filter((p) => p.length > 2 && !PALAVRAS_VAZIAS.has(p));
+}
+function respostaReserva(pergunta, alvos) {
+  const busca = palavras(pergunta);
+  let melhor = null, pontos = 0;
+  for (const a of alvos) {
+    const desc = palavras(a.descricao);
+    const p = busca.filter((b) => desc.some((d) => d.startsWith(b.slice(0, 5)) || b.startsWith(d.slice(0, 5)))).length;
+    if (p > pontos) { pontos = p; melhor = a; }
+  }
+  if (melhor) return { fala: `Olha aqui! ${melhor.descricao}.`, alvo: melhor.id };
+  return {
+    fala: 'Hmm, não sei responder isso agora. Dá uma olhada no menu ou fala com a equipe na página Contato!',
+    alvo: alvos.find((a) => a.id === 'menu-principal') ? 'menu-principal' : null,
+  };
+}
+
+/* ---------- Utilidades ---------- */
+const usos = new Map(); // limite por IP (best effort: cada instância da Vercel tem sua memória)
 function passouDoLimite(ip) {
   const agora = Date.now();
   const lista = (usos.get(ip) || []).filter((t) => agora - t < 60_000);
@@ -49,6 +75,26 @@ function extrairJson(texto) {
   return { fala: texto.trim(), alvo: null };
 }
 
+async function perguntarAoGemini(chave, modelo, sistema, mensagens) {
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent`, {
+    method: 'POST',
+    headers: { 'x-goog-api-key': chave, 'content-type': 'application/json' },
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: sistema }] },
+      // no Gemini, a fala do assistente se chama "model"
+      contents: mensagens.map((m) => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] })),
+      generationConfig: { maxOutputTokens: 1024, temperature: 0.7, responseMimeType: 'application/json' },
+    }),
+  });
+  const dados = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(`Gemini ${modelo} respondeu ${r.status}: ${dados.error?.message || ''}`);
+  const partes = dados.candidates?.[0]?.content?.parts || [];
+  const texto = partes.filter((p) => !p.thought && typeof p.text === 'string').map((p) => p.text).join('');
+  if (!texto.trim()) throw new Error(`Gemini ${modelo} devolveu resposta vazia`);
+  return texto;
+}
+
+/* ---------- A função em si ---------- */
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ erro: 'Use POST' });
 
@@ -59,12 +105,14 @@ module.exports = async function handler(req, res) {
   if (typeof corpo === 'string') { try { corpo = JSON.parse(corpo); } catch { corpo = null; } }
   if (!corpo || typeof corpo !== 'object') return res.status(400).json({ erro: 'Pedido inválido' });
 
-  const pagina = corpo.pagina && typeof corpo.pagina === 'object' ? corpo.pagina : {};
-  pagina.alvos = (Array.isArray(pagina.alvos) ? pagina.alvos : []).slice(0, 40)
-    .filter((a) => a && typeof a.id === 'string' && typeof a.descricao === 'string')
-    .map((a) => ({ id: a.id.slice(0, 60), descricao: a.descricao.slice(0, 300) }));
-  pagina.titulo = String(pagina.titulo || '').slice(0, 120);
-  pagina.caminho = String(pagina.caminho || '').slice(0, 120);
+  const p = corpo.pagina && typeof corpo.pagina === 'object' ? corpo.pagina : {};
+  const pagina = {
+    titulo: String(p.titulo || '').slice(0, 120),
+    caminho: String(p.caminho || '/').slice(0, 120),
+    alvos: (Array.isArray(p.alvos) ? p.alvos : []).slice(0, 40)
+      .filter((a) => a && typeof a.id === 'string' && typeof a.descricao === 'string')
+      .map((a) => ({ id: a.id.slice(0, 60), descricao: a.descricao.slice(0, 300) })),
+  };
 
   const mensagens = (Array.isArray(corpo.mensagens) ? corpo.mensagens : [])
     .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
@@ -73,43 +121,29 @@ module.exports = async function handler(req, res) {
   while (mensagens.length && mensagens[0].role !== 'user') mensagens.shift();
   if (!mensagens.length) return res.status(400).json({ erro: 'Sem pergunta' });
 
-  const chave = process.env.ANTHROPIC_API_KEY;
+  const ultimaPergunta = mensagens[mensagens.length - 1].content;
+  const chave = process.env.GEMINI_API_KEY;
   if (!chave) {
-    return res.status(200).json({
-      fala: 'Estou no modo demonstração! Falta configurar a ANTHROPIC_API_KEY na Vercel pra eu responder de verdade.',
-      alvo: pagina.alvos[0]?.id || null,
-    });
+    console.warn('GEMINI_API_KEY não configurada: usando resposta reserva');
+    return res.status(200).json({ ...respostaReserva(ultimaPergunta, pagina.alvos), fonte: 'reserva' });
   }
 
-  try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'x-api-key': chave,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: MODELO,
-        max_tokens: 300,
-        system: promptDoSistema(pagina),
-        messages: mensagens,
-      }),
-    });
-    const dados = await r.json();
-    if (!r.ok) {
-      console.error('Erro da API:', r.status, dados);
-      return res.status(502).json({ erro: 'A IA não respondeu' });
+  const sistema = promptDoSistema(pagina);
+  for (const modelo of MODELOS) {
+    try {
+      const texto = await perguntarAoGemini(chave, modelo, sistema, mensagens);
+      const { fala, alvo } = extrairJson(texto);
+      const idsValidos = new Set(pagina.alvos.map((a) => a.id));
+      return res.status(200).json({
+        fala: String(fala || '').slice(0, 800) || 'Hmm, me perdi. Pode perguntar de novo?',
+        alvo: idsValidos.has(alvo) ? alvo : null,
+        fonte: modelo,
+      });
+    } catch (e) {
+      console.error(e.message); // aparece em Vercel → projeto → Logs
     }
-    const texto = (dados.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('');
-    const { fala, alvo } = extrairJson(texto);
-    const idsValidos = new Set(pagina.alvos.map((a) => a.id));
-    return res.status(200).json({
-      fala: String(fala || '').slice(0, 800),
-      alvo: idsValidos.has(alvo) ? alvo : null,
-    });
-  } catch (e) {
-    console.error('Falha ao chamar a API:', e);
-    return res.status(502).json({ erro: 'Falha ao falar com a IA' });
   }
+
+  // nenhum modelo respondeu (limite gratuito, internet, chave errada...): usa a reserva
+  return res.status(200).json({ ...respostaReserva(ultimaPergunta, pagina.alvos), fonte: 'reserva' });
 };
