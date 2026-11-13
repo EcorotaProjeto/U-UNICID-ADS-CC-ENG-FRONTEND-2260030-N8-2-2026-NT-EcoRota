@@ -17,6 +17,7 @@ const MODELOS = (process.env.GEMINI_MODELO || 'gemini-3.5-flash-lite,gemini-3.6-
 /* ---------- Personalidade do mascote: edite à vontade ---------- */
 function promptDoSistema(pagina) {
   const alvos = pagina.alvos.map((a) => `- id "${a.id}": ${a.descricao}`).join('\n') || '(nenhum)';
+  const paginas = pagina.paginas.map((p) => `- destino "${p.destino}": link "${p.texto}"`).join('\n') || '(nenhuma)';
   return `Você é o mascote assistente do EcoRota, um site acessível sobre descarte correto de lixo eletrônico,
 coleta em casa, doação de aparelhos e comunidade. Página atual: "${pagina.titulo}" (${pagina.caminho}).
 Seu nome é Equinho. Você é o mascote do EcoRota: simpático, animado e paciente. Sempre se chame de Equinho (nunca de "folhinha" ou outro nome). Fale em português do Brasil, de forma simples e curta:
@@ -24,33 +25,61 @@ no máximo 2 ou 3 frases (até umas 40 palavras), porque sua fala aparece num ba
 Lembre que muitos visitantes podem ter deficiência visual, motora ou pouca familiaridade com tecnologia.
 
 Seu trabalho é ajudar o visitante a usar o site e a descartar eletrônicos do jeito certo.
-Estes são os elementos desta página que você conhece e pode apontar:
+Estes são os elementos DESTA página que você conhece e pode apontar (campo "alvo"):
 ${alvos}
+
+Estas são as páginas do site para onde você pode LEVAR o visitante (campo "pagina"):
+${paginas}
 
 Regras:
 - Sobre o site, use só as informações acima. Se não souber algo, diga que não sabe e sugira a página Contato.
   Nunca invente endereços, horários, telefones ou números.
 - Pode dar dicas gerais e seguras sobre descarte de eletrônicos (ex.: não jogar pilhas no lixo comum, apagar os dados antes de doar).
-- Quando for útil mostrar onde algo está, coloque o id do elemento em "alvo" (você vai até ele e aponta).
+- Quando for útil mostrar algo desta página, coloque o id do elemento em "alvo" (você vai até ele e aponta).
+- Se o visitante pedir pra ir a outra página, ou se o que ele procura estiver em outra página, coloque o destino
+  em "pagina" e diga na fala pra onde vai levar (ex.: "Vou te levar pra página de Contato!"). Use só destinos da lista.
+- Se a mensagem disser que o visitante acabou de chegar com a sua ajuda, NÃO use "pagina": mostre o que ele procura nesta página.
+- Muitas pessoas vão ouvir sua fala em voz alta: não use emojis, asteriscos, listas nem formatação.
 - Responda SOMENTE com um JSON neste formato:
-{"fala": "o que você diz", "alvo": "id-do-elemento ou null"}`;
+{"fala": "o que você diz", "alvo": "id-do-elemento ou null", "pagina": "destino ou null"}`;
 }
 
 /* ---------- Resposta reserva (sem IA): procura a descrição mais parecida com a pergunta ---------- */
-const PALAVRAS_VAZIAS = new Set('a o as os de da do das dos e é em um uma para pra por com como que se no na nos nas eu meu minha onde qual quais posso faço fazer quero tem ter isso esse essa aqui'.split(' '));
+const PALAVRAS_VAZIAS = new Set('a o as os de da do das dos e é em um uma para pra pro por com como que se no na nos nas eu me meu minha onde qual quais posso faço fazer quero tem ter isso esse essa aqui leva levar leve ir vai vamos abrir abre abra pagina página entrar mostra'.split(' '));
 function palavras(texto) {
   return String(texto).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
     .split(/[^a-z0-9]+/).filter((p) => p.length > 2 && !PALAVRAS_VAZIAS.has(p));
 }
-function respostaReserva(pergunta, alvos) {
-  const busca = palavras(pergunta);
+function respostaReserva(pergunta, alvos, paginas = [], titulo = '') {
+  // acabou de chegar levado pelo Equinho? não navega de novo
+  const chegou = /acabou de chegar/.test(pergunta);
+  if (chegou) { pergunta = pergunta.replace(/^\(.*?\)\s*/, ''); paginas = []; alvos = alvos.filter((a) => a.id !== 'menu-principal'); }
+  // ao chegar, o nome da própria página não conta ("me leva pra Projetos" não é sobre "projetos sociais")
+  const doTitulo = chegou ? new Set(palavras(titulo)) : new Set();
+  const busca = palavras(pergunta).filter((p) => !doTitulo.has(p));
+  const parecido = (texto) => {
+    const desc = palavras(texto);
+    return busca.filter((b) => desc.some((d) => d.startsWith(b.slice(0, 5)) || b.startsWith(d.slice(0, 5)))).length;
+  };
   let melhor = null, pontos = 0;
   for (const a of alvos) {
-    const desc = palavras(a.descricao);
-    const p = busca.filter((b) => desc.some((d) => d.startsWith(b.slice(0, 5)) || b.startsWith(d.slice(0, 5)))).length;
+    const p = parecido(a.descricao);
     if (p > pontos) { pontos = p; melhor = a; }
   }
+  // uma página só ganha se combinar mais que um elemento desta página (ex.: "quero ir pro contato")
+  let melhorPagina = null, pontosPagina = 0;
+  for (const pg of paginas) {
+    const p = parecido(pg.texto);
+    if (p > pontosPagina) { pontosPagina = p; melhorPagina = pg; }
+  }
+  // pedido de ir a algum lugar ("me leva pra...", "abre a página...") prefere a página
+  const querIr = /\b(leva|levar|leve|ir|vai|vamos|abr[aei]r?|abre|pagina|entrar|mostra a pagina)\b/.test(
+    String(pergunta).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''));
+  if (melhorPagina && (pontosPagina > pontos || (querIr && pontosPagina > 0))) {
+    return { fala: `Vou te levar até ${melhorPagina.texto}!`, alvo: null, pagina: melhorPagina.destino };
+  }
   if (melhor) return { fala: `Olha aqui! ${melhor.descricao}.`, alvo: melhor.id };
+  if (chegou) return { fala: `Chegamos! Aqui é a página ${titulo.split('|')[0].trim() || 'que você pediu'}. Em que posso ajudar?`, alvo: null };
   return {
     fala: 'Hmm, não sei responder isso agora. Dá uma olhada no menu ou fala com a equipe na página Contato!',
     alvo: alvos.find((a) => a.id === 'menu-principal') ? 'menu-principal' : null,
@@ -95,7 +124,7 @@ async function perguntarAoGemini(chave, modelo, sistema, mensagens) {
 }
 
 /* ---------- A função em si ---------- */
-const VERSAO = 'equinho-3'; // mude isso a cada alteração pra conferir se o deploy pegou
+const VERSAO = 'equinho-5'; // mude isso a cada alteração pra conferir se o deploy pegou
 
 module.exports = async function handler(req, res) {
   // Abrir /api/chat no navegador mostra qual versão está no ar e se a chave foi encontrada
@@ -118,6 +147,10 @@ module.exports = async function handler(req, res) {
     alvos: (Array.isArray(p.alvos) ? p.alvos : []).slice(0, 40)
       .filter((a) => a && typeof a.id === 'string' && typeof a.descricao === 'string')
       .map((a) => ({ id: a.id.slice(0, 60), descricao: a.descricao.slice(0, 300) })),
+    paginas: (Array.isArray(p.paginas) ? p.paginas : []).slice(0, 40)
+      .filter((x) => x && typeof x.destino === 'string' && typeof x.texto === 'string'
+        && /^[\w\-./]*(#[\w\-]+)?$/.test(x.destino) && !x.destino.includes('..'))
+      .map((x) => ({ destino: x.destino.slice(0, 120), texto: x.texto.slice(0, 80) })),
   };
 
   const mensagens = (Array.isArray(corpo.mensagens) ? corpo.mensagens : [])
@@ -131,18 +164,20 @@ module.exports = async function handler(req, res) {
   const chave = process.env.GEMINI_API_KEY;
   if (!chave) {
     console.warn('GEMINI_API_KEY não configurada: usando resposta reserva');
-    return res.status(200).json({ ...respostaReserva(ultimaPergunta, pagina.alvos), fonte: 'reserva' });
+    return res.status(200).json({ ...respostaReserva(ultimaPergunta, pagina.alvos, pagina.paginas, pagina.titulo), fonte: 'reserva' });
   }
 
   const sistema = promptDoSistema(pagina);
   for (const modelo of MODELOS) {
     try {
       const texto = await perguntarAoGemini(chave, modelo, sistema, mensagens);
-      const { fala, alvo } = extrairJson(texto);
+      const { fala, alvo, pagina: destino } = extrairJson(texto);
       const idsValidos = new Set(pagina.alvos.map((a) => a.id));
+      const destinosValidos = new Set(pagina.paginas.map((x) => x.destino));
       return res.status(200).json({
-        fala: String(fala || '').slice(0, 800) || 'Hmm, me perdi. Pode perguntar de novo?',
+        fala: String(fala || '').replace(/[*_#`]/g, '').slice(0, 800) || 'Hmm, me perdi. Pode perguntar de novo?',
         alvo: idsValidos.has(alvo) ? alvo : null,
+        pagina: destinosValidos.has(destino) ? destino : null,
         fonte: modelo,
       });
     } catch (e) {
@@ -151,5 +186,5 @@ module.exports = async function handler(req, res) {
   }
 
   // nenhum modelo respondeu (limite gratuito, internet, chave errada...): usa a reserva
-  return res.status(200).json({ ...respostaReserva(ultimaPergunta, pagina.alvos), fonte: 'reserva' });
+  return res.status(200).json({ ...respostaReserva(ultimaPergunta, pagina.alvos, pagina.paginas, pagina.titulo), fonte: 'reserva' });
 };
