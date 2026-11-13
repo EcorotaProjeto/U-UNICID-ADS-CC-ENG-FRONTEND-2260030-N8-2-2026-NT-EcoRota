@@ -96,17 +96,22 @@
   // ---------- Interface ----------
 
   var ESTILO = [
-    ".tel-grupo{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;}",
-    ".tel-linha{display:flex;align-items:center;gap:8px;width:100%;}",
-    ".tel-pais{display:flex;align-items:center;gap:6px;border:2px solid #2e7d32;border-radius:8px;background:#fff;padding:0 8px;min-height:46px;}",
-    ".tel-pais select{border:0;background:transparent;font:inherit;font-size:1rem;color:inherit;padding:8px 4px;cursor:pointer;max-width:100%;}",
-    ".tel-pais input{width:4.5rem;border:0;border-bottom:2px solid #2e7d32;background:transparent;font:inherit;font-size:1rem;padding:6px 2px;}",
-    ".tel-ddd{display:flex;align-items:center;gap:4px;font-size:1.1rem;color:#1b5e20;}",
-    ".tel-ddd input{width:3.2rem;text-align:center;border:2px solid #2e7d32;border-radius:8px;font:inherit;font-size:1rem;padding:8px 4px;}",
-    ".tel-numero{flex:1 1 9rem;min-width:0;border:2px solid #2e7d32;border-radius:8px;font:inherit;font-size:1rem;padding:8px 10px;background:#fff;}",
-    ".tel-grupo input:focus,.tel-grupo select:focus{outline:3px solid #01579b;outline-offset:2px;}",
-    ".tel-grupo [aria-invalid='true']{border-color:#b3261e;}",
-    "@media (max-width:480px){.tel-linha{flex-wrap:wrap;}.tel-pais{flex:1 1 100%;}.tel-numero{flex:1 1 0;}}"
+    ".tel-grupo{width:100%;}",
+    /* Uma só caixa, com a mesma aparência dos outros campos do site */
+    ".form-grupo .tel-campo{display:flex;align-items:stretch;width:100%;border:2px solid var(--borda-campo);border-radius:6px;background:var(--superficie);color:var(--texto);font-family:inherit;transition:border-color .15s ease;}",
+    ".form-grupo .tel-campo:focus-within{outline:3px solid var(--foco);outline-offset:3px;box-shadow:0 0 0 7px var(--anel-foco);}",
+    ".form-grupo .tel-campo.tel-erro{border:3px solid var(--erro);background:var(--erro-fundo);}",
+    ".tel-campo .tel-pais{display:flex;align-items:center;gap:8px;padding:0 10px 0 12px;border-right:2px solid var(--borda-campo);flex:0 0 auto;max-width:100%;}",
+    ".tel-campo .tel-iso{display:inline-block;padding:3px 7px;border-radius:4px;background:#2e7d32;color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.06em;line-height:1.2;}",
+    ".form-grupo .tel-campo select{width:auto;max-width:14rem;border:0;background:transparent;color:inherit;font:inherit;font-size:1.05rem;padding:12px 4px 12px 0;margin:0;box-shadow:none;outline:none;cursor:pointer;}",
+    ".form-grupo .tel-campo .tel-codigo{width:6rem;border:0;border-bottom:2px solid var(--borda-campo);background:transparent;color:inherit;font:inherit;font-size:1rem;padding:8px 2px;margin:0;box-shadow:none;outline:none;}",
+    ".tel-campo .tel-ddd{display:flex;align-items:center;gap:2px;padding:0 6px 0 10px;color:var(--texto-suave);font-size:1.15rem;flex:0 0 auto;}",
+    ".form-grupo .tel-campo .tel-ddd input{width:2.6rem;border:0;background:transparent;color:var(--texto);font:inherit;font-size:1.1rem;text-align:center;padding:12px 0;margin:0;box-shadow:none;outline:none;}",
+    ".form-grupo .tel-campo .tel-numero{flex:1 1 auto;min-width:0;border:0;background:transparent;color:var(--texto);font:inherit;font-size:1.1rem;padding:12px 14px 12px 6px;margin:0;box-shadow:none;outline:none;}",
+    ".form-grupo .tel-campo input::placeholder{color:var(--texto-suave);opacity:1;}",
+    ".form-grupo .tel-campo input:user-invalid,.form-grupo .tel-campo select:user-invalid{border:0;background:transparent;}",
+    ".tel-campo[data-sem-ddd='true'] .tel-ddd{display:none;}",
+    "@media (max-width:480px){.tel-campo{flex-wrap:wrap;}.tel-campo .tel-pais{flex:1 1 100%;border-right:0;border-bottom:2px solid var(--borda-campo);padding:0 12px;}.tel-campo .tel-ddd{padding-left:12px;}.form-grupo .tel-campo .tel-numero{flex:1 1 0;padding-left:4px;}}"
   ].join("");
 
   function injetarEstilo() {
@@ -124,6 +129,13 @@
     return digitos.slice(0, corte) + "-" + digitos.slice(corte, 9);
   }
 
+  function criar(tag, attrs, texto) {
+    var el = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) { el.setAttribute(k, attrs[k]); });
+    if (texto !== undefined) el.textContent = texto;
+    return el;
+  }
+
   function montar(original) {
     var id = original.id;
     var obrigatorio = original.hasAttribute("required");
@@ -135,68 +147,40 @@
     original.removeAttribute("aria-describedby");
     original.removeAttribute("title");
 
-    var grupo = document.createElement("div");
-    grupo.className = "tel-grupo";
+    var grupo = criar("div", { "class": "tel-grupo" });
+    var caixa = criar("div", { "class": "tel-campo" });
 
-    var linha = document.createElement("div");
-    linha.className = "tel-linha";
-
-    // Seletor de país com bandeira e código.
-    var pais = document.createElement("label");
-    pais.className = "tel-pais";
-    var select = document.createElement("select");
-    select.id = id + "-pais";
-    select.setAttribute("aria-label", "País do telefone");
+    // País: código ISO, seletor e, se preciso, o código digitado.
+    var pais = criar("div", { "class": "tel-pais" });
+    var iso = criar("span", { "class": "tel-iso", "aria-hidden": "true" }, "BR");
+    var select = criar("select", { id: id + "-pais", "aria-label": "País do telefone" });
     PAISES.forEach(function (p) {
-      var o = document.createElement("option");
-      o.value = p.iso;
-      o.textContent = p.iso === "OUTRO" ? "🌐 Outro país" : bandeira(p.iso) + " +" + p.codigo + " " + p.nome;
+      var o = criar("option", { value: p.iso }, p.iso === "OUTRO" ? "Outro país" : "+" + p.codigo + " " + p.nome);
       if (p.iso === "BR") o.selected = true;
       select.appendChild(o);
     });
-    var codigoOutro = document.createElement("input");
-    codigoOutro.type = "text";
-    codigoOutro.inputMode = "numeric";
-    codigoOutro.placeholder = "+código";
-    codigoOutro.setAttribute("aria-label", "Código do país, só números");
+    var codigoOutro = criar("input", { type: "text", inputmode: "numeric", placeholder: "+código", "aria-label": "Código do país, só números", "class": "tel-codigo" });
     codigoOutro.hidden = true;
+    pais.appendChild(iso);
     pais.appendChild(select);
     pais.appendChild(codigoOutro);
-    linha.appendChild(pais);
+    caixa.appendChild(pais);
 
     // DDD entre parênteses (só para o Brasil).
-    var dddWrap = document.createElement("div");
-    dddWrap.className = "tel-ddd";
-    var abre = document.createElement("span");
-    abre.textContent = "(";
-    var ddd = document.createElement("input");
-    ddd.type = "text";
-    ddd.id = id + "-ddd";
-    ddd.inputMode = "numeric";
-    ddd.maxLength = 2;
-    ddd.placeholder = "11";
-    ddd.setAttribute("aria-label", "DDD");
-    var fecha = document.createElement("span");
-    fecha.textContent = ")";
-    dddWrap.appendChild(abre);
+    var dddWrap = criar("div", { "class": "tel-ddd" });
+    dddWrap.appendChild(criar("span", { "aria-hidden": "true" }, "("));
+    var ddd = criar("input", { type: "text", id: id + "-ddd", inputmode: "numeric", maxlength: "2", placeholder: "11", "aria-label": "DDD" });
     dddWrap.appendChild(ddd);
-    dddWrap.appendChild(fecha);
-    linha.appendChild(dddWrap);
+    dddWrap.appendChild(criar("span", { "aria-hidden": "true" }, ")"));
+    caixa.appendChild(dddWrap);
 
     // Número.
-    var numero = document.createElement("input");
-    numero.type = "tel";
-    numero.id = id + "-numero";
-    numero.className = "tel-numero";
-    numero.inputMode = "tel";
-    numero.autocomplete = "tel-national";
-    numero.placeholder = "91234-5678";
-    numero.setAttribute("aria-label", "Número do telefone");
+    var numero = criar("input", { type: "tel", id: id + "-numero", "class": "tel-numero", inputmode: "tel", autocomplete: "tel-national", placeholder: "91234-5678", "aria-label": "Número do telefone" });
     if (descricaoId) numero.setAttribute("aria-describedby", descricaoId);
     if (obrigatorio) numero.required = true;
-    linha.appendChild(numero);
+    caixa.appendChild(numero);
 
-    grupo.appendChild(linha);
+    grupo.appendChild(caixa);
     original.parentNode.insertBefore(grupo, original);
     grupo.appendChild(original);
 
@@ -217,8 +201,10 @@
     function atualizarCampos() {
       var p = paisAtual();
       var br = p.iso === "BR";
+      iso.textContent = p.iso === "OUTRO" ? "+" : p.iso;
       codigoOutro.hidden = p.iso !== "OUTRO";
       dddWrap.hidden = !br;
+      caixa.setAttribute("data-sem-ddd", br ? "false" : "true");
       ddd.required = br && obrigatorio;
       numero.placeholder = br ? "91234-5678" : "Número sem o código do país";
       numero.maxLength = br ? 10 : 15;
@@ -234,28 +220,26 @@
       if (dig !== "" || (br && dddDig !== "")) {
         valor = br ? "+55" + dddDig + dig : (codigoAtual() ? "+" + codigoAtual() + dig : "");
       }
-      if (!br && p.iso === "OUTRO" && codigoAtual() === "") valor = "";
       original.value = valor;
 
-      // Mensagens de validade no campo visível que o usuário está preenchendo.
-      ddd.setAttribute("aria-invalid", "false");
-      numero.setAttribute("aria-invalid", "false");
       ddd.setCustomValidity("");
       numero.setCustomValidity("");
+      ddd.setAttribute("aria-invalid", "false");
+      numero.setAttribute("aria-invalid", "false");
+      caixa.classList.remove("tel-erro");
       if (valor === "") return;
 
       var erro = validarTelefone(valor);
       if (erro === "") return;
-      var mensagem = erro;
+      caixa.classList.add("tel-erro");
       if (br && dddDig.length < 2) {
-        mensagem = "Preencha o DDD com 2 números.";
-        ddd.setCustomValidity(mensagem);
+        ddd.setCustomValidity("Preencha o DDD com 2 números.");
         ddd.setAttribute("aria-invalid", "true");
       } else if (/^DDD \d{2} não existe/.test(erro)) {
-        ddd.setCustomValidity(mensagem);
+        ddd.setCustomValidity(erro);
         ddd.setAttribute("aria-invalid", "true");
       } else {
-        numero.setCustomValidity(mensagem);
+        numero.setCustomValidity(erro);
         numero.setAttribute("aria-invalid", "true");
       }
     }
