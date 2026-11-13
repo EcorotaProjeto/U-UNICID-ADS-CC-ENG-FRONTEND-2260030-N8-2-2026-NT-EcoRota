@@ -169,13 +169,13 @@
     // DDD entre parênteses (só para o Brasil).
     var dddWrap = criar("div", { "class": "tel-ddd" });
     dddWrap.appendChild(criar("span", { "aria-hidden": "true" }, "("));
-    var ddd = criar("input", { type: "text", id: id + "-ddd", inputmode: "numeric", maxlength: "2", placeholder: "11", "aria-label": "DDD" });
+    var ddd = criar("input", { type: "text", id: id + "-ddd", inputmode: "numeric", maxlength: "2", placeholder: "", "aria-label": "DDD" });
     dddWrap.appendChild(ddd);
     dddWrap.appendChild(criar("span", { "aria-hidden": "true" }, ")"));
     caixa.appendChild(dddWrap);
 
     // Número.
-    var numero = criar("input", { type: "tel", id: id + "-numero", "class": "tel-numero", inputmode: "tel", autocomplete: "tel-national", placeholder: "91234-5678", "aria-label": "Número do telefone" });
+    var numero = criar("input", { type: "tel", id: id + "-numero", "class": "tel-numero", inputmode: "tel", autocomplete: "tel-national", placeholder: "", "aria-label": "Número do telefone" });
     if (descricaoId) numero.setAttribute("aria-describedby", descricaoId);
     if (obrigatorio) numero.required = true;
     caixa.appendChild(numero);
@@ -206,7 +206,7 @@
       dddWrap.hidden = !br;
       caixa.setAttribute("data-sem-ddd", br ? "false" : "true");
       ddd.required = br && obrigatorio;
-      numero.placeholder = br ? "91234-5678" : "Número sem o código do país";
+      numero.placeholder = br ? "" : "Número sem o código do país";
       numero.maxLength = br ? 10 : 15;
       sincronizar();
     }
