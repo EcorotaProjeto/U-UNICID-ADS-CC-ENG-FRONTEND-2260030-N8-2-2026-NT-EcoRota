@@ -250,7 +250,8 @@
     /* ---------- Fala ---------- */
     async falar(texto, { pose = null, semVoz = false } = {}) {
       const id = ++this.falaId;
-      speechSynthesis?.cancel?.();
+      const usarVoz = this.voz && !semVoz;
+      if (usarVoz) this.calarVoz(true); // só interrompe outra leitura quando o mascote vai falar em voz
       this.el.bolha.classList.add('visivel');
       this.el.texto.textContent = '';
       if (!pose) this.tocar('talk'); // com pose, quem chamou já tocou a animação
@@ -263,7 +264,7 @@
           await esperar(22);
         }
       })();
-      const vozFeita = (this.voz && !semVoz) ? this.dizerEmVoz(texto) : Promise.resolve();
+      const vozFeita = usarVoz ? this.dizerEmVoz(texto) : Promise.resolve();
       await Promise.all([digitar, vozFeita]);
       if (id !== this.falaId) return;
 
@@ -280,12 +281,20 @@
         u.lang = vozPt?.lang || 'pt-BR';
         u.pitch = 1.5;   // mais agudo = mais "mascote"
         u.rate = 1.05;
-        const fim = () => { clearTimeout(seguranca); resolve(); };
+        const fim = () => { clearTimeout(seguranca); this.falandoEmVoz = false; resolve(); };
         u.onend = fim; u.onerror = fim;
         // alguns navegadores esquecem de disparar onend
         const seguranca = setTimeout(resolve, 2500 + texto.length * 90);
+        this.falandoEmVoz = true;
         speechSynthesis.speak(u);
       });
+    }
+
+    /* Para só a voz do mascote, sem cortar outras leituras do site (ex.: "Ouvir esta página") */
+    calarVoz(forcar = false) {
+      if (!('speechSynthesis' in window)) return;
+      if (forcar || this.falandoEmVoz) speechSynthesis.cancel();
+      this.falandoEmVoz = false;
     }
 
     pensar() {
@@ -368,11 +377,11 @@
       this.el.voz.addEventListener('click', () => {
         this.voz = !this.voz;
         guardar.salvar('voz', this.voz ? 'on' : 'off');
-        if (!this.voz) speechSynthesis?.cancel?.();
+        if (!this.voz) this.calarVoz();
         this.atualizarBotaoVoz();
       });
       this.shadowRoot.querySelector('.btn-fechar').addEventListener('click', () => {
-        speechSynthesis?.cancel?.();
+        this.calarVoz();
         this.classList.add('minimizado');
         guardar.salvar('minimizado', '1');
       });
@@ -391,7 +400,7 @@
       if (aberto && !forcarAbrir) {
         this.el.form.classList.remove('visivel');
         this.el.bolha.classList.remove('visivel');
-        speechSynthesis?.cancel?.();
+        this.calarVoz();
         this.falaId++;
         this.tocar('idle');
         return;
