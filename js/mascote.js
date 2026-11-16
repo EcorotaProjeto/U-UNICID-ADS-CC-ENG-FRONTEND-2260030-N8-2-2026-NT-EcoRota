@@ -397,6 +397,14 @@
     }
 
     async perguntar(pergunta, { semNavegar = false } = {}) {
+      // Pedido de preencher o formulário: o próprio Equinho resolve, sem depender da IA
+      if (/preench|escreve (os|meus|minhas)/i.test(pergunta) && !/acabou de chegar/.test(pergunta)) {
+        this.travar(true);
+        await this.falar('Vou te perguntar cada campo em voz alta. Você responde falando, e pode dizer pular ou parar preenchimento quando quiser.');
+        window.dispatchEvent(new CustomEvent('ecorota:comando', { detail: 'preencher formulario' }));
+        this.travar(false);
+        return;
+      }
       this.travar(true);
       this.pensar();
       this.historico.push({ role: 'user', content: pergunta });
