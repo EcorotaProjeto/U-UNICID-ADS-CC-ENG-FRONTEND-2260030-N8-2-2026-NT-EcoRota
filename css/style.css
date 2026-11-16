@@ -1134,3 +1134,33 @@ html.sem-animacao *::after {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
 }
+
+/* ---------- Escrita por voz (js/escrita-voz.js) ---------- */
+.botao-ditar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: 0.4em;
+    min-height: 44px;
+    padding: 0.5em 1em;
+    border: 2px solid var(--borda-campo, #5a6b5a);
+    border-radius: 8px;
+    background: var(--superficie, #fff);
+    color: var(--texto, #1b1b1b);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+.botao-ditar[aria-pressed="true"] {
+    background: #b3261e;
+    border-color: #b3261e;
+    color: #fff;
+}
+.botao-ditar:focus-visible {
+    outline: 3px solid var(--foco, #1a5fb4);
+    outline-offset: 3px;
+}
+.nota-voz {
+    margin-top: 0.5em;
+    font-size: 0.95em;
+}
