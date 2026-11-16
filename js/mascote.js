@@ -27,7 +27,7 @@
   const script = document.currentScript;
   const PASTA = script ? new URL('.', script.src).href : location.href;
   const opcoesScript = script ? script.dataset : {};
-  const reduzMovimento = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduzMovimento = () => matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('sem-animacao');
   const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
 
   const guardar = { // lembra entre visitas
@@ -163,7 +163,8 @@
 
       let ultimo = performance.now();
       const loop = (agora) => {
-        this.passo(Math.min(agora - ultimo, 250));
+        // Com "Pausar animações" ativo, o sprite fica parado no quadro atual.
+        if (!document.documentElement.classList.contains('sem-animacao')) this.passo(Math.min(agora - ultimo, 250));
         ultimo = agora;
         requestAnimationFrame(loop);
       };
@@ -260,13 +261,13 @@
       const { w, h } = this.tamanho;
       x = Math.max(4, Math.min(x, innerWidth - w - 4));
       y = Math.max(4, Math.min(y, innerHeight - h - 4));
-      this.classList.toggle('movendo', animado && !reduzMovimento);
+      this.classList.toggle('movendo', animado && !reduzMovimento());
       this.style.left = x + 'px';
       this.style.top = y + 'px';
       this.pos = { x, y };
       this.classList.toggle('lado-esq', x < 280);
       this.classList.toggle('bolha-baixo', y < 190);
-      return esperar(animado && !reduzMovimento ? 720 : 0);
+      return esperar(animado && !reduzMovimento() ? 720 : 0);
     }
 
     irParaCanto(animado = true) {
@@ -278,8 +279,8 @@
     async apontarPara(id) {
       const alvo = id && document.getElementById(id);
       if (!alvo) return null;
-      alvo.scrollIntoView({ behavior: reduzMovimento ? 'auto' : 'smooth', block: 'center' });
-      await esperar(reduzMovimento ? 50 : 550);
+      alvo.scrollIntoView({ behavior: reduzMovimento() ? 'auto' : 'smooth', block: 'center' });
+      await esperar(reduzMovimento() ? 50 : 550);
       const { w, h } = this.tamanho;
       let r = alvo.getBoundingClientRect();
       // elemento largo demais (ocupa a tela toda)? mira no texto do título dele
@@ -317,7 +318,7 @@
       if (!pose) this.tocar('talk'); // com pose, quem chamou já tocou a animação
 
       const digitar = (async () => {
-        if (reduzMovimento) { this.el.texto.textContent = texto; return; }
+        if (reduzMovimento()) { this.el.texto.textContent = texto; return; }
         for (let i = 1; i <= texto.length; i++) {
           if (id !== this.falaId) return;
           this.el.texto.textContent = texto.slice(0, i);
