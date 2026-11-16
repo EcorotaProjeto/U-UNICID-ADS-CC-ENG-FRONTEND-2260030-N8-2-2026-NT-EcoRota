@@ -285,6 +285,50 @@
     "h": 64
    },
    "duration": 300
+  },
+  {
+   "filename": "mascote 13.aseprite",
+   "frame": {
+    "x": 832,
+    "y": 0,
+    "w": 64,
+    "h": 64
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 64
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 64
+   },
+   "duration": 200
+  },
+  {
+   "filename": "mascote 14.aseprite",
+   "frame": {
+    "x": 896,
+    "y": 0,
+    "w": 64,
+    "h": 64
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 64
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 64
+   },
+   "duration": 200
   }
  ],
  "meta": {
@@ -292,7 +336,7 @@
   "image": "mascote.png",
   "format": "RGBA8888",
   "size": {
-   "w": 832,
+   "w": 960,
    "h": 64
   },
   "scale": "1",
@@ -322,6 +366,13 @@
     "name": "think",
     "from": 10,
     "to": 12,
+    "direction": "forward",
+    "color": "#000000ff"
+   },
+   {
+    "name": "write",
+    "from": 13,
+    "to": 14,
     "direction": "forward",
     "color": "#000000ff"
    }
