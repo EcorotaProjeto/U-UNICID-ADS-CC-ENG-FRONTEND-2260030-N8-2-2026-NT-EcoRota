@@ -1094,3 +1094,43 @@ html.alto-contraste .item-noticia h3 a:visited {
 #ecorecicla dialog::backdrop {
     background: rgba(0, 0, 0, 0.55);
 }
+
+/* ---------- Recursos de acessibilidade (js/acessibilidade.js) ---------- */
+
+/* Espaçamento de leitura: letras, palavras e linhas mais afastadas */
+html.espacamento-leitura body,
+html.espacamento-leitura p,
+html.espacamento-leitura li,
+html.espacamento-leitura td,
+html.espacamento-leitura label {
+    letter-spacing: 0.12em;
+    word-spacing: 0.16em;
+    line-height: 1.9;
+}
+
+/* Alvos de toque maiores (mínimo de 48px) */
+html.alvos-grandes button,
+html.alvos-grandes .botao,
+html.alvos-grandes .menu-principal a,
+html.alvos-grandes .pular-conteudo,
+html.alvos-grandes summary {
+    min-height: 48px;
+    min-width: 48px;
+    padding-block: 0.6em;
+    padding-inline: 1em;
+}
+html.alvos-grandes input[type="checkbox"],
+html.alvos-grandes input[type="radio"] {
+    width: 24px;
+    height: 24px;
+}
+
+/* Pausar animações e transições */
+html.sem-animacao *,
+html.sem-animacao *::before,
+html.sem-animacao *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+}
