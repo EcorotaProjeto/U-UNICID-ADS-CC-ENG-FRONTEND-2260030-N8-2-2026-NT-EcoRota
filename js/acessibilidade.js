@@ -132,20 +132,14 @@
         )).filter(function (c) { return !c.readOnly && !c.disabled && c.offsetParent !== null; });
     }
 
+    // Entra na fila de fala: não corta o que o Equinho está dizendo
     function dizer(texto) {
         if (!sintese) return;
         try {
-            sintese.cancel();
             const fala = new SpeechSynthesisUtterance(texto);
             fala.lang = 'pt-BR';
-            falando = true;
-            // Segurança: se o navegador não avisar o fim da fala, libera os comandos depois do tempo estimado
-            clearTimeout(dizer.prazo);
-            dizer.prazo = setTimeout(function () { falando = false; }, 2000 + texto.length * 80);
-            fala.onend = function () { falando = false; clearTimeout(dizer.prazo); };
-            fala.onerror = function () { falando = false; clearTimeout(dizer.prazo); };
             sintese.speak(fala);
-        } catch (e) { falando = false; }
+        } catch (e) { /* sem síntese de voz */ }
     }
 
     function avisar(texto) {
@@ -366,7 +360,8 @@
         rec.continuous = true;
         rec.interimResults = false;
         rec.onresult = function (evento) {
-            if (falando) return;
+            // Não ouve a própria voz: ignora o que for captado enquanto alguém está falando
+            if (sintese && sintese.speaking) return;
             for (let i = evento.resultIndex; i < evento.results.length; i++) {
                 if (evento.results[i].isFinal) executarComando(evento.results[i][0].transcript);
             }
@@ -374,11 +369,13 @@
         rec.onerror = function (evento) {
             if (evento.error === 'not-allowed' || evento.error === 'service-not-allowed') {
                 desligarVoz('Permissão do microfone negada. Libere o microfone nas configurações do navegador.', true);
+            } else if (evento.error === 'audio-capture') {
+                desligarVoz('Microfone não encontrado. Verifique se ele está conectado.', true);
             }
         };
         rec.onend = function () {
-            // O navegador encerra a escuta após um silêncio: religa enquanto estiver ligado
-            if (vozLigada && recVoz === rec) iniciarEscuta();
+            // O navegador encerra a escuta após um silêncio: religa com uma pequena pausa, sem entrar em loop
+            if (vozLigada && recVoz === rec) setTimeout(function () { if (vozLigada && recVoz === rec) iniciarEscuta(); }, 400);
         };
         try {
             rec.start();
@@ -389,6 +386,7 @@
 
     function ligarVoz(anunciar) {
         vozLigada = true;
+        window.ecorotaComandoAtivo = true;
         if (botaoVoz) {
             botaoVoz.setAttribute('aria-pressed', 'true');
             botaoVoz.textContent = 'Parar comando de voz';
@@ -400,6 +398,7 @@
 
     function desligarVoz(motivo, manterPreferencia) {
         vozLigada = false;
+        window.ecorotaComandoAtivo = false;
         const r = recVoz;
         recVoz = null;
         if (r) { try { r.stop(); } catch (e) { /* já parado */ } }
@@ -438,11 +437,25 @@
     /* ---------- Pedido vindo do Equinho (chat) ---------- */
     window.addEventListener('ecorota:comando', function (e) {
         if (!ReconhecimentoVoz) return avisar('Para preencher por voz, use o Chrome ou o Edge.');
-        if (!vozLigada) ligarVoz(false);
         if (!camposParaPreencher().length) {
-            avisar('Esta página não tem formulário. Vou te levar para a página de Contato.');
-            return irParaPagina('contato');
+            // Esta página não tem formulário: guarda o pedido e leva a pessoa para Contato
+            try { sessionStorage.setItem('ecorota-pendente', String(e.detail || '')); } catch (err) { /* sem armazenamento */ }
+            window.location.href = 'contato.html';
+            return;
         }
+        if (!vozLigada) ligarVoz(false);
         executarComando(String(e.detail || ''));
     });
+
+    // Se o pedido veio de outra página, continua aqui depois da chegada
+    try {
+        const pendente = sessionStorage.getItem('ecorota-pendente');
+        if (pendente && ReconhecimentoVoz && camposParaPreencher().length) {
+            sessionStorage.removeItem('ecorota-pendente');
+            setTimeout(function () {
+                if (!vozLigada) ligarVoz(false);
+                executarComando(pendente);
+            }, 3000); // espera a saudação do Equinho terminar de falar
+        }
+    } catch (err) { /* sem armazenamento */ }
 })();

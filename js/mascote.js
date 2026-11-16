@@ -400,7 +400,10 @@
       // Pedido de preencher o formulário: o próprio Equinho resolve, sem depender da IA
       if (/preench|escreve (os|meus|minhas)/i.test(pergunta) && !/acabou de chegar/.test(pergunta)) {
         this.travar(true);
-        await this.falar('Vou te perguntar cada campo em voz alta. Você responde falando, e pode dizer pular ou parar preenchimento quando quiser.');
+        const temFormulario = !!document.querySelector('form');
+        await this.falar(temFormulario
+          ? 'Vou te perguntar cada campo em voz alta. Você responde falando, e pode dizer pular ou parar preenchimento quando quiser.'
+          : 'Esta página não tem formulário. Vou te levar para a página de Contato, onde fica o formulário.');
         window.dispatchEvent(new CustomEvent('ecorota:comando', { detail: 'preencher formulario' }));
         this.travar(false);
         return;
@@ -491,6 +494,7 @@
     /* Pergunta única: escuta até a pessoa parar de falar e envia */
     async ouvir() {
       if (this.ouvindo || this.ocupado || !this.Reconhecimento) return;
+      if (window.ecorotaComandoAtivo) { this.falar('O comando de voz da página já está ouvindo você. Pode falar.'); return; }
       this.pararEscuta();   // só um reconhecimento por vez
       this.calarVoz();      // para o Equinho não ouvir a própria voz
       this.falaId++;
@@ -584,6 +588,7 @@
     }
 
     iniciarEscuta() {
+      if (window.ecorotaComandoAtivo) return; // o comando de voz da página está usando o microfone
       if (!this.maosLivres || this.recEscuta || this.ouvindo || this.classList.contains('minimizado')) return;
       const rec = new this.Reconhecimento();
       rec.lang = 'pt-BR';
