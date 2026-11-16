@@ -434,4 +434,15 @@
         try { salvo = window.localStorage.getItem(CHAVE_VOZ); } catch (e) { salvo = null; }
         if (salvo === '1') ligarVoz(false);
     }
+
+    /* ---------- Pedido vindo do Equinho (chat) ---------- */
+    window.addEventListener('ecorota:comando', function (e) {
+        if (!ReconhecimentoVoz) return avisar('Para preencher por voz, use o Chrome ou o Edge.');
+        if (!vozLigada) ligarVoz(false);
+        if (!camposParaPreencher().length) {
+            avisar('Esta página não tem formulário. Vou te levar para a página de Contato.');
+            return irParaPagina('contato');
+        }
+        executarComando(String(e.detail || ''));
+    });
 })();

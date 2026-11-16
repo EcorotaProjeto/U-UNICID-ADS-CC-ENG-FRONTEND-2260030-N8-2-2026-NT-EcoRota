@@ -432,6 +432,8 @@
 
       const pose = !destino && resposta.alvo ? await this.apontarPara(resposta.alvo) : null;
       await this.falar(fala, { pose });
+      // Pedido de comando (ex.: preencher o formulário): o site executa por voz
+      if (resposta.comando && !destino) window.dispatchEvent(new CustomEvent('ecorota:comando', { detail: resposta.comando }));
 
       if (destino) {
         sessao.salvar('continuar', { pergunta: pergunta.replace(/^\(.*?\)\s*/, ''), quando: Date.now() });
