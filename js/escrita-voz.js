@@ -123,22 +123,6 @@
         return rotulo ? rotulo.textContent.replace(/\s+/g, ' ').trim() : 'de texto';
     }
 
-    campos.forEach(function (campo, n) {
-        const botao = document.createElement('button');
-        botao.type = 'button';
-        botao.className = 'botao-ditar';
-        botao.textContent = 'Ditar';
-        botao.setAttribute('aria-pressed', 'false');
-        botao.setAttribute('aria-label', 'Ditar texto no campo ' + nomeDoCampo(campo));
-        botao.id = 'ditar-' + n;
-
-        botao.addEventListener('click', function () {
-            if (ativo && ativo.botao === botao) parar('Ditado parado.');
-            else iniciar(campo, botao);
-        });
-        campo.insertAdjacentElement('afterend', botao);
-    });
-
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && ativo) parar('Ditado parado.');
     });

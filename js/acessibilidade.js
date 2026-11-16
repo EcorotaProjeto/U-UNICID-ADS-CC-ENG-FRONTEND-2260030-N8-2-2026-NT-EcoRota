@@ -197,9 +197,101 @@
         setTimeout(function () { link.click(); }, 1200);
     }
 
+
+    /* ---------- Preencher o formulário inteiro por voz ---------- */
+    let preenchendo = null; // { lista, i }
+    const GLOBAIS = ['ajuda', 'desligar comandos', 'desligar comando de voz', 'confirmar envio', 'cancelar',
+        'enviar formulario', 'parar preenchimento', 'parar de preencher', 'pular', 'pule'];
+    const MESES = { janeiro: 1, fevereiro: 2, marco: 3, abril: 4, maio: 5, junho: 6,
+        julho: 7, agosto: 8, setembro: 9, outubro: 10, novembro: 11, dezembro: 12 };
+
+    function camposParaPreencher() {
+        return Array.from(document.querySelectorAll('form input, form textarea, form select')).filter(function (c) {
+            if (['hidden', 'submit', 'button', 'reset', 'radio', 'file', 'image'].indexOf(c.type) !== -1) return false;
+            return !c.readOnly && !c.disabled && c.offsetParent !== null;
+        });
+    }
+
+    function perguntarCampo(intro) {
+        const p = preenchendo;
+        if (!p) return;
+        if (p.i >= p.lista.length) {
+            preenchendo = null;
+            return avisar('Formulário preenchido. Diga: enviar formulário, para revisar o envio.');
+        }
+        const c = p.lista[p.i];
+        focar(c);
+        const rotulo = c.labels && c.labels[0] ? c.labels[0].textContent : '';
+        const obrigatorio = /obrigat/i.test(rotulo) ? ' Obrigatório.' : '';
+        let extra = '';
+        if (c.tagName === 'SELECT') {
+            const opcoes = Array.from(c.options).filter(function (o) { return o.value; }).map(function (o) { return o.text.trim(); });
+            extra = ' Opções: ' + opcoes.join('; ') + '.';
+        } else if (c.type === 'checkbox') {
+            extra = ' Diga marcar para aceitar, ou não para deixar sem marcar.';
+        } else if (c.type === 'date') {
+            extra = ' Diga a data, por exemplo: 10 de dezembro de 2026.';
+        }
+        avisar((intro ? intro + ' ' : '') + 'Campo ' + (p.i + 1) + ' de ' + p.lista.length + ': ' +
+            nomeCampo(c) + '.' + obrigatorio + extra + ' Diga o valor, ou pular.');
+    }
+
+    // Tenta gravar a fala no campo. Devolve false se não entendeu.
+    function responder(c, fala) {
+        const f = fala.replace(/[.!?]+$/, '').trim();
+        const n = semAcento(f);
+        const avisarMudanca = function () { c.dispatchEvent(new Event('input', { bubbles: true })); c.dispatchEvent(new Event('change', { bubbles: true })); };
+
+        if (c.tagName === 'SELECT') {
+            const opcao = Array.from(c.options).find(function (o) { return o.value && semAcento(o.text).indexOf(n) !== -1; });
+            if (!opcao) return false;
+            c.value = opcao.value;
+            avisarMudanca();
+            return true;
+        }
+        if (c.type === 'checkbox') {
+            if (/^(marcar|sim|aceito|aceitar|autorizo|autorizar)/.test(n)) { c.checked = true; avisarMudanca(); return true; }
+            if (n === 'nao') { c.checked = false; avisarMudanca(); return true; }
+            return false;
+        }
+        if (c.type === 'date') {
+            const m = n.match(/(\d{1,2}) de ([a-z]+) de (\d{4})/);
+            if (!m || !MESES[m[2]]) return false;
+            c.value = m[3] + '-' + String(MESES[m[2]]).padStart(2, '0') + '-' + String(m[1]).padStart(2, '0');
+            avisarMudanca();
+            return true;
+        }
+        let valor = comPontuacao(f);
+        if (c.type === 'email') valor = valor.replace(/\s+/g, '').replace(/arroba/gi, '@');
+        c.value = valor;
+        avisarMudanca();
+        return true;
+    }
+
     function executarComando(fala) {
         const texto = fala.trim().replace(/[.!?]+$/, '');
         const n = semAcento(texto);
+
+        if (preenchendo && GLOBAIS.indexOf(n) === -1) {
+            const c = preenchendo.lista[preenchendo.i];
+            if (!responder(c, texto)) return avisar('Não entendi. Diga o valor de novo, ou pular.');
+            preenchendo.i++;
+            return perguntarCampo();
+        }
+        if (preenchendo && (n === 'pular' || n === 'pule')) {
+            preenchendo.i++;
+            return perguntarCampo();
+        }
+        if (preenchendo && (n === 'parar preenchimento' || n === 'parar de preencher')) {
+            preenchendo = null;
+            return avisar('Preenchimento interrompido.');
+        }
+        if (/^preencher( o)? formulario$/.test(n)) {
+            const lista = camposParaPreencher();
+            if (!lista.length) return avisar('Esta página não tem formulário para preencher.');
+            preenchendo = { lista: lista, i: 0 };
+            return perguntarCampo('Vou perguntar cada campo. Diga o valor de cada um. Para pular, diga pular. Para parar, diga parar preenchimento.');
+        }
 
         if (n === 'ajuda') return avisar(AJUDA);
         if (n === 'desligar comandos' || n === 'desligar comando de voz') return desligarVoz('Comandos de voz desligados.');
