@@ -50,17 +50,27 @@ Sustentabilidade e impacto social: descarte correto e reaproveitamento de eletr�
 
 ## Estrutura de pastas
 
-```
 EcoRota/
-├── index.html e as outras páginas
-├── css/style.css          estilos de todas as páginas
-├── js/script.js           acessibilidade, formulários, CEP e busca de pontos
-├── js/comunidade.js       comunidade EcoRecicla
-├── js/firebase-config.js  configuração do Firebase (sem segredos: a proteção é feita pelas regras)
-├── img/                   imagens da galeria e capa do vídeo
-├── assets/                vídeo e áudio da página Mídia
-└── docs/                  documentação.
-```
+├── index.html e as outras páginas (11 HTML)
+├── api/
+│   └── chat.js                 backend do Equinho (IA)
+├── css/
+│   └── style.css               estilos de todas as páginas
+├── js/
+│   ├── script.js               formulários, CEP, busca de pontos e painel
+│   ├── acessibilidade.js       painel, comandos de voz e preenchimento por voz
+│   ├── escrita-voz.js          ditado nos campos de texto
+│   ├── mascote.js              Equinho, o assistente
+│   ├── telefone.js             campo de telefone com DDD
+│   ├── comunidade.js           comunidade EcoRecicla
+│   ├── chat.js                 chat da página
+│   └── firebase-config.js      configuração do Firebase (sem segredos)
+├── sprites/
+│   ├── mascote.png             animações do Equinho
+│   └── mascote.json            índice dos quadros
+├── img/                        imagens da galeria e capa do vídeo
+├── assets/                     vídeo e áudio da página Mídia
+└── docs/                       documentação
 
 O repositório contém as 11 páginas HTML, publicadas no Vercel.
 
