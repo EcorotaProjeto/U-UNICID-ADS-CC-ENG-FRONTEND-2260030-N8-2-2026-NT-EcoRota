@@ -209,6 +209,7 @@
     function perguntarCampo(intro) {
         const p = preenchendo;
         if (!p) return;
+        p.esperandoConfirmacao = false;
         if (p.i >= p.lista.length) {
             preenchendo = null;
             return avisar('Formulário preenchido. Diga: enviar formulário, para revisar o envio.');
@@ -266,11 +267,19 @@
         const texto = fala.trim().replace(/[.!?]+$/, '');
         const n = semAcento(texto);
 
-        if (preenchendo && GLOBAIS.indexOf(n) === -1) {
+        if (preenchendo && preenchendo.esperandoConfirmacao) {
+            // Já anotou: espera a pessoa dizer "pronto" (ou corrigir). Outras falas são ignoradas.
+            if (['pronto', 'proximo', 'proximo campo', 'seguinte', 'continuar'].indexOf(n) !== -1) {
+                preenchendo.i++;
+                return perguntarCampo();
+            }
+            if (n === 'corrigir' || n === 'repetir') return perguntarCampo();
+            if (GLOBAIS.indexOf(n) === -1) return;
+        } else if (preenchendo && GLOBAIS.indexOf(n) === -1) {
             const c = preenchendo.lista[preenchendo.i];
             if (!responder(c, texto)) return avisar('Não entendi. Diga o valor de novo, ou pular.');
-            preenchendo.i++;
-            return perguntarCampo();
+            preenchendo.esperandoConfirmacao = true;
+            return avisar('Anotado. Diga pronto para o próximo campo, ou corrigir para mudar.');
         }
         if (preenchendo && (n === 'pular' || n === 'pule')) {
             preenchendo.i++;
