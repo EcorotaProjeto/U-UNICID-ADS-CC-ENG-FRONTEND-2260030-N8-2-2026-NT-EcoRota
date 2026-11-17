@@ -40,8 +40,11 @@ Regras:
   em "pagina" e diga na fala pra onde vai levar (ex.: "Vou te levar pra página de Contato!"). Use só destinos da lista.
 - Se a mensagem disser que o visitante acabou de chegar com a sua ajuda, NÃO use "pagina": mostre o que ele procura nesta página.
 - Muitas pessoas vão ouvir sua fala em voz alta: não use emojis, asteriscos, listas nem formatação.
+- Se o visitante pedir para preencher um formulário (ex.: "preenche pra mim", "preencher o formulário", "escreve os meus dados"):
+  NÃO invente nem escreva dados pessoais. Diga que vai perguntar cada campo em voz alta e o visitante responde falando;
+  coloque "comando": "preencher formulario" no JSON, e "pagina": null.
 - Responda SOMENTE com um JSON neste formato:
-{"fala": "o que você diz", "alvo": "id-do-elemento ou null", "pagina": "destino ou null"}`;
+{"fala": "o que você diz", "alvo": "id-do-elemento ou null", "pagina": "destino ou null", "comando": "preencher formulario ou null"}`;
 }
 
 /* ---------- Resposta reserva (sem IA): procura a descrição mais parecida com a pergunta ---------- */
@@ -51,6 +54,10 @@ function palavras(texto) {
     .split(/[^a-z0-9]+/).filter((p) => p.length > 2 && !PALAVRAS_VAZIAS.has(p));
 }
 function respostaReserva(pergunta, alvos, paginas = [], titulo = '') {
+  // pedido para preencher o formulário: o site faz as perguntas campo a campo, por voz
+  if (/preench|escreve (os|meus|minhas)|preenc/i.test(pergunta) && !/acabou de chegar/.test(pergunta)) {
+    return { fala: 'Vou te perguntar cada campo em voz alta. Você responde falando, e pode dizer pular ou parar preenchimento quando quiser.', alvo: null, pagina: null, comando: 'preencher formulario' };
+  }
   // acabou de chegar levado pelo Equinho? não navega de novo
   const chegou = /acabou de chegar/.test(pergunta);
   if (chegou) { pergunta = pergunta.replace(/^\(.*?\)\s*/, ''); paginas = []; alvos = alvos.filter((a) => a.id !== 'menu-principal'); }
@@ -171,13 +178,14 @@ module.exports = async function handler(req, res) {
   for (const modelo of MODELOS) {
     try {
       const texto = await perguntarAoGemini(chave, modelo, sistema, mensagens);
-      const { fala, alvo, pagina: destino } = extrairJson(texto);
+      const { fala, alvo, pagina: destino, comando } = extrairJson(texto);
       const idsValidos = new Set(pagina.alvos.map((a) => a.id));
       const destinosValidos = new Set(pagina.paginas.map((x) => x.destino));
       return res.status(200).json({
         fala: String(fala || '').replace(/[*_#`]/g, '').slice(0, 800) || 'Hmm, me perdi. Pode perguntar de novo?',
         alvo: idsValidos.has(alvo) ? alvo : null,
         pagina: destinosValidos.has(destino) ? destino : null,
+        comando: comando === 'preencher formulario' ? comando : null,
         fonte: modelo,
       });
     } catch (e) {
