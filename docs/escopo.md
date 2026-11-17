@@ -7,7 +7,7 @@
 - **Nome da equipe:** EcoLogic
 - **Nome do projeto/site:** EcoRota Acessível
 - **Integrantes:** Caio Nabuosuke (RGM 047646675); Eduarda Amorim (RGM 47575689); Guilherme Couto (RGM 47827149); Henrique de Medeiros (RGM 47636718); Jenifer Rufino (RGM 47556986); Pedro Pinheiro (RGM 47617110)
-- **Data de criação:** 09/11/2026
+- **Data de criação:** 15/09/2026
 - **Última atualização:** 16/11/2026
 - **Professor(a)/disciplina:** Prof. Paulo Fratta / Front-End (turma ADS/Noite)
 
