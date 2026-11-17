@@ -50,7 +50,7 @@ Comandos principais:
 
 - `ajuda`: lista os comandos.
 - `campo nome`: vai para o campo e lê o nome e o conteúdo.
-- `escreva Caio Kenji`: escreve no campo atual. Também funciona com `escreva ... no campo nome`.
+- `escreva (Seu nome)`: escreve no campo atual. Também funciona com `escreva ... no campo nome`.
 - `próximo campo` e `campo anterior`: troca de campo.
 - `ler campo`, `limpar campo` e `ler página`.
 - `ir para projetos`: vai para outra página do menu.
