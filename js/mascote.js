@@ -134,7 +134,6 @@
           </div>
           <canvas aria-label="${this.nome}, o assistente do site. Clique ou aperte Enter para conversar." role="button" tabindex="0"></canvas>
           <div class="controles">
-            <button class="btn-maos" title="Modo mãos livres: diga ${this.nome} e sua pergunta" aria-label="Modo mãos livres" aria-pressed="false" hidden>👂</button>
             <button class="btn-voz"></button>
             <button class="btn-fechar" title="Minimizar o ${this.nome}" aria-label="Minimizar o ${this.nome}">✕</button>
           </div>
@@ -486,9 +485,6 @@
         if (e.key === 'Escape' && this.ouvindo) { this.cancelado = true; this.rec?.abort(); }
       });
 
-      this.el.maos.hidden = false;
-      this.el.maos.addEventListener('click', () => this.definirMaosLivres(!this.maosLivres, { avisar: true }));
-      if (guardar.ler('maoslivres') === '1') this.definirMaosLivres(true, { avisar: false });
     }
 
     /* Pergunta única: escuta até a pessoa parar de falar e envia */
@@ -568,11 +564,10 @@
       this.maosLivres = ligar;
       this.ligadoAutomatico = ligar && !avisar; // religado sozinho ao abrir a página
       if (lembrar) guardar.salvar('maoslivres', ligar ? '1' : '0');
-      this.el.maos.classList.toggle('ativo', ligar);
-      this.el.maos.setAttribute('aria-pressed', String(ligar));
-      this.el.maos.title = ligar
-        ? `Mãos livres ligado: diga "${this.nome}" e sua pergunta. Clique para desligar.`
-        : `Modo mãos livres: diga ${this.nome} e sua pergunta`;
+      if (this.el.maos) {
+        this.el.maos.classList.toggle('ativo', ligar);
+        this.el.maos.setAttribute('aria-pressed', String(ligar));
+      }
       this.classList.toggle('maos-livres', ligar);
 
       if (ligar) {
@@ -612,7 +607,7 @@
           this.definirMaosLivres(false, { lembrar: !automatico });
           this.abrirConversa();
           this.falar(automatico
-            ? 'Toque no botão 👂 pra religar o modo mãos livres nesta página.'
+            ? 'Permissão do microfone negada. Libere o microfone nas configurações do navegador.'
             : this.mensagemErroMicrofone(erro), { semVoz: true });
           return;
         }

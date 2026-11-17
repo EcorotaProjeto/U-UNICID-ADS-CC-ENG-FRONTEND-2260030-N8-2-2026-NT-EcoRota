@@ -413,7 +413,7 @@
         if (motivo) avisar(motivo);
     }
 
-    if (ReconhecimentoVoz && camposDoFormulario().length) {
+    if (ReconhecimentoVoz) {
         document.addEventListener('focusin', function (e) {
             if (e.target && e.target.matches && e.target.matches('form input, form textarea')) ultimoCampo = e.target;
         });
@@ -431,7 +431,8 @@
 
         let salvo = null;
         try { salvo = window.localStorage.getItem(CHAVE_VOZ); } catch (e) { salvo = null; }
-        if (salvo === '1') ligarVoz(false);
+        // Ligado por padrão: só fica desligado se a pessoa tiver desligado antes ("desligar comandos")
+        if (salvo !== '0') ligarVoz(false);
     }
 
     /* ---------- Pedido vindo do Equinho (chat) ---------- */
