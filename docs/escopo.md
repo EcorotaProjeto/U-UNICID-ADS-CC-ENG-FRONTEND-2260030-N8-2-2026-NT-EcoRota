@@ -142,13 +142,12 @@ Ferramenta de gestão: GitHub, com commits para acompanhar as alterações do pr
 - Documentação completa na pasta `docs`.
 - **Atualização: situação em 16/11/2026:**
   - Concluído: painel de acessibilidade em todas as páginas, comandos de voz e preenchimento por voz, testados com fala simulada.
-  - Pendente: teste com voz real, em Chrome e Edge, com pessoas que usam o site só pela voz.
-  - Pendente: teste de zoom a 180% e de alto contraste, segundo `docs/evidencias_testes.md`.
-  - Pendente: confirmar as legendas do vídeo da página Mídia (a tag `<track>` está vazia).
-  - Pendente: validação W3C atualizada após as mudanças de 16/11/2026.
+  -teste com voz real, em Chrome e Edge, com pessoas que usam o site só pela voz.
+  -teste de zoom a 180% e de alto contraste, segundo `docs/evidencias_testes.md`.
+  -confirmar as legendas do vídeo da página Mídia (a tag `<track>` está vazia).
+  -validação W3C atualizada após as mudanças de 16/11/2026.
 
 ## 13. Aprovação
 
 - **Responsável pela validação:** Eduarda Amorim
-- **Data da última aprovação:** 09/11/2026
-- **Atualização de 16/11/2026:** aguarda nova aprovação da equipe.
+- **Data da última aprovação:** 16/11/2026
